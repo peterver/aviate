@@ -67,13 +67,9 @@ if(file_exists($scaffoldPath)) {
 	include_once $scaffoldPath;
 	$scaffold = new Scaffold($config, $classes);
 
-	if($config['env']['cli'] === true and PHP_SAPI === 'cli') {
-		include_once CORE_BASE . 'cli/bootstrapper.php';
-	} else {
-		//  Load the default controller
-		include_once CORE_BASE . 'defaults/controller.php';
-		$controller = new Controller;
-	}
+	//  Load the default controller
+	include_once CORE_BASE . 'defaults/controller.php';
+	$controller = new Controller;
 } else {
 	$badFiles[] = $scaffoldPath;
 	die('Scaffold class not loaded. Sky is falling.');

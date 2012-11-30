@@ -22,9 +22,5 @@ define('TEMP_BASE', BASE . 'tmp/');
 //  And the public path
 define('PUBLIC_PATH', dirname($_SERVER['SCRIPT_NAME']));
 
-//  The location of the template.html
-//  You can rename this for safety and shizzle
-define('TEMPLATE_PATH', PUBLIC_BASE . 'template.html');
-
-//  And set the CLI path (only required if you're using the CLI, obviously)
-define('CLI_PATH', BASE . 'cli/');
+define('TEMPLATE_BASE', BASE . 'theme/');
+define('TEMPLATE_PATH', TEMPLATE_BASE . 'skeleton.html');
