@@ -1,10 +1,10 @@
 <header id="top" class="header">
 	<div class="wrap">
-		<b class="title">
+		<b class="left">
 			<a href="/" id="logo">My Dime Store</a>
 		</b>
 		
-		<p class="basket col4 right">
+		<p class="basket right">
 			<?php if(Basket::hasItems()): ?>
 				You have <b><?php echo Basket::itemCount(); ?></b> items.
 			<?php else: ?>

@@ -66,6 +66,9 @@
 .pad2 { margin-right: 163.5px; }
 .pad1 { margin-right: 81.75px; }
 
+.left, [class*='col'], .content, .sidebar {
+    float: left;
+}
 .right {
     float: right;
 }
@@ -75,9 +78,6 @@
     .right input {
     	margin-right: 0;
     }
-.left, [class*='col'], .content, .sidebar {
-    float: left;
-}
 
 .vertically-centered {
 	position: absolute;
@@ -87,4 +87,5 @@
     
 .header {
     margin-bottom: 40px;
+    line-height: 70px;
 }
