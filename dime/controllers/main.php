@@ -16,8 +16,14 @@ class Main_controller extends Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		//  Load the installer helper, which will handle redirection for us
-		$this->helper->load('installer');
+		//  Get some helpers in
+		$this->helper->load(array(
+			//  Load the installer helper, which will handle redirection for us
+			'installer',
+			
+			//  Load the Basket helper so we can see our basket data in views
+			'basket'
+		));
 		
 		//  Set some defaults to use our custom theme paths instead of
 		//  Scaffold's defaults, make it a bit more discoverable

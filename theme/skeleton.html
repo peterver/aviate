@@ -6,12 +6,19 @@
 		
 		<link rel="stylesheet" href="{{base}}assets/css/style.css">
 	</head>
-	<body class="{{class/site}}">
-		<h1>{{heading}}</h1>
+	<body class="{{class}}">
+		<!-- top -->
+		~header~
 		
-		{{view}}
-		
-		something something dark side
+		<div class="main wrap">
+			<div class="content">
+				{{view}}
+			</div>
+			
+			<div class="sidebar">
+				~sidebar~ goes here
+			</div>
+		</div>
 		
 		~scripts~
 	</body>

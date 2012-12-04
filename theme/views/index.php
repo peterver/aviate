@@ -1,1 +1,1 @@
-Hello, this is my shop index
+<h1>Latest products</h1>

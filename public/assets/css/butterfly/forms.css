@@ -1,0 +1,158 @@
+/**
+ *   Butterfly UI
+ *   A simpler framework for simpler sites
+ *
+ *   Typin', inputtin', it's all good.
+ */
+ 
+form p {
+    padding-bottom: 0;
+}
+	form p:last-child > [type=submit] {
+		margin-top: 25px;
+	}
+ 
+/* Texty inputs */
+input, textarea {
+    padding: 10px 14px;
+    margin-bottom: 15px;
+
+    border-radius: 5px;
+    font-size: 13px;
+}
+    textarea {
+        resize: vertical;
+        
+        min-height: 100px;
+        max-height: 600px;
+    }
+        textarea.small {
+            min-height: 45px;
+            max-height: 150px;
+        }
+        textarea.tall {
+            min-height: 200px;
+            max-height: 750px;
+        }
+    input:focus, textarea:focus {
+        outline: none;
+    }
+    
+select {
+    -webkit-appearance: none;
+    border: none;
+    
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 500;
+    
+    padding: 7px 20px;
+    margin-bottom: 15px;
+}
+    select:focus {
+        outline: none;
+    }
+
+input, textarea, select {
+    width: 100%;
+}
+
+input[type=search] {
+	border-radius: 150px; /* A search input shouldn't ever be bigger than 300px tall */
+}
+    
+button, .btn, [type=submit], [type=reset], [type=button] {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+    margin-right: 20px; /* Multiple buttons next to each other */
+    
+    border: none;
+    border-radius: 5px;
+    
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+    ::-webkit-file-upload-button {
+        padding: 10px 20px;
+        
+        border: none;
+        border-radius: 5px;
+        
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    form button, [type=submit], [type=reset] {
+        padding: 12px 24px;
+    }
+    
+label {
+    display: block;
+    padding: 4px 0 8px;
+    
+    line-height: 19px;
+    font-weight: 500;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    padding-bottom: 20px;
+
+    position: relative;
+    
+    font-size: 19px;
+    font-weight: 500;
+}
+
+/**
+ *   Full-size forms
+ */
+legend, .full p {
+    border-bottom: 1px solid #e5e9f0;    
+}
+    .full p {
+        min-height: 70px;
+        margin: 30px 0 25px;
+    }
+.full .help {
+    display: block;    
+    margin-top: -2px;
+    margin-bottom: 20px;
+    
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    color: #9ba5b6;
+}
+.full .status {
+    padding-left: 20px;
+}
+.full button + button {
+    margin-left: 20px;
+}
+.full label {
+    float: left;
+    padding: 2px 20px 8px 0;
+}
+
+/**
+ *   File upload fields
+ */
+ 
+[type=file] {
+    -webkit-appearance: none;
+    padding: 0;
+    border: none;
+}
+    [type=file]::-webkit-file-upload-button {
+        -webkit-appearance: none;
+        padding-left: 43px;
+        
+        background-image: url('cloud.png');
+        background-repeat: no-repeat;
+        background-position: 15px 50%;
+    }
