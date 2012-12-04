@@ -7,11 +7,11 @@
  *	Set the paths used by all the functions, classes, and everything.
  */
 
-//  If you rename your "app" folder, change it here.
-define('APP_BASE', BASE . 'app/');
+//  In Scaffold, this is called "app", but our app is called "dime", not "app".
+define('APP_BASE', BASE . 'dime/');
 
-//  If you rename the "core" folder (which you shouldn't), change it here.
-define('CORE_BASE', BASE . 'core/');
+//  To save confusion, we'll call this Scaffold.
+define('CORE_BASE', BASE . 'scaffold/');
 
 //  If your public folder has a different name... You know the drill.
 define('PUBLIC_BASE', BASE . 'public/');
