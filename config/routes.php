@@ -33,5 +33,12 @@ $config['routes'] = array(
 	
 	//  The main index controller
 	'index' => 'main',
-	'index/help' => 'main.help'
+	
+	//  Only if there's an install process needed, of course
+	'install' => 'install',
+	'install/([a-z]{3,10})' => 'install.single',
+	
+	//  Admin routes
+	'admin' => 'admin',
+	'admin/(:any)' => 'admin'
 );

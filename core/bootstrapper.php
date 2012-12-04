@@ -57,7 +57,7 @@ foreach($helpers as $helper) {
 }
 
 //  Our core classes to load
-$classes = array('cache', 'globals', 'config', 'request', 'validator', 'file', 'error', 'crypt', 'database', 'session', 'csrf', 'response', 'ajax', 'image', 'input', 'url', 'routes', 'template', 'helper');
+$classes = array('cache', 'globals', 'config', 'storage', 'request', 'validator', 'file', 'error', 'crypt', 'database', 'session', 'csrf', 'response', 'ajax', 'image', 'input', 'url', 'routes', 'template', 'helper');
 
 //  Just load our class and we'll do the rest
 $scaffoldPath = CORE_BASE . 'classes/scaffold.php';
@@ -67,9 +67,9 @@ if(file_exists($scaffoldPath)) {
 	include_once $scaffoldPath;
 	$scaffold = new Scaffold($config, $classes);
 
-	//  Load the default controller
-	include_once CORE_BASE . 'defaults/controller.php';
-	$controller = new Controller;
+	if($config['env']['cli'] === true and PHP_SAPI === 'cli') {
+		include_once CORE_BASE . 'cli/bootstrapper.php';
+	}
 } else {
 	$badFiles[] = $scaffoldPath;
 	die('Scaffold class not loaded. Sky is falling.');
