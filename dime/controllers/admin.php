@@ -24,16 +24,26 @@ class Admin_controller extends Controller {
 		//  we have to do a bit of hacking. Ewww.
 		$t = $this->template;
 		$t::$templatepath = TEMPLATE_BASE . '/admin.html';
+		
+		$this->template->set(array(
+			'partial_base' => TEMPLATE_BASE . 'partials/admin/',
+			'view_base' => TEMPLATE_BASE . 'views/admin/',
+			
+			'loggedIn' => true
+		));
 	}
 	
 	public function index() {
-		echo $this->template->render('admin/index');
+		echo $this->template->render('index');
 	}
 	
 	public function login() {
 		if($this->session !== false) {
 			return Response::redirect('/admin');
 		}
+		
+		//  We're not logged in, make sure you know that.
+		$this->template->remove('loggedIn');
 			
 		//  Check if the username field is set
 		//  If it is, we can assume they're trying to log in
@@ -53,7 +63,7 @@ class Admin_controller extends Controller {
 		}
 		
 		echo $this->template->set('class', 'login')
-				  ->render('admin/login');
+				  ->render('login');
 	}
 	
 	public function logout() {

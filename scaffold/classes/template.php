@@ -134,6 +134,12 @@ class Template {
 		return $this;
 	}
 	
+	public function remove($key) {
+		unset(self::$vars[$key]);
+		
+		return $this;
+	}
+	
 	public function setPath($path) {
 		if(file_exists($path)) {
 			self::$templatepath = $path;
