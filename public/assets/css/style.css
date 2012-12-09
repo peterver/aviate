@@ -242,6 +242,7 @@ h1 {
 		}
 			.products li a:hover .price {
 				right: 15px;
+				-webkit-transition-delay: .125s;
 			}
 	.products img {
 		display: block;
