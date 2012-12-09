@@ -67,6 +67,7 @@ class Admin_controller extends Controller {
 
 			//  Log the user in
 			if(is_object($status)) {
+				unset($session->password);
 				return Session::set(Config::get('session.user'), $status) and Response::redirect('/admin');
 			}
 						
