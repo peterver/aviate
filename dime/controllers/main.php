@@ -24,13 +24,6 @@ class Main_controller extends Controller {
 			//  Load the Basket helper so we can see our basket data in views
 			'basket'
 		));
-		
-		//  Set some defaults to use our custom theme paths instead of
-		//  Scaffold's defaults, make it a bit more discoverable
-		$this->template->set(array(
-			'view_base' => TEMPLATE_BASE . 'views/',
-			'partial_base' => TEMPLATE_BASE . 'partials/'
-		));
 	}
 	
 	public function index() {

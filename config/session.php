@@ -16,5 +16,8 @@ $config['session'] = array(
 	'expires' => 60 * 60 * 24 * 30,
 	
 	// Want it secure brah?
-	'encoded' => true
+	'encoded' => false,
+	
+	//  The session that user information gets stored in
+	'user' => 'dime_user'
 );

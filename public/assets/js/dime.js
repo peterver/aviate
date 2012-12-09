@@ -19,6 +19,9 @@
 			
 			//  Speed dem animations up
 			$.fx.speeds._default = 250;
+			
+			//  And infinite scroll
+			this.infiniteScroll();
 		},
 		
 		//  We need to do some handling of the blocks

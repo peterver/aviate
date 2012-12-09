@@ -122,7 +122,7 @@ class Template {
 				$this->set($k, $v);
 			}
 			
-			return;
+			return $this;
 		}
 		
 		if($key === 'path') {
@@ -130,14 +130,18 @@ class Template {
 		}
 		
 		self::$vars[$key] = $val;
+		
+		return $this;
 	}
 	
 	public function setPath($path) {
 		if(file_exists($path)) {
-			return self::$templatepath = $path;
+			self::$templatepath = $path;
+		} else {
+			Error::log('Path ' . $path . ' not found');
 		}
 		
-		Error::log('Path ' . $path . ' not found');
+		return $this;
 	}
 	
 	public function get($key, $fallback = '') {
