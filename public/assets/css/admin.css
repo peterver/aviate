@@ -135,9 +135,9 @@ body {
 	position: absolute;
 	left: 0;
 	top: 0;
-	bottom: 0;
 	
 	width: 180px;
+	min-height: 100%;
 }
 	.sidebar #logo {
 		display: block;
@@ -148,6 +148,7 @@ body {
 		display: block;
 		list-style: none;
 		padding-top: 15px;
+		margin-bottom: 40px;
 	}
 		.sidebar li {
 			line-height: 33px;
