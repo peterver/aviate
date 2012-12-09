@@ -34,8 +34,22 @@ class Admin_controller extends Controller {
 		));
 	}
 	
+	public function delegate() {
+		$url = str_replace('_', '', $this->url->segment(1));
+		
+		if(method_exists($this, $url) and $url !== __FUNCTION__) {
+			return $this->{$url}();
+		}
+		
+		echo $this->template->render('404');
+	}
+	
 	public function index() {
 		echo $this->template->render('index');
+	}
+	
+	public function products() {
+		echo $this->template->set('products', $this->model->allProducts())->render('products');
 	}
 	
 	public function login() {

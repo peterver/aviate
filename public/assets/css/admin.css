@@ -22,13 +22,23 @@ body, input, button, textarea {
 		background: #4485c7;
 	}
 	
+ul {
+	list-style: none;
+}
+	
 #logo {
 	display: block;
 }
 	#logo img {
-		width: 25px;
-		height: 25px;
+		width: 28px;
+		height: 28px;
 	}
+	
+abbr[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+	padding-bottom: 1px;
+}
 	
 /**
  *   Login screen 
@@ -129,7 +139,7 @@ html, body.login {
  *   Normal layout
  */
 body {
-	margin-left: 230px;
+	margin-left: 180px;
 }
 .sidebar {
 	position: absolute;
@@ -142,11 +152,10 @@ body {
 	.sidebar #logo {
 		display: block;
 		background: #3c7dbe;
-		padding: 25px 30px 20px;
+		padding: 25px 30px 17px;
 	}
 	.sidebar > ul {
 		display: block;
-		list-style: none;
 		padding-top: 15px;
 		margin-bottom: 40px;
 	}
@@ -193,4 +202,105 @@ body {
 	}
 		.sidebar a:hover, .sidebar .active a {
 			color: #fff;
+		}
+.content {
+	margin: 0 50px;
+}
+	.content h1 {
+		padding: 0 50px;
+		margin: 0 -50px 20px;
+		
+		background: #f5f8fa;
+		color: #8a9fb4;
+		
+		height: 77px;
+		
+		font-size: 24px;
+		line-height: 77px;
+		font-weight: 300;
+	}
+
+.products {
+	padding-top: 20px;
+}
+	.products li {
+		margin-bottom: 20px;
+	}
+		.products li a {
+			display: block;
+			padding: 20px 30px;
+			overflow: hidden;
+			
+			border-radius: 5px;
+			
+			background: #eef3f7;
+			color: #62748d;
+			
+			font-size: 16px;
+			text-decoration: none;
+			
+			-webkit-transition: background .2s;
+			-moz-transition: background .2s;
+			transition: background .2s;
+		}
+			.products li a:hover {
+				background: #e7f0f7;
+				color: #415d7c;
+			}
+			.products li.oos a {
+				background: #df593f;
+				color: #fff;
+			}
+				.products li.oos a:hover {
+					background: #d55239;
+				}
+		.products li .price {
+			float: right;
+			color: #7a9ac7;
+		}
+			.products li.oos .price {
+				color: #fcc2b7;
+			}
+		.products li .title, .products li .tag {
+			float: left;
+			margin-right: 30px;
+		}
+			.products li .tag {
+				margin-top: 2px;
+				margin-right: 20px;
+				padding: 6px 9px 5px;
+				
+				font-size: 10px;
+				line-height: 10px;
+				font-weight: bold;
+				text-transform: uppercase;
+				
+				border-radius: 3px;
+				
+				background: rgba(95,137,170,.15);
+			}
+				.products li.oos .tag {
+					background: rgba(110,25,9,.2);
+					color: #ffd4c8;
+				}
+	
+.statlist {
+	overflow: hidden;
+	margin: 30px 0;
+}
+	.statlist li {
+		float: left;
+		margin-right: 50px;
+		margin-bottom: 15px;
+		
+		color: #98badd;
+		font-size: 13px;
+		line-height: 20px;
+	}
+		.statlist li b {
+			display: block;
+			
+			font-size: 21px;
+			font-weight: 300;
+			color: #5082b4;
 		}

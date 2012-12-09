@@ -40,7 +40,7 @@ $config['routes'] = array(
 	
 	//  Admin routes
 	'admin' => 'admin',
-	'admin/(:any)' => 'admin',
+	'admin/(:any)' => 'admin.delegate',
 	
 	//  Login/logout methods
 	'admin/login' => 'admin.login',

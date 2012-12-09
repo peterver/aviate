@@ -7,10 +7,8 @@ class Controller {
 		}
 		
 		//  Set the default config from the database
-		if(Config::get('autoload_config') === true and method_exists($this->model, '_loadConfig')) {
-			foreach($this->model->_loadConfig() as $key => $value) {
-				Config::set($key, $value);
-			}
+		foreach($this->model->_loadConfig() as $key => $value) {
+			Config::set($key, $value);
 		}
 		
 		//  Set some defaults to use our custom theme paths instead of

@@ -6,9 +6,40 @@ class Admin_model extends Model {
 	}
 	
 	public function findUser($username, $password) {
+		$password = Input::hash($password);
+		
 		return first($this->db->select('*')->from('users')->where(array(
 			'username' => $username,
 			'password' => $password
 		))->fetch());
+	}
+	
+	public function allProducts() {
+		$products = $this->db->select('*')->from('products')->fetch();
+		$return = array();
+		
+		foreach($products as $id => $product) {
+			$product->oos = $product->current_stock < 1;
+			
+			$product->tags = array();
+				
+			if($product->oos) {
+				$product->tags[] = 'Out of stock';
+			} else if(($product->current_stock / $product->total_stock) < .1) {
+				$product->tags[] = 'Low stock';
+			}
+			
+			if($product->discount > 0) {
+				$product->tags[] = 'Discounted ' .  $product->discount . '%';
+			}
+			
+			if(!$product->visible) {
+				$product->tags[] = 'Hidden';
+			}
+			
+			$return[$id] = $product;
+		}
+		
+		return $return;
 	}
 }

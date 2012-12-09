@@ -4,7 +4,7 @@
 	<?php endif; ?>
 	
 	<p>
-		<input type="email" placeholder="Username or email" id="username" name="username" value="<?php echo Input::post('username'); ?>">
+		<input type="email" autofocus placeholder="Username or email" id="username" name="username" value="<?php echo Input::post('username'); ?>">
 		<label for="username">Username or email:</label>
 	</p>
 	
