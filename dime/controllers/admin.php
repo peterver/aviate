@@ -52,6 +52,11 @@ class Admin_controller extends Controller {
 		echo $this->template->set('products', $this->model->allProducts())->render('products');
 	}
 	
+	public function product() {
+		echo $this->template->set('product', $this->model->findProduct($this->url->segment(2)))
+				  ->render('product');
+	}
+	
 	public function login() {
 		if($this->session !== false) {
 			return Response::redirect('/admin');

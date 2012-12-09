@@ -1,4 +1,8 @@
-<h1>All products</h1>
+<h1>
+	All products
+	
+	<a href="/admin/products/add">Add product</a>
+</h1>
 
 <ul class="products">
 	<?php foreach($products as $product): ?>
