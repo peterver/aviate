@@ -108,9 +108,9 @@ class Template {
 		}, $template);
 		
 		//  Include partials (~partial~)
-		$partial_base = $this->get('partial_base', APP_BASE . 'partials/');
-		$template = preg_replace_callback('/~([' . $alnum . ']+)~/', function($matches) use($partial_base) {
-			return grab($partial_base . preg_replace('/[^a-zA-Z0-9_]+/', '', $matches[0]) . '.php');
+		$vars['partial_base'] = $this->get('partial_base', APP_BASE . 'partials/');
+		$template = preg_replace_callback('/~([' . $alnum . ']+)~/', function($matches) use($vars) {
+			return grab($vars['partial_base'] . preg_replace('/[^a-zA-Z0-9_]+/', '', $matches[0]) . '.php', $vars);
 		}, $template);
 		
 		return $template;

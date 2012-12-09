@@ -29,7 +29,8 @@ class Admin_controller extends Controller {
 			'partial_base' => TEMPLATE_BASE . 'partials/admin/',
 			'view_base' => TEMPLATE_BASE . 'views/admin/',
 			
-			'loggedIn' => true
+			'loggedIn' => true,
+			'url' => $this->url->segment(1)
 		));
 	}
 	
