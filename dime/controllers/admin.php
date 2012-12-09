@@ -57,6 +57,10 @@ class Admin_controller extends Controller {
 				  ->render('product');
 	}
 	
+	public function addProduct() {
+		echo $this->template->render('add_product');
+	}
+	
 	public function login() {
 		if($this->session !== false) {
 			return Response::redirect('/admin');
