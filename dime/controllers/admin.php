@@ -58,6 +58,40 @@ class Admin_controller extends Controller {
 	}
 	
 	public function addProduct() {
+		$all = array('name', 'price', 'image', 'stock', 'slug', 'visibility', 'discount', 'id');
+		$required = array('name', 'price', 'slug', 'description');
+		$errors = array();
+
+		if($this->input->posted()) {
+			$product = array('');
+			
+			//  Check required fields
+			foreach($required as $field) {
+				if($this->input->post($field) === '') {
+					$errors[] = 'Please fill out the ' . $field . '!';
+				}
+			}
+			
+			foreach($all as $post) {
+				$product[] = $this->input->post($post);
+			}
+			
+			$product = $this->model->insertProduct($product);
+			
+			var_dump($product);
+			
+			if($product === false) {
+				$errors[] = 'Unexpected error. Try again in a minute.';
+			}
+			
+			//  Display errors
+			if(count($errors) > 0) {
+				$this->template->set('msg', join($errors, '<br>'));
+			} else {
+				Response::redirect('/admin/products/' . $product->id);
+			}
+		}
+		
 		echo $this->template->render('add_product');
 	}
 	

@@ -31,6 +31,18 @@ class Admin_model extends Model {
 		return $return;
 	}
 	
+	public function insertProduct($product) {
+		$insert = $this->db->insert('products')->values($product)->go();
+		
+		return $this->db;
+		
+		if($insert === false) {
+			return false;
+		}
+		
+		return first($this->db->select('*')->from('products')->order('id desc')->fetch(1));
+	}
+	
 	private function _format($product) {
 		$product->oos = $product->current_stock < 1;
 		
