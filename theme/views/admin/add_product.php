@@ -2,7 +2,7 @@
 	<input autofocus id="name" name="name" value="<?php echo Input::post('name'); ?>" placeholder="Product name">
 	<button id="save" type="submit">Create product</button>
 	
-	<?php echo $msg; ?>
+	<?php if(isset($msg)) echo $msg; ?>
 	
 	<div class="main">
 		<div class="meta">
@@ -45,7 +45,9 @@
 		</div>
 		
 		<div class="description">
-			<textarea name="description" id="description" placeholder="Product description"><?php echo Input::post('description'); ?></textarea>
+			<p>
+				<textarea name="description" id="description" placeholder="Product description"><?php echo Input::post('description'); ?></textarea>
+			</p>
 		</div>
 	</div>
 </form>

@@ -43,7 +43,7 @@ abbr[title] {
 form {
 	overflow: hidden;
 }
-input, textarea {
+p input, p textarea {
 	border: 1px solid #ced4e2;
 	border-radius: 3px;
 	
@@ -153,6 +153,7 @@ html, body.login {
 			background: #eef5fc;
 			color: #286099;
 			font-weight: bold;
+			line-height: 22px;
 			
 			cursor: pointer;
 		}
@@ -264,7 +265,12 @@ body {
 	padding-bottom: 50px;
 	min-height: 100%;
 }
-	.content h1, .content #title {
+	.login .content {
+		position: static;
+		min-height: 1px;
+		padding: 0;
+	}
+	.content h1, .content #name {
 		width: 100%;
 		padding: 0 50px;
 		margin: 0 0 20px;
@@ -280,7 +286,7 @@ body {
 		
 		border: none;
 	}
-		.content #title {
+		.content #name {
 			display: block;
 			min-width: 100%;
 			margin-right: -50px;
