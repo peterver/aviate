@@ -4,9 +4,9 @@
 		</a>
 		
 		<ul class="nav">
-			<li><a href="/about">About Us</a>
-			<li><a href="/blog">Blog</a>
-			<li><a href="/contact">Contact Us</a>
+			<li><a href="/static/about">About Us</a>
+			<li><a href="/static/blog">Blog</a>
+			<li><a href="/static/contact">Contact Us</a>
 		</ul>
 		
 		<?php if(Basket::hasItems()): ?>

@@ -34,6 +34,10 @@ $config['routes'] = array(
 	//  The main index controller
 	'index' => 'main',
 	
+	//  Handle any static pages
+	'static' => 'page.index',
+	'static/(:any)' => 'page.single',
+	
 	//  Only if there's an install process needed, of course
 	'install' => 'install',
 	'install/([a-z]{3,10})' => 'install.single',

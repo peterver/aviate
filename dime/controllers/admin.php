@@ -95,6 +95,10 @@ class Admin_controller extends Controller {
 		echo $this->template->render('add_product');
 	}
 	
+	public function status() {
+		echo $this->template->render('status');
+	}
+	
 	public function login() {
 		if($this->session !== false) {
 			return Response::redirect('/admin');

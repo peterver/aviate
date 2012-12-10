@@ -22,8 +22,9 @@ define('BASE', dirname(dirname($_SERVER['SCRIPT_FILENAME'])) . '/');
 //  To check: defined('IN_APP') or die('Get out of here');
 define('IN_APP', true);
 
-//  Set the version of Scaffold
+//  Set the version of Scaffold and Dime
 define('SCAFFOLD_VERSION', 0.1);
+define('DIME_VERSION', 0.1);
 
 //  Start your clocks, mister!
 define('TIMER_START', microtime(true));

@@ -65,6 +65,16 @@ p input, p textarea {
 		outline: none;
 	}
 	
+p a {
+	color: #4485c7;
+	text-decoration: none;
+	border-bottom: 1px solid #d1e8ff;
+}
+	p a:hover {
+		color: #2b639c;
+		border-color: #b5d2ef;
+	}
+	
 form p {
 	position: relative;
 }

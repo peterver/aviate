@@ -3,8 +3,14 @@
 (function($) {
 	var Admin = {
 		init: function() {
+			//  Set some defaults
+			this.body = $('body');
+			
 			this.thumbnail();
 			this.updateSlug();
+			
+			//  Fix the sidebar because CSS sucks
+			this.fixSidebarHeight();
 		},
 		
 		thumbnail: function() {
@@ -41,6 +47,16 @@
 					slug.val(Admin.slugify(title.val()));
 				}
 			});
+		},
+		
+		//  If you don't know what this function does,
+		//  you're probably still living in that cave.
+		//  And who can blame you? It looks nice.
+		//  Not a fan of caves, though. Too many bats.
+		//  All that said, I like Batman.
+		//  Probably because he's not an actual bat.
+		fixSidebarHeight: function() {
+			$('.sidebar').height($(document).height());
 		},
 		
 		slugify: function(str) {
