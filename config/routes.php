@@ -33,6 +33,7 @@ $config['routes'] = array(
 	
 	//  The main index controller
 	'index' => 'main',
+	'page/(:num)' => 'main',
 	
 	//  Handle any static pages
 	'static' => 'page.index',

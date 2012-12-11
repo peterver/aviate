@@ -58,7 +58,9 @@
 				
 				return false;
 			});
-		}
+		},
+		
+		infiniteScroll: function() {}
 	};
 	
 	Dime.init();

@@ -22,6 +22,15 @@ class Main_controller extends Controller {
 	}
 	
 	public function index() {
+		//  Get the current page we're on
+		$page = max(1, (int) $this->url->segment(1));
+		
+		//  And set the products for that page
+		$this->template->set(array(
+			'products' => $this->model->paged($page)
+		));
+		
+		//  Render our view
 		echo $this->template->render('index');
 	}
 }
