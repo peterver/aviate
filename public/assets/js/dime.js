@@ -64,22 +64,28 @@
 			var win = $(window);
 			var goodToGo = true;
 			var blocks = this.blocks;
+			var currentPage = (function() {
+				var url = window.location.toString().split('/');
+				return url[url.length - 1];
+			})() || 1;
 			
-			var loadMore = function() {
-				$.get('/page/2/', function(data) {
-					var products = $(data).find('.products li').appendTo(blocks);
-					goodToGo = true;
-				});
-			};
-			
-			win.scroll(function() {
-				var offset = win.scrollTop();
+			if(blocks) {
+				var loadMore = function() {
+					$.get('/page/' + ++currentPage + '/', function(data) {
+						var products = $(data).find('.products li').appendTo(blocks);
+						goodToGo = true;
+					});
+				};
 				
-				if(goodToGo && offset >= $(document).height()- win.height()) {
-					goodToGo = false;
-					loadMore();
-				}
-			});
+				win.scroll(function() {
+					var offset = win.scrollTop();
+					
+					if(goodToGo && offset >= $(document).height()- win.height()) {
+						goodToGo = false;
+						loadMore();
+					}
+				});
+			}
 		}
 	};
 	
