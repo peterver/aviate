@@ -22,3 +22,7 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+
+<div class="main">
+	<p>You can get more plugins by shouting really loud until a developer makes you one or making one yourself. They’re really easy to do, honest.</p>
+</div>

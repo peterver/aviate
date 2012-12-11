@@ -391,6 +391,8 @@ body {
 				line-height: 23px;
 				
 				color: #fff;
+				
+				border-radius: 3px;
 			}
 				.items li.active a + .btn {
 					margin-top: -53px;
@@ -409,7 +411,7 @@ body {
 				border: 2px solid #c2d1dd;
 			}
 				.items li.active.nopage {
-					border-color: #63ba23;
+					border-color: #9fe56b;
 				}
 			.items li a:hover {
 				background: #e7f0f7;
