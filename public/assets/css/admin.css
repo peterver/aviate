@@ -18,7 +18,7 @@ body, input, button, textarea {
 	font: 14px/23px "Museo Sans", sans-serif;
 	color: #556778;
 }
-	body.login, .sidebar {
+	body.login, .sidebar, .items li a.btn {
 		background: #4485c7;
 	}
 	
@@ -142,7 +142,7 @@ html, body.login {
 			-moz-transition: background .2s;
 			transition: background .2s;
 		}
-		body.login input {
+		body.login input, .btn {
 			width: 320px;
 			padding: 12px 20px;
 			margin-bottom: 20px;
@@ -155,7 +155,8 @@ html, body.login {
 			
 			font-size: 15px;
 		}
-			body.login input:focus {
+			body.login input:focus, .items li a.btn:hover {
+				color: #fff;
 				background: #3069a3;
 				outline: none;
 			}
@@ -353,13 +354,17 @@ body {
 		background: #6fa430;
 	}
 
-.products, .main {
+.items, .main {
 	padding: 20px 50px 30px;
 }
-	.products li {
+	.items li {
+		line-height: 33px;
 		margin-bottom: 20px;
 	}
-		.products li a {
+		.items li small {
+			opacity: .6;
+		}
+		.items li a, .items li.nopage {
 			display: block;
 			padding: 20px 30px;
 			overflow: hidden;
@@ -376,30 +381,70 @@ body {
 			-moz-transition: background .2s;
 			transition: background .2s;
 		}
-			.products li a:hover {
+			.items li a.btn {
+				float: right;
+				width: auto;
+				padding: 5px 18px;
+				margin: 0;
+				
+				font-size: 13px;
+				line-height: 23px;
+				
+				color: #fff;
+			}
+				.items li.active a + .btn {
+					margin-top: -53px;
+					margin-right: 30px;
+					
+					background: #f8ffef;
+					color: #629527;
+				}
+					.items li.active a + .btn:hover {
+						background: #fff;
+						color: #629527;
+					}
+			.items li.nopage {
+				padding: 18px 28px;
+				background: transparent;
+				border: 2px solid #c2d1dd;
+			}
+				.items li.active.nopage {
+					border-color: #63ba23;
+				}
+			.items li a:hover {
 				background: #e7f0f7;
 				color: #415d7c;
 			}
-			.products li.oos a {
+			.items li.oos a {
 				background: #df593f;
 				color: #fff;
 			}
-				.products li.oos a:hover {
+				.items li.oos a:hover {
 					background: #d55239;
 				}
-		.products li .price {
+			.items li.active a {
+				background: #63ba23;
+				color: #fff;
+			}
+				.items li.active a:hover {
+					background: #55a718;
+				}
+		.items li .price {
 			float: right;
 			color: #7a9ac7;
 		}
-			.products li.oos .price {
+			.items li.oos .price {
 				color: #fcc2b7;
 			}
-		.products li .title, .products li .tag {
+			.items li.active .price {
+				color: #c5ff9b;
+			}
+		.items li .title, .items li .tag {
 			float: left;
 			margin-right: 30px;
 		}
-			.products li .tag {
-				margin-top: 2px;
+			.items li .tag {
+				margin-top: 7px;
 				margin-right: 20px;
 				padding: 6px 9px 5px;
 				
@@ -412,9 +457,13 @@ body {
 				
 				background: rgba(95,137,170,.15);
 			}
-				.products li.oos .tag {
+				.items li.oos .tag {
 					background: rgba(110,25,9,.2);
 					color: #ffd4c8;
+				}
+				.items li.active .tag {
+					background: rgba(35,100,7,.2);
+					color: #a2f07f;
 				}
 				
 label {

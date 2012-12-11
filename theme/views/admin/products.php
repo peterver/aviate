@@ -4,7 +4,7 @@
 	<a href="/admin/products/add">Add product</a>
 </h1>
 
-<ul class="products">
+<ul class="items">
 	<?php foreach($products as $product): ?>
 		<li class="<?php echo $product->oos ? 'oos' : ''; ?>">
 			<a href="/admin/products/<?php echo $product->id; ?>">

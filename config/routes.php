@@ -48,6 +48,7 @@ $config['routes'] = array(
 	'admin/(:any)' => 'admin.delegate',
 	'admin/products/(:num)' => 'admin.product',
 	'admin/products/add' => 'admin.addProduct',
+	'admin/plugins/(:any)' => 'admin.plugin',
 	
 	//  Login/logout methods
 	'admin/login' => 'admin.login',

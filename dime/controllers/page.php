@@ -33,6 +33,9 @@ class Page_controller extends Controller {
 		//  Since we're not using multiple results, just use the first DB index
 		$data = $data[0];
 		
+		//  Add a plugin hook
+		Plugin::receive('static', $data);
+		
 		//  Handle redirecting URLs
 		if($data->redirect) return Response::redirect($data->redirect);
 				

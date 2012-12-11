@@ -157,6 +157,34 @@ class Admin_controller extends Controller {
 				  ->render('login');
 	}
 	
+	public function plugins() {
+		$active = explode(',', Config::get('plugins'));
+		$plugins = array();
+		foreach(glob(APP_BASE . 'plugins/*/about.json') as $plugin) {
+			$data = json_decode(file_get_contents($plugin));
+			$slug = basename(dirname($plugin));
+			
+			$data->active = false;
+			if(in_array($slug, $active) !== false) {
+				$data->active = true;
+			}
+			
+			$data->slug = $slug;
+			$data->page = Plugin::pages($slug);
+			
+			$plugins[] = $data;
+		}
+				
+		echo $this->template->set('plugins', $plugins)->render('plugins');
+	}
+	
+	public function plugin() {
+		$slug = $this->url->segment(2);
+		$plugin = Plugin::pages($slug);
+		
+		echo $this->template->set(array('slug' => $slug, 'content' => $plugin))->render('plugin');
+	}
+	
 	public function logout() {
 		return Session::destroy(Config::get('session.user')) and Response::redirect('/admin/login');
 	}

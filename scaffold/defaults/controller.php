@@ -29,7 +29,10 @@ class Controller {
 			'basket',
 			
 			//  Load the Pages helper
-			'pages'
+			'pages',
+			
+			//  And the basic plugin engine
+			'plugin'
 		));
 	}
 }

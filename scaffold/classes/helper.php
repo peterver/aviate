@@ -37,6 +37,11 @@ class Helper {
 		$u = ucfirst($helper);
 		if(class_exists($u) and !isset($this->{$helper})) {
 			$this->{$helper} = new $u;
+			
+			//  Autoload the init method if possible
+			if(method_exists($this->{$helper}, 'init')) {
+				$this->{$helper}->init();
+			}
 		}
 		
 		return $this;
