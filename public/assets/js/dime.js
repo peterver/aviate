@@ -12,7 +12,7 @@
 			
 			//  Set our base Masonry object
 			this.blocks = $('.products').masonry();
-			this.blockHover();
+			this.blockHover(this.blocks);
 			
 			//  Handle the search filtering
 			this.handleSearch();
@@ -26,8 +26,8 @@
 		
 		//  We need to do some handling of the blocks
 		//  Because we can't do it reliably in CSS
-		blockHover: function() {
-			this.blocks.find('li > a').each(function() {
+		blockHover: function(blocks) {
+			blocks.find('li > a').each(function() {
 				var me = $(this),
 					caption = me.children('.caption');
 					
@@ -69,11 +69,17 @@
 				return url[url.length - 1];
 			})() || 1;
 			
+			var blockHover = this.blockHover;
+			
 			if(blocks) {
 				var loadMore = function() {
 					$.get('/page/' + ++currentPage + '/', function(data) {
-						var products = $(data).find('.products li').appendTo(blocks);
+						var data = $(data).find('.products li');
+						var captions = data.find('.caption');
+						var products = data.appendTo(blocks);
 							blocks.masonry('reload');
+						
+						blockHover(blocks);
 						
 						goodToGo = true;
 					});
