@@ -158,6 +158,11 @@ class Admin_controller extends Controller {
 	}
 	
 	public function plugins() {
+		//  Handle enabling/disabling plugins
+		if(isset($_GET['enable']) or isset($_GET['disable'])) {
+			$this->_modifyPlugin();
+		}
+		
 		$active = explode(',', Config::get('plugins'));
 		$plugins = array();
 		foreach(glob(APP_BASE . 'plugins/*/about.json') as $plugin) {
@@ -176,6 +181,21 @@ class Admin_controller extends Controller {
 		}
 				
 		echo $this->template->set('plugins', $plugins)->render('plugins');
+	}
+	
+	private function _modifyPlugin() {
+		$enable = $this->input->get('enable');
+		$disable = $this->input->get('disable');
+		
+		if($enable) {
+			$this->model->enablePlugin($enable);
+		}
+		
+		if($disable) {
+			$this->model->disablePlugin($disable);
+		}
+		
+		Response::redirect('/admin/plugins');
 	}
 	
 	public function plugin() {

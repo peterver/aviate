@@ -41,6 +41,41 @@ class Admin_model extends Model {
 		return first($this->db->select('*')->from('products')->order('id desc')->fetch(1));
 	}
 	
+	public function pluginRow() {
+		return first($this->db->select('id')->from('config')->where(array('key' => 'plugins'))->fetch())->id;
+	}
+	
+	public function enablePlugin($name) {
+		$plugins = Config::get('plugins') . ',';
+		$name = preg_replace('/[^a-zA-Z]+/', '', $name);
+		
+		if(strpos($plugins, $name . ',') !== false) {
+			return true;
+		}
+		
+		return $this->_updatePlugin(trim($plugins . $name, ','));
+	}
+	
+	public function disablePlugin($name) {
+		$plugins = Config::get('plugins') . ',';
+		$name = preg_replace('/[^a-zA-Z]+/', '', $name);
+		
+		if(strpos($plugins, $name) === false) {
+			return true;
+		}
+		
+		$val = (string) substr(str_replace($name . ',', '', $plugins), 0, -1);
+				
+		return $this->_updatePlugin($val);
+	}
+	
+	private function _updatePlugin($val) {
+		$row = $this->pluginRow();
+		$this->db->update('config')->set(array('value' => $val))->where(array('id' => $row))->go();
+		
+		return Config::set('plugins', $val);
+	}
+	
 	private function _format($product) {
 		$product->oos = $product->current_stock < 1;
 		

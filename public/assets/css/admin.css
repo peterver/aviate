@@ -465,6 +465,9 @@ body {
 					background: rgba(35,100,7,.2);
 					color: #a2f07f;
 				}
+					.items li.active.nopage .tag {
+						background: #63ba23;
+					}
 				
 label {
 	display: block;
