@@ -73,6 +73,8 @@
 				var loadMore = function() {
 					$.get('/page/' + ++currentPage + '/', function(data) {
 						var products = $(data).find('.products li').appendTo(blocks);
+							blocks.masonry('reload');
+						
 						goodToGo = true;
 					});
 				};
