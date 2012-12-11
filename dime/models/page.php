@@ -6,6 +6,8 @@ class Page_model extends Model {
 	}
 	
 	public function find($page) {
-		return $page;
+		return $this->db->select('*')->from('pages')->where(array(
+			'slug' => $page
+		))->fetch();
 	}
 }

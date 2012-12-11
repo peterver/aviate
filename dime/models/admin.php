@@ -34,8 +34,6 @@ class Admin_model extends Model {
 	public function insertProduct($product) {
 		$insert = $this->db->insert('products')->values($product)->go();
 		
-		return $this->db;
-		
 		if($insert === false) {
 			return false;
 		}

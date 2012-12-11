@@ -49,7 +49,12 @@ class Admin_controller extends Controller {
 	}
 	
 	public function products() {
-		echo $this->template->set('products', $this->model->allProducts())->render('products');
+		$products = $this->model->allProducts();
+		if(count($products) < 1) {
+			return Response::redirect('/admin/products/add');
+		}
+		
+		echo $this->template->set('products', $products)->render('products');
 	}
 	
 	public function product() {
@@ -58,9 +63,29 @@ class Admin_controller extends Controller {
 	}
 	
 	public function addProduct() {
-		$all = array('name', 'price', 'image', 'stock', 'slug', 'visibility', 'discount', 'id');
+		$all = array('id', 'name', 'description', 'slug', 'price', 'image', 'total_stock', 'current_stock', 'discount', 'visible');
 		$required = array('name', 'price', 'slug', 'description');
 		$errors = array();
+		
+		$stock = $this->_getStock();
+		
+		$handlers = array(
+			'price' => function($str) {
+				return preg_replace('/[^0-9]+/', '', $str);
+			},
+			'visible' => function($str) {
+				return $str === 'yes';
+			},
+			'total_stock' => function() use($stock) {
+				return $stock;
+			},
+			'current_stock' => function() use($stock) {
+				return $stock;
+			},
+			'discount' => function($str) {
+				return preg_replace('/[^0-9]+/', '', $str);
+			}
+		);
 
 		if($this->input->posted()) {
 			$product = array('');
@@ -73,22 +98,25 @@ class Admin_controller extends Controller {
 			}
 			
 			foreach($all as $post) {
-				$product[] = $this->input->post($post);
-			}
-			
-			$product = $this->model->insertProduct($product);
-			
-			var_dump($product);
-			
-			if($product === false) {
-				$errors[] = 'Unexpected error. Try again in a minute.';
+				$data = $this->input->post($post);
+				if(isset($handlers[$post])) {
+					$data = $handlers[$post]($data);
+				}
+				
+				$product[] = $data;
 			}
 			
 			//  Display errors
 			if(count($errors) > 0) {
 				$this->template->set('msg', join($errors, '<br>'));
 			} else {
-				Response::redirect('/admin/products/' . $product->id);
+				$product = $this->model->insertProduct($product);
+				
+				if($product === false) {
+					$this->template->set('msg', 'Unexpected error. Try again in a minute.');
+				} else {
+					return Response::redirect('/admin/products/' . $product->id);
+				}
 			}
 		}
 		
@@ -131,5 +159,18 @@ class Admin_controller extends Controller {
 	
 	public function logout() {
 		return Session::destroy(Config::get('session.user')) and Response::redirect('/admin/login');
+	}
+	
+	private function _getStock() {
+		$stock = $this->input->post('total_stock', 'unlimited');
+		
+		//  Just in case people take the quotes literally
+		$stock = str_replace('"', '', $stock);
+		
+		if($stock === 'unlimited' or $stock > 2147483647) {
+			$stock = 2147483647;
+		}
+		
+		return $stock;
 	}
 }

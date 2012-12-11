@@ -40,9 +40,16 @@ abbr[title] {
 	padding-bottom: 1px;
 }
 
+p.error + .meta {
+	margin-top: 40px;
+}
+
 form {
 	overflow: hidden;
 }
+	.login form {
+		overflow: visible;
+	}
 p input, p textarea {
 	border: 1px solid #ced4e2;
 	border-radius: 3px;
@@ -187,7 +194,7 @@ html, body.login {
 		body.login :-moz-placeholder, body.login :placeholder {
 			color: #80b8f0;
 		}
-	body.login .error {
+	p.error {
 		background: #ef4138;
 		color: #ffe5e4;
 		

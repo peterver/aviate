@@ -11,26 +11,32 @@
 class Page_controller extends Controller {
 	//  Extend the main controller
 	//  We can also put anything we want to show in any controller method here
-	//  You know, so we don't repeat ourselves.
-	//  You know, so we don't repeat ourselves.
 	public function __construct() {
 		parent::__construct();
-		
-		//  Get some helpers in
-		$this->helper->load(array(
-			//  Load the installer helper, which will handle redirection for us
-			'installer',
-			
-			//  Load the Basket helper so we can see our basket data in views
-			'basket'
-		));
 	}
 	
+	//  Going to /static doesn't do anything
+	//  So go back to the homepage
 	public function index() {
 		Response::redirect('../');
 	}
 	
 	public function single() {
-		echo $this->template->set('data', $this->model->find($this->url->segment(1)))->render();
+		$data = $this->model->find($this->url->segment(1));
+		
+		//  If there weren't any results
+		if(!isset($data[0])) {
+			echo $this->template->render('404');
+			return;
+		}
+		
+		//  Since we're not using multiple results, just use the first DB index
+		$data = $data[0];
+		
+		//  Handle redirecting URLs
+		if($data->redirect) return Response::redirect($data->redirect);
+				
+		//  And output
+		echo $this->template->set('data', $data)->render('page');
 	}
 }

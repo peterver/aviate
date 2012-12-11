@@ -51,8 +51,11 @@ h1 {
 		list-style: none;
 	}
 	.nav a {
+		position: relative;
+		top: -2px;
+		
 		display: inline-block;
-		padding: 2px 22px 1px;
+		padding: 2px 22px 0;
 		margin-right: 20px;
 		
 		color: #707581;
@@ -60,13 +63,13 @@ h1 {
 		line-height: 28px;
 		
 		border-radius: 20px;
+		border: 2px solid transparent;
 	}
-		.nav a:hover {
+		.nav a:hover, .nav .active a {
 			color: #557fc4;
 		}
 		.nav .active a {
-			background: #557fc4;
-			color: #fff;
+			border: 2px solid #9eb9e6;
 		}
 		
 .header form {

@@ -36,7 +36,7 @@
 		},
 		
 		updateSlug: function() {
-			var title = $('#title');
+			var title = $('#name');
 			var overridden = false;
 			var slug = $('#slug').keyup(function() {
 				overridden = true;

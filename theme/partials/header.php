@@ -4,9 +4,11 @@
 		</a>
 		
 		<ul class="nav">
-			<li><a href="/static/about">About Us</a>
-			<li><a href="/static/blog">Blog</a>
-			<li><a href="/static/contact">Contact Us</a>
+		<?php foreach(Pages::visible() as $page): ?>
+			<li class="<?php if($page->active) echo 'active'; ?>">
+				<a href="/static/<?php echo $page->slug; ?>"><?php echo $page->title; ?></a>
+			</li>
+		<?php endforeach; ?>
 		</ul>
 		
 		<?php if(Basket::hasItems()): ?>

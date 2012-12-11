@@ -14,16 +14,11 @@ class Main_controller extends Controller {
 	//  You know, so we don't repeat ourselves.
 	//  You know, so we don't repeat ourselves.
 	public function __construct() {
+		//  All global helpers get loaded here
+		//  If you REALLY need to edit or remove something like that
+		//  you're probably doing it wrong, but the file is in:
+		//  [/path/to/dime]/scaffold/defaults/controller.php
 		parent::__construct();
-		
-		//  Get some helpers in
-		$this->helper->load(array(
-			//  Load the installer helper, which will handle redirection for us
-			'installer',
-			
-			//  Load the Basket helper so we can see our basket data in views
-			'basket'
-		));
 	}
 	
 	public function index() {
