@@ -38,6 +38,7 @@ class Admin_controller extends Controller {
 		$url = str_replace('_', '', $this->url->segment(1));
 		
 		if(method_exists($this, $url) and $url !== __FUNCTION__) {
+			Plugin::receive('admin_' . $url);
 			return $this->{$url}();
 		}
 		

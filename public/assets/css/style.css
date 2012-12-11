@@ -32,6 +32,8 @@ h1 {
 	font-weight: 100;
 	
 	text-overflow: ellipsis;
+	
+	color: #5d6e7e;
 }
 
 #logo img {
@@ -113,12 +115,15 @@ h1 {
 		width: 200px;
 		
 		-webkit-appearance: none;
+		pointer-events: none;
 	}
 		.header form input:focus {
 			opacity: 1;
 			outline: none;
 			
 			top: 40px;
+			
+			pointer-events: all;
 		}
 	.header form > img {
 		width: 14px;
