@@ -60,7 +60,27 @@
 			});
 		},
 		
-		infiniteScroll: function() {}
+		infiniteScroll: function() {
+			var win = $(window);
+			var goodToGo = true;
+			var blocks = this.blocks;
+			
+			var loadMore = function() {
+				$.get('/page/2/', function(data) {
+					var products = $(data).find('.products li').appendTo(blocks);
+					goodToGo = true;
+				});
+			};
+			
+			win.scroll(function() {
+				var offset = win.scrollTop();
+				
+				if(goodToGo && offset >= $(document).height()- win.height()) {
+					goodToGo = false;
+					loadMore();
+				}
+			});
+		}
 	};
 	
 	Dime.init();
