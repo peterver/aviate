@@ -202,6 +202,10 @@ class Admin_controller extends Controller {
 		$slug = $this->url->segment(2);
 		$plugin = Plugin::pages($slug);
 		
+		if($plugin === false) {
+			Response::redirect('/admin/plugins');
+		}
+		
 		echo $this->template->set(array('slug' => $slug, 'content' => $plugin))->render('plugin');
 	}
 	
