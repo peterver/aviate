@@ -29,14 +29,17 @@
 		blockHover: function(blocks) {
 			blocks.find('li > a').each(function() {
 				var me = $(this),
-					caption = me.children('.caption');
+					caption = me.children('.caption'),
+					fn = function(e) {
+						caption.toggleClass('hidden').css('height',
+							e.type == 'mouseenter' ? caption.attr('data-height') : 0
+						);
+					};
 					
 				caption.attr('data-height', caption.children('h2').height() + 27).addClass('hidden');
 				
 				//  Toggle visibiliy
-				me.bind('mouseover mouseout', function(e) {
-					caption.toggleClass('hidden').css('height', e.type == 'mouseover' ? caption.attr('data-height') : 0);
-				});
+				me.hover(fn, fn);
 			});
 		},
 		
