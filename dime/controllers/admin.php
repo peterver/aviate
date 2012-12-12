@@ -8,6 +8,8 @@
  */
 
 class Admin_controller extends Controller {
+	public $all = array('id', 'name', 'description', 'slug', 'price', 'image', 'total_stock', 'current_stock', 'discount', 'visible');
+	
 	public function __construct() {
 		parent::__construct();
 		
@@ -61,12 +63,29 @@ class Admin_controller extends Controller {
 	}
 	
 	public function product() {
-		echo $this->template->set('product', $this->model->findProduct($this->url->segment(2)))
-				  ->render('product');
+		$id = $this->url->segment(2);
+		$msg = false;
+		
+		if($this->input->posted()) {
+			$data = array();
+			foreach($this->all as $post) {
+				$data[$post] = Input::post($post);
+			}
+			
+			$msg = $this->model->update($id, $data);
+			
+			if($msg === false) {
+				Response::redirect('/admin/products');
+			}
+		}
+		
+		echo $this->template->set(array(
+			'product' => $this->model->findProduct($id),
+			'msg' => $msg
+		))->render('product');
 	}
 	
 	public function addProduct() {
-		$all = array('id', 'name', 'description', 'slug', 'price', 'image', 'total_stock', 'current_stock', 'discount', 'visible');
 		$required = array('name', 'price', 'slug', 'description');
 		$errors = array();
 		
@@ -100,7 +119,7 @@ class Admin_controller extends Controller {
 				}
 			}
 			
-			foreach($all as $post) {
+			foreach($this->all as $post) {
 				$data = $this->input->post($post);
 				if(isset($handlers[$post])) {
 					$data = $handlers[$post]($data);

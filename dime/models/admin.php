@@ -17,6 +17,8 @@ class Admin_model extends Model {
 	public function findProduct($id) {
 		$product = first($this->db->select('*')->from('products')->where(array('id' => $id))->fetch());
 		
+		//var_dump($this->db, $id);
+		
 		return $this->_format($product);
 	}
 	
@@ -69,6 +71,14 @@ class Admin_model extends Model {
 		return $this->_updatePlugin($val);
 	}
 	
+	public function update($id, $product) {
+		$product['product_id'] = $product['id'];
+		$product['visible'] = $product['visible'] === 'yes';
+		unset($product['id']);
+		
+		return !$this->db->update('products')->set($product)->where(array('id' => $id))->go();
+	}
+	
 	private function _updatePlugin($val) {
 		$row = $this->pluginRow();
 		$this->db->update('config')->set(array('value' => $val))->where(array('id' => $row))->go();
@@ -78,6 +88,7 @@ class Admin_model extends Model {
 	
 	private function _format($product) {
 		$product->oos = $product->current_stock < 1;
+		
 		
 		$product->tags = array();
 			
