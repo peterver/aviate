@@ -31,9 +31,11 @@
 				var me = $(this),
 					caption = me.children('.caption'),
 					fn = function(e) {
-						caption.toggleClass('hidden').css('height',
-							e.type == 'mouseenter' ? caption.attr('data-height') : 0
-						);
+						if(e.type == 'mouseenter') {
+							caption.removeClass('hidden').css('height', caption.attr('data-height'));
+						} else {
+							caption.addClass('hidden').css('height', 0);			
+						}
 					};
 					
 				caption.attr('data-height', caption.children('h2').height() + 27).addClass('hidden');

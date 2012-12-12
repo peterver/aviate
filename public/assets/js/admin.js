@@ -19,7 +19,7 @@
 			
 			var handle = function() {
 				var val = input.val();
-				if(val !== '') {
+				if(val && val !== '') {
 					target.addClass('added');
 					
 					var split = val.split('\\');
@@ -56,7 +56,7 @@
 		//  All that said, I like Batman.
 		//  Probably because he's not an actual bat.
 		fixSidebarHeight: function() {
-			$('.sidebar').height($(document).height());
+			$('.sidebar').height(Math.max(this.body.height(), $(document).height()));
 		},
 		
 		slugify: function(str) {
