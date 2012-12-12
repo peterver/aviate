@@ -31,7 +31,7 @@
 				var me = $(this),
 					caption = me.children('.caption');
 					
-				caption.attr('data-height', caption.height() + 27).addClass('hidden');
+				caption.attr('data-height', caption.children('h2').height() + 27).addClass('hidden');
 				
 				//  Toggle visibiliy
 				me.bind('mouseover mouseout', function(e) {

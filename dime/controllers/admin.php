@@ -38,7 +38,7 @@ class Admin_controller extends Controller {
 		$url = str_replace('_', '', $this->url->segment(1));
 		
 		if(method_exists($this, $url) and $url !== __FUNCTION__) {
-			Plugin::receive('admin_' . $url);
+			Plugin::receive('admin_delegated', $url);
 			return $this->{$url}();
 		}
 		
@@ -54,6 +54,8 @@ class Admin_controller extends Controller {
 		if(count($products) < 1) {
 			return Response::redirect('/admin/products/add');
 		}
+		
+		Plugin::receive('admin_products', $products);
 		
 		echo $this->template->set('products', $products)->render('products');
 	}
@@ -143,7 +145,7 @@ class Admin_controller extends Controller {
 
 			//  Log the user in
 			if(is_object($status)) {
-				unset($session->password);
+				unset($status->password);
 				return Session::set(Config::get('session.user'), $status) and Response::redirect('/admin');
 			}
 						
@@ -178,6 +180,9 @@ class Admin_controller extends Controller {
 			$data->slug = $slug;
 			$data->page = Plugin::pages($slug);
 			
+			//  Bind the list of plugins
+			$data = Plugin::receive('admin_plugin_list', $data);
+			
 			$plugins[] = $data;
 		}
 				
@@ -189,10 +194,12 @@ class Admin_controller extends Controller {
 		$disable = $this->input->get('disable');
 		
 		if($enable) {
+			Plugin::receive('plugin_enabled');
 			$this->model->enablePlugin($enable);
 		}
 		
 		if($disable) {
+			Plugin::receive('plugin_disabled');
 			$this->model->disablePlugin($disable);
 		}
 		

@@ -34,7 +34,7 @@ class Page_controller extends Controller {
 		$data = $data[0];
 		
 		//  Add a plugin hook
-		Plugin::receive('static', $data);
+		Plugin::receive('static_page', $data);
 		
 		//  Handle redirecting URLs
 		if($data->redirect) return Response::redirect($data->redirect);
