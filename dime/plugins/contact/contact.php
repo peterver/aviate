@@ -24,12 +24,14 @@ if(Input::posted()) {
 	if(count($error) > 0) $form = '<p class="error">Required fields: ' . join(', ', $error) . '.</p>' . $form;
 }
 
-Plugin::bind('static', function($data) use($form) {
+Plugin::bind('static_page', function($data) use($form) {
 	//  Only add to the "contact" page
 	if($data->slug === 'contact') {
 		//  Append the form
 		$data->content .= $form;
 	}
+	
+	return $data;
 });
 
 Plugin::page('contact', 'Whats your email bro');
