@@ -27,7 +27,8 @@ class Main_controller extends Controller {
 		
 		//  And set the products for that page
 		$this->template->set(array(
-			'products' => $this->model->paged($page)
+			'products' => $this->model->paged($page),
+			'title' => Config::get('sitename') . ' &mdash; All products'
 		));
 		
 		//  Render our view

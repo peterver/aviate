@@ -38,6 +38,9 @@ class Page_controller extends Controller {
 		
 		//  Handle redirecting URLs
 		if($data->redirect) return Response::redirect($data->redirect);
+		
+		//  Set the page title
+		$this->template->set('title', Config::get('sitename') . ' &mdash; ' . $data->title);
 				
 		//  And output
 		echo $this->template->set('data', $data)->render('page');
