@@ -10,6 +10,7 @@
 class Plugin {
 	public static $methods = array();
 	public static $pages = array();
+	public static $hooks = array();
 	
 	public static function init() {
 		//  Get the plugins from the database
@@ -34,6 +35,9 @@ class Plugin {
 	//  but you can use it anywhere
 	//  Plugin::receive('my_hook'[, $data]);
 	public static function receive($hook, $data = false) {
+		//  Add the hook to the list
+		self::$hooks[] = $hook;
+		
 		//  Allow the modification of data through a method
 		if(isset(self::$methods[$hook])) {
 			return call_user_func(self::$methods[$hook], $data);
@@ -47,7 +51,24 @@ class Plugin {
 	//  Plugin::bind('my_hook', function($data) {
 	//      return $data;
 	//  });
+	// 
+	//  Plugin::bind('my_hook my_other_hook', function() {});
 	public static function bind($hook, $fn) {
+		//  Convert to an array
+		if(strpos($hook, ' ') !== false) $hook = explode(' ', $hook);
+		
+		//  Handle array usage
+		if(is_array($hook)) {
+			//  Loop every array method, assuming it's a string
+			foreach($hook as $method) {
+				//  Then bind it as normal
+				self::$bind($hook, $fn);
+			}
+			
+			//  Don't let it bind, otherwise we'll get errors
+			return;
+		}
+		
 		if(is_callable($fn)) {
 			self::$methods[$hook] = $fn;
 		}
@@ -56,6 +77,21 @@ class Plugin {
 	//  Remove a bound hook
 	public static function unbind($hook) {
 		unset(self::$methods[$hook]);
+	}
+	
+	//  List all hooks
+	//  self::hooks() => array('hook', 'name');
+	//  Since the binds come first, this is usually empty from
+	//  within a hook. You'll need to do it post-plugin
+	//  instantiation.
+	//  Since no errors will be generated
+	public static function hooks($hook = false) {
+		//  Filter down
+		if($hook !== false and isset(self::$hooks[$hook])) {
+			return self::$hooks[$hook];
+		}
+		
+		return self::$hooks;
 	}
 	
 	//  Add a custom page to the admin panel

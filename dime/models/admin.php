@@ -43,10 +43,6 @@ class Admin_model extends Model {
 		return first($this->db->select('*')->from('products')->order('id desc')->fetch(1));
 	}
 	
-	public function pluginRow() {
-		return first($this->db->select('id')->from('config')->where(array('key' => 'plugins'))->fetch())->id;
-	}
-	
 	public function enablePlugin($name) {
 		$plugins = Config::get('plugins') . ',';
 		$name = preg_replace('/[^a-zA-Z]+/', '', $name);
@@ -80,10 +76,7 @@ class Admin_model extends Model {
 	}
 	
 	private function _updatePlugin($val) {
-		$row = $this->pluginRow();
-		$this->db->update('config')->set(array('value' => $val))->where(array('id' => $row))->go();
-		
-		return Config::set('plugins', $val);
+		return Config::save('plugins', $val);
 	}
 	
 	private function _format($product) {

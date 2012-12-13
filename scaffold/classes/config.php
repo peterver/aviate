@@ -30,6 +30,25 @@ class Config {
 		return self::instance()->_set($what, $value);
 	}
 	
+	public static function save($key, $value) {
+		//  Get the database object
+		$data = Storage::get('objects');
+		
+		//  If the database object exists, store it forever
+		if(isset($data['database'])) {
+			//  Remove the old key first
+			$data['database']->delete()->from('config')->where(array('key' => $key))->go();
+			
+			//  Then set the new one
+			$data['database']->insert()->into('config')->values(array(
+				'key' => $key,
+				'value' => $value
+			))->go();
+		}
+	
+		return self::set($key, $value);
+	}
+	
 	public static function all() {
 		return self::instance()->_all();
 	}
