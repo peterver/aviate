@@ -31,8 +31,11 @@ class Controller {
 			//  Load the Pages helper
 			'pages',
 			
+			//  Add Markdown support. Yay!
+			'markdown',
+			
 			//  And the basic plugin engine
-			'plugin'
+			'plugin',
 		));
 	}
 }
