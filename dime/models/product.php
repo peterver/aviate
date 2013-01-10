@@ -6,7 +6,7 @@ class Product_model extends Model {
 	}
 	
 	public function get($slug) {
-		$product = first($this->db->select('*')->from('products')->where(array('slug' => $slug))->fetch());
+		$product = $this->db->select('*')->from('products')->where(array('slug' => $slug))->fetch();
 		
 		return $this->_format($product);
 	}
