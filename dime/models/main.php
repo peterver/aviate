@@ -10,6 +10,6 @@ class Main_model extends Model {
 		
 		return $this->db->select('*')->from('products')->where(array(
 			'visible' => 1
-		))->limit(($limit * $page) - $limit . ', ' . $limit * $page)->fetch();
+		))->fetch(($limit * $page) - $limit . ', ' . $limit * $page, true);
 	}
 }

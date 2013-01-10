@@ -27,9 +27,16 @@ class Storage {
 
 	//  Grab an item from the data
 	private function _get($what, $fallback) {
-		if(isset($this->data[$what])) {
-			return $this->data[$what];
+		$what = explode('.', $what);
+		$target = $this->data;
+		
+		foreach($what as $wat) {
+			if(isset($target[$wat])) {
+				$target = $target[$wat];
+			}
 		}
+		
+		if($target !== $this->data) return $target;
 		
 		return $fallback;
 	}

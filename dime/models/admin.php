@@ -15,11 +15,13 @@ class Admin_model extends Model {
 	}
 	
 	public function findProduct($id) {
-		$product = first($this->db->select('*')->from('products')->where(array('id' => $id))->fetch());
-		
-		//var_dump($this->db, $id);
-		
-		return $this->_format($product);
+		return $this->_format(
+			first(
+				$this->db->select('*')->from('products')->where(array(
+					'id' => $id
+				))->fetch()
+			)
+		);
 	}
 	
 	public function allProducts() {

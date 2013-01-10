@@ -36,6 +36,9 @@ class Controller {
 			
 			//  And the basic plugin engine
 			'plugin',
+			
+			//  And the payment engine
+			'payment'
 		));
 	}
 }

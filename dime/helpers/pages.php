@@ -2,18 +2,21 @@
 
 class Pages {
 	public static function visible() {
-		$objects = Storage::get('objects');
-		$db = $objects['database'];
+		$db = Storage::get('objects.database');
 		
 		$pages = $db->select('*')->from('pages')->where(array('in_nav' => 1))->fetch();
 		$return = array();
 		
 		foreach($pages as $id => $page) {
-			$page->active = Url::segment(1) === $page->slug;
+			$page->active = self::isActive($page->slug);
 			
 			$return[$id] = $page;
 		}
 		
 		return $return;
+	}
+	
+	public static function isActive($slug) {
+		return $slug === Url::segment(1);
 	}
 }
