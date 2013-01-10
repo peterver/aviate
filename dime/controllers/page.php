@@ -25,13 +25,10 @@ class Page_controller extends Controller {
 		$data = $this->model->find($this->url->segment(1));
 		
 		//  If there weren't any results
-		if(!isset($data[0])) {
+		if(!is_object($data)) {
 			echo $this->template->render('404');
 			return;
 		}
-		
-		//  Since we're not using multiple results, just use the first DB index
-		$data = $data[0];
 		
 		//  Add a plugin hook
 		Plugin::receive('static_page', $data);
