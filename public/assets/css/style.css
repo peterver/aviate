@@ -36,6 +36,17 @@ h1 {
 	color: #5d6e7e;
 }
 
+a {
+	color: #557fc4;
+}
+	a:hover {
+		color: #315692;
+	}
+	
+.main > ol {
+	margin: 20px 30px;
+}
+
 #logo img {
 	display: block;
 	width: 28px;

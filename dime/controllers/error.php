@@ -3,7 +3,9 @@
 class Error_controller extends Controller {
 	public function __construct() {
 		parent::__construct();
-		
+	}
+	
+	public function error_404() {
 		//  Set template data
 		$this->template->set(array(
 			'language' => Config::get('language'),
@@ -13,9 +15,5 @@ class Error_controller extends Controller {
 		));
 		
 		echo $this->template->render(404);
-	}
-	
-	public function error_404() {
-		echo '404';
 	}
 }
