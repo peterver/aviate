@@ -59,7 +59,7 @@ class Admin_controller extends Controller {
 		
 		Plugin::receive('admin_products', $products);
 		
-		echo $this->template->set('products', $products)->render('products');
+		echo $this->template->set('products', $products)->render('product/index');
 	}
 	
 	public function product() {
@@ -82,7 +82,7 @@ class Admin_controller extends Controller {
 		echo $this->template->set(array(
 			'product' => $this->model->findProduct($id),
 			'msg' => $msg
-		))->render('product');
+		))->render('product/edit');
 	}
 	
 	public function addProduct() {
@@ -142,7 +142,7 @@ class Admin_controller extends Controller {
 			}
 		}
 		
-		echo $this->template->render('add_product');
+		echo $this->template->render('product/add');
 	}
 	
 	public function status() {
