@@ -32,15 +32,15 @@ class Config {
 	
 	public static function save($key, $value) {
 		//  Get the database object
-		$data = Storage::get('objects');
+		$db = Storage::get('objects.database');
 		
 		//  If the database object exists, store it forever
-		if(isset($data['database'])) {
+		if(is_object($db)) {
 			//  Remove the old key first
-			$data['database']->delete()->from('config')->where(array('key' => $key))->go();
+			$db->delete()->from('config')->where(array('key' => $key))->go();
 			
 			//  Then set the new one
-			$data['database']->insert()->into('config')->values(array(
+			$db->insert()->into('config')->values(array(
 				'key' => $key,
 				'value' => $value
 			))->go();

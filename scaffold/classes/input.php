@@ -3,7 +3,6 @@
 class Input {
 
 	public static function posted($what = false) {
-	
 		if($what !== false) {
 			if(is_array($what)) {
 				foreach($what as $field) {
@@ -31,9 +30,13 @@ class Input {
 
 	public static function post($var, $fallback = '') {
 		if($var === false) {
+			$return = '';
+			
 			foreach($_POST as $key => $value) {
-				self::post($key);
+				$return[$key] = self::post($key);
 			}
+			
+			return $return;
 		}
 		
 		return self::_receive($_POST, $var, $fallback);

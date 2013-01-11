@@ -162,6 +162,8 @@ class Admin_controller extends Controller {
 		if($this->input->posted('username')) {
 			$status = $this->model->findUser($this->input->post('username'), $this->input->post('password'));
 
+			var_dump($status);
+
 			//  Log the user in
 			if(is_object($status)) {
 				unset($status->password);

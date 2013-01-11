@@ -33,6 +33,14 @@ class Basket {
 	}
 	
 	/**
+	 *   And delete the basket
+	 */
+	public static function remove() {
+		self::$_db->remove()->from('baskets')->where(array('slug' => self::$_slug))->go();
+		Session::destroy('dime_basket');
+	}
+	
+	/**
 	 *   Add an item to the basket. Pretty obvious, really.
 	 */
 	public static function add($num) {
@@ -58,6 +66,11 @@ class Basket {
 	//  Get a count of the items
 	//  You have Basket::itemCount() items in your basket, etc.
 	public static function itemCount() {
+		//  count(false) == 1? Seriously, PHP? -_-
+		if(self::items() === false) {
+			return 0;
+		}
+		
 		return count(self::items());
 	}
 	
@@ -87,7 +100,7 @@ class Basket {
 	}
 	
 	public static function current($key = false) {
-		$me = Session::get('basket', false);
+		$me = Session::get('dime_basket', false);
 		
 		//  There's no basket yet
 		if($me === false) {

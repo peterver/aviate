@@ -37,6 +37,10 @@ $config['routes'] = array(
 	'product' => 'product.back',
 	'product/(:any)' => 'product',
 	
+	//  Checkout routes
+	'checkout' => 'checkout',
+	'checkout/remove/(:num)' => 'checkout.remove',
+	
 	//  Handle any static pages
 	'static' => 'page.index',
 	'static/(:any)' => 'page.single',

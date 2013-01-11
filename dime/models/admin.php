@@ -6,22 +6,18 @@ class Admin_model extends Model {
 	}
 	
 	public function findUser($username, $password) {
-		$password = Input::hash($password);
+		$password = Crypt::encrypt($password);
 		
-		return first($this->db->select('*')->from('users')->where(array(
+		return $this->db->select('*')->from('users')->where(array(
 			'username' => $username,
 			'password' => $password
-		))->fetch());
+		))->fetch();
 	}
 	
 	public function findProduct($id) {
-		return $this->_format(
-			first(
-				$this->db->select('*')->from('products')->where(array(
-					'id' => $id
-				))->fetch()
-			)
-		);
+		return $this->_format($this->db->select('*')->from('products')->where(array(
+			'id' => $id
+		))->fetch());
 	}
 	
 	public function allProducts() {
@@ -42,7 +38,7 @@ class Admin_model extends Model {
 			return false;
 		}
 		
-		return first($this->db->select('*')->from('products')->order('id desc')->fetch(1));
+		return $this->db->select('*')->from('products')->order('id desc')->fetch(1);
 	}
 	
 	public function enablePlugin($name) {
