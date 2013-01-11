@@ -21,7 +21,7 @@ class Admin_model extends Model {
 	}
 	
 	public function allProducts() {
-		$products = $this->db->select('*')->from('products')->fetch();
+		$products = $this->db->select('*')->from('products')->fetch(false, true);
 		$return = array();
 		
 		foreach($products as $id => $product) {
