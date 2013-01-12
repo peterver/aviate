@@ -53,8 +53,8 @@ class Url {
 		return strip_tags($segment);
 	}
 	
-	public static function base() {
-		return PUBLIC_PATH;
+	public static function base($append = '') {
+		return PUBLIC_PATH . $append;
 	}
 	
 	//  Convert a absolute PHP path to a relative public URL

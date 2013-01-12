@@ -168,6 +168,11 @@ function is_https() {
 	return $_SERVER['HTTPS'] === 'on';
 }
 
+//  Prepend the price
+function price($str) {
+	return Config::get('currency') . $str;
+}
+
 //  Auto-link any URLs
 function linkify($url) {
 	$url = preg_replace('/(https?:\/\/\S+)/', '<a href="\1" title="\1">\1</a>', $url);

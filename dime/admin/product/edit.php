@@ -1,9 +1,18 @@
 <form action="" method="post" enctype="multipart/form-data">
-	<input tabindex="1" autofocus id="name" name="name" value="<?php echo Input::post('name', $product->name); ?>" placeholder="Product name">
+	<h1>Editing “<?php echo $product->name; ?>”</h1>
 	<button id="save" type="submit">Save product</button>
 		
 	<div class="main">
-		<?php if($msg !== false) echo '<p class="error">' . $msg . '</p>'; ?>
+		<?php if($msg) echo '<p class="error">' . $msg . '</p>'; ?>
+		
+		<div class="split">
+			<p><input autofocus id="name" name="name" value="<?php echo Input::post('name', $product->name); ?>" placeholder="Product name"></p>
+			
+			<p>
+				<span class="prepend"><?php echo Config::get('currency'); ?></span>
+				<input id="price" name="price" placeholder="Product price" value="<?php echo Input::post('price', $product->price); ?>">
+			</p>
+		</div>
 
 		<div class="meta">
 			<p class="image">
@@ -12,42 +21,45 @@
 			</p>
 			
 			<p>
-				<label for="price">Product price</label>
-				<span class="prepend"><?php echo Config::get('currency'); ?></span>
-				<input tabindex="2" id="price" name="price" placeholder="20" value="<?php echo Input::post('price', $product->price); ?>">
+				<label for="stock">Stock</label>
+				<input id="stock" name="stock" placeholder="unlimited" value="<?php echo Input::post('stock', $product->stock); ?>">
 			</p>
 			
 			<p>
-				<label for="stock">Product stock</label>
-				<input tabindex="3" id="stock" name="stock" placeholder="“unlimited” for an infinite amount" value="<?php echo Input::post('stock', $product->total_stock); ?>">
-			</p>
-			
-			<p>
-				<label for="slug">Product slug</label>
-				<input tabindex="4" class="code" id="slug" name="slug" value="<?php echo Input::post('slug', $product->slug); ?>">
-			</p>
-			
-			<p>
-				<label for="visible">Visible to the public?</label>
-				<input id="visible" name="visible" type="checkbox" <?php if(Input::post('visible', 'yes') === 'yes' or $product->visible) echo 'checked'; ?> value="yes">
+				<label for="slug">Slug</label>
+				<input class="code" id="slug" name="slug" placeholder="my-product" value="<?php echo Input::post('slug', $product->slug); ?>">
 			</p>
 
 			<p>
-				<label for="discount">Discount percentage</label>
+				<label for="discount">Discount</label>
 				<span class="prepend">%</span>
-				<input tabindex="5" id="discount" name="discount" placeholder="0" value="<?php echo Input::post('discount', $product->discount); ?>">
+				<input id="discount" name="discount" placeholder="0" value="<?php echo Input::post('discount', $product->discount); ?>">
 			</p>
 			
 			<p>
-				<label for="id">Product ID</label>
-				<input tabindex="6" class="code" id="id" name="id" value="<?php echo Input::post('id', $product->product_id); ?>">
+				<label for="id">SKU/ID</label>
+				<input class="code" id="id" name="id" placeholder="ISBN0001010X" value="<?php echo Input::post('id', $product->id); ?>">
+			</p>
+			
+			<p>
+				<label for="visible" title="Should people be able to see this?">Published</label>
+				
+				<span class="fancy-tick">
+					<input id="visible" name="visible" type="checkbox" <?php if(Input::post('visible', 'yes') === 'yes') echo 'checked'; ?> value="yes">
+					
+					<span></span>
+				</span>
 			</p>
 		</div>
 		
 		<div class="description">
 			<p>
-				<textarea tabindex="7" name="description" id="description" placeholder="Product description"><?php echo htmlentities(Input::post('description', $product->description)); ?></textarea>
+				<textarea name="description" id="description" placeholder="Product description"><?php echo Input::post('description', $product->description); ?></textarea>
 			</p>
 		</div>
 	</div>
+	
+	<!--<div class="footer">
+		<button id="save" type="submit">Save product</button>
+	</div>-->
 </form>

@@ -6,11 +6,11 @@
 		<?php if(isset($msg)) echo '<p class="error">' . $msg . '</p>'; ?>
 		
 		<div class="split">
-			<p><input tabindex="1" autofocus id="name" name="name" value="<?php echo Input::post('name'); ?>" placeholder="Product name"></p>
+			<p><input autofocus id="name" name="name" value="<?php echo Input::post('name'); ?>" placeholder="Product name"></p>
 			
 			<p>
 				<span class="prepend"><?php echo Config::get('currency'); ?></span>
-				<input tabindex="2" id="price" name="price" placeholder="Product price" value="<?php echo Input::post('price'); ?>">
+				<input id="price" name="price" placeholder="Product price" value="<?php echo Input::post('price'); ?>">
 			</p>
 		</div>
 
@@ -19,32 +19,42 @@
 				<label for="img">Product image</label>
 				<input type="file" id="img" name="img">
 			</p>
+			
 			<p>
-				<input tabindex="3" id="stock" name="stock" placeholder="Product stock" value="<?php echo Input::post('stock'); ?>">
+				<label for="stock">Stock</label>
+				<input id="stock" name="stock" placeholder="unlimited" value="<?php echo Input::post('stock'); ?>">
 			</p>
 			
 			<p>
-				<input tabindex="4" class="code" id="slug" name="slug" placeholder="Product slug" value="<?php echo Input::post('stock'); ?>">
+				<label for="slug">Slug</label>
+				<input class="code" id="slug" name="slug" placeholder="my-product" value="<?php echo Input::post('slug'); ?>">
+			</p>
+
+			<p>
+				<label for="discount">Discount</label>
+				<span class="prepend">%</span>
+				<input id="discount" name="discount" placeholder="0" value="<?php echo Input::post('discount'); ?>">
+			</p>
+			
+			<p>
+				<label for="id">SKU/ID</label>
+				<input class="code" id="id" name="id" placeholder="ISBN0001010X" value="<?php echo Input::post('id'); ?>">
 			</p>
 			
 			<p>
 				<label for="visible" title="Should people be able to see this?">Published</label>
-				<input id="visible" name="visible" type="checkbox" <?php if(Input::post('visible', 'yes') === 'yes') echo 'checked'; ?> value="yes">
-			</p>
-
-			<p>
-				<span class="prepend">%</span>
-				<input tabindex="5" id="discount" name="discount" placeholder="Product discount" value="<?php echo Input::post('discount'); ?>">
-			</p>
-			
-			<p>
-				<input tabindex="6" class="code" id="id" name="id" placeholder="Product ID/SKU" value="<?php echo Input::post('id'); ?>">
+				
+				<span class="fancy-tick">
+					<input id="visible" name="visible" type="checkbox" <?php if(Input::post('visible', 'yes') === 'yes') echo 'checked'; ?> value="yes">
+					
+					<span></span>
+				</span>
 			</p>
 		</div>
 		
 		<div class="description">
 			<p>
-				<textarea tabindex="7" name="description" id="description" placeholder="Product description"><?php echo Input::post('description'); ?></textarea>
+				<textarea name="description" id="description" placeholder="Product description"><?php echo Input::post('description'); ?></textarea>
 			</p>
 		</div>
 	</div>

@@ -1,12 +1,12 @@
 <header id="top" class="header">
-		<a href="/" id="logo">
-			<img src="/assets/img/dime-logo.png" alt="Dime logo" title="My Dime store">
+		<a href="<?php echo $base; ?>" id="logo">
+			<img src="<?php echo $theme_base; ?>/assets/img/dime-logo.png" alt="Dime logo" title="My Dime store">
 		</a>
 		
 		<ul class="nav">
 		<?php foreach(Pages::visible() as $page): ?>
 			<li class="<?php if($page->active) echo 'active'; ?>">
-				<a href="/static/<?php echo $page->slug; ?>"><?php echo $page->title; ?></a>
+				<a href="<?php echo $base; ?>static/<?php echo $page->slug; ?>"><?php echo $page->title; ?></a>
 			</li>
 		<?php endforeach; ?>
 		</ul>

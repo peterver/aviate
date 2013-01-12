@@ -11,7 +11,13 @@ class Product_model extends Model {
 		return $this->_format($product);
 	}
 	
+	public function buy($id) {
+		return Basket::add($id);
+	}
+	
 	private function _format($product) {
+		if(!$product) return;
+		
 		$product->oos = $product->current_stock < 1;
 		$product->tags = array();
 			

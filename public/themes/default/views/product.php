@@ -8,4 +8,8 @@
 
 <div class="description">
 	<?php echo Markdown($product->description); ?>
+	
+	<?php echo price($product->price); ?>
 </div>
+
+<a href="./<?php echo $product->slug; ?>/add">Add to basket</a>

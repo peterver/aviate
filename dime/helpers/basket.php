@@ -89,7 +89,7 @@ class Basket {
 			
 			foreach($basket->products as $product) {
 				$basket->items[] = self::$_db->select('*')->from('products')->where(array(
-					'slug' => 'test'
+					'id' => $product
 				))->fetch();
 			}
 			

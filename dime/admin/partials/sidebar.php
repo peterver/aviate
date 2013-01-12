@@ -11,7 +11,7 @@
 	
 	<li class="maintain">
 		<ul>
-			<?php foreach(array('plugins', 'users', 'settings', 'status') as $page): ?>
+			<?php foreach(array('plugins', 'themes', 'users', 'settings') as $page): ?>
 			<li class="<?php if($url === $page) echo 'active'; ?>">
 				<a href="/admin/<?php echo $page; ?>"><?php echo ucfirst($page); ?></a>
 			</li>

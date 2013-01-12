@@ -16,6 +16,25 @@ class Storage {
 		return self::instance()->_all();
 	}
 	
+	public static function save($key, $value) {
+		//  Get the database object
+		$db = self::get('objects.database');
+		
+		//  If the database object exists, store it forever
+		if(is_object($db)) {
+			//  Remove the old key first
+			$db->delete()->from('config')->where(array('key' => $key))->go();
+			
+			//  Then set the new one
+			$a = $db->insert()->into('config')->values(array(
+				'key' => $key,
+				'value' => $value
+			))->go();
+		}
+	
+		return self::set($key, $value);
+	}
+	
 	//  Create a static instance
 	public static function instance() {
 		if(!isset(self::$instance)) {

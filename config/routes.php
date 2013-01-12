@@ -36,6 +36,7 @@ $config['routes'] = array(
 	'page/(:num)' => 'main',
 	'product' => 'product.back',
 	'product/(:any)' => 'product',
+	'product/(:any)/add' => 'product.add',
 	
 	//  Checkout routes
 	'checkout' => 'checkout',

@@ -3,16 +3,31 @@
 class Template {
 	private static $_routes;
 	public static $vars = array();
-	public static $templatepath = TEMPLATE_PATH;
+	public static $path = '';
+	public static $base = '';
 
 	public function __construct() {
+		$append = 'themes/' . Config::get('current_template', 'default') . '/';
+		self::$base = PUBLIC_BASE . $append;
+		self::$path = self::$base . 'skeleton.html';
+		
 		//  Set some default variables to use in the template
 		$this->set(array(
 			'load_time' => load_time(),
 			'base' => Url::base(),
 			
-			'scaffold_version' => scaffold_version()
+			'scaffold_version' => scaffold_version(),
+			
+			'partial_base' => self::$base . '/partials/',
+			'view_base' => self::$base . '/views/',
+			
+			'theme_base' => Url::base($append)
 		));
+		
+		define('TEMPLATE_BASE', self::$base);
+		define('TEMPLATE_PATH', self::$path);
+		
+		Config::save('current_template', 'default');
 	}
 	
 	public static function init($scaffold) { 
@@ -29,7 +44,7 @@ class Template {
 		$this->loadView($what);
 		
 		//  And load the main template
-		$template = grab(self::$templatepath, self::$vars);
+		$template = grab(self::$path, self::$vars);
 				
 		return $this->parse($template);
 	}
@@ -142,7 +157,7 @@ class Template {
 	
 	public function setPath($path) {
 		if(file_exists($path)) {
-			self::$templatepath = $path;
+			self::$path = $path;
 		} else {
 			Error::log('Path ' . $path . ' not found');
 		}

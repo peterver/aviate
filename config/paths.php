@@ -21,6 +21,3 @@ define('TEMP_BASE', BASE . 'tmp/');
 
 //  And the public path
 define('PUBLIC_PATH', dirname($_SERVER['SCRIPT_NAME']));
-
-define('TEMPLATE_BASE', BASE . 'theme/');
-define('TEMPLATE_PATH', TEMPLATE_BASE . 'skeleton.html');

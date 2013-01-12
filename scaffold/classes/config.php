@@ -31,20 +31,7 @@ class Config {
 	}
 	
 	public static function save($key, $value) {
-		//  Get the database object
-		$db = Storage::get('objects.database');
-		
-		//  If the database object exists, store it forever
-		if(is_object($db)) {
-			//  Remove the old key first
-			$db->delete()->from('config')->where(array('key' => $key))->go();
-			
-			//  Then set the new one
-			$db->insert()->into('config')->values(array(
-				'key' => $key,
-				'value' => $value
-			))->go();
-		}
+		Storage::save($key, $value);
 	
 		return self::set($key, $value);
 	}

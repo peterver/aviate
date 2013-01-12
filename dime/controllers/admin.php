@@ -25,7 +25,7 @@ class Admin_controller extends Controller {
 		//  Since it's set as a static property and a constant,
 		//  we have to do a bit of hacking. Ewww.
 		$t = $this->template;
-		$t::$templatepath = APP_BASE . '/admin/template.html';
+		$t::$path = APP_BASE . '/admin/template.html';
 		
 		$this->template->set(array(
 			'partial_base' => APP_BASE . '/admin/partials/',
@@ -145,8 +145,11 @@ class Admin_controller extends Controller {
 		echo $this->template->render('product/add');
 	}
 	
-	public function status() {
-		echo $this->template->render('status');
+	public function themes() {
+		//$themes = glob();
+		$themes = array();
+		
+		echo $this->template->set('themes', $themes)->render('theme/index');
 	}
 	
 	public function login() {
@@ -161,8 +164,6 @@ class Admin_controller extends Controller {
 		//  If it is, we can assume they're trying to log in
 		if($this->input->posted('username')) {
 			$status = $this->model->findUser($this->input->post('username'), $this->input->post('password'));
-
-			var_dump($status);
 
 			//  Log the user in
 			if(is_object($status)) {
@@ -207,7 +208,7 @@ class Admin_controller extends Controller {
 			$plugins[] = $data;
 		}
 				
-		echo $this->template->set('plugins', $plugins)->render('plugins');
+		echo $this->template->set('plugin/index', $plugins)->render('plugins');
 	}
 	
 	private function _modifyPlugin() {
@@ -235,7 +236,7 @@ class Admin_controller extends Controller {
 			Response::redirect('/admin/plugins');
 		}
 		
-		echo $this->template->set(array('slug' => $slug, 'content' => $plugin))->render('plugin');
+		echo $this->template->set(array('slug' => $slug, 'content' => $plugin))->render('plugin/single');
 	}
 	
 	public function logout() {

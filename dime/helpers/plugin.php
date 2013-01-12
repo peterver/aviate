@@ -11,6 +11,7 @@ class Plugin {
 	public static $methods = array();
 	public static $pages = array();
 	public static $hooks = array();
+	public static $titles = array();
 	
 	public static function init() {
 		//  Get the plugins from the database
@@ -100,8 +101,12 @@ class Plugin {
 	//  });
 	//  
 	//  or Plugin::page('slug', 'data you want in that page');
-	public static function page($slug, $data) {
+	public static function page($slug, $data, $title = '') {
 		self::$pages[$slug] = $data;
+		
+		if($title !== '') {
+			self::$titles[$slug] = $title;
+		}
 	}
 	
 	//  Semi-private use
