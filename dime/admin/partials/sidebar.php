@@ -3,7 +3,7 @@
 		<ul>
 			<?php foreach(array('products', 'pages', 'purchases', 'customers', 'coupons') as $page): ?>
 			<li class="<?php if($url === $page) echo 'active'; ?>">
-				<a href="/admin/<?php echo $page; ?>"><?php echo ucfirst($page); ?></a>
+				<a href="<?php echo $base; ?>admin/<?php echo $page; ?>"><?php echo ucfirst($page); ?></a>
 			</li>
 			<?php endforeach; ?>
 		</ul>
@@ -13,7 +13,7 @@
 		<ul>
 			<?php foreach(array('plugins', 'themes', 'users', 'settings') as $page): ?>
 			<li class="<?php if($url === $page) echo 'active'; ?>">
-				<a href="/admin/<?php echo $page; ?>"><?php echo ucfirst($page); ?></a>
+				<a href="<?php echo $base; ?>admin/<?php echo $page; ?>"><?php echo ucfirst($page); ?></a>
 			</li>
 			<?php endforeach; ?>
 		</ul>
@@ -21,5 +21,5 @@
 </ul>
 
 <small class="logout">
-	<a href="/admin/logout">Log out</a>
+	<a href="<?php echo $base; ?>admin/logout">Log out</a>
 </small>

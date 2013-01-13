@@ -1,6 +1,6 @@
 <header id="top" class="header">
 		<a href="<?php echo $base; ?>" id="logo">
-			<img src="<?php echo $theme_base; ?>/assets/img/dime-logo.png" alt="Dime logo" title="My Dime store">
+			<img src="<?php echo $base; ?>assets/img/dime-logo.png" alt="Dime logo" title="My Dime store">
 		</a>
 		
 		<ul class="nav">
@@ -13,7 +13,7 @@
 		
 		<?php if(Basket::hasItems()): ?>
 		<p class="basket">
-			<a href="/checkout"><b><?php echo Basket::itemCount(); ?></b> items.</a>
+			<a href="<?php echo $base; ?>checkout"><b><?php echo Basket::itemCount(); ?></b> items.</a>
 		</p>
 		<?php else: ?>
 		<p class="basket empty">
@@ -22,11 +22,11 @@
 		<?php endif; ?>
 		</p>
 
-		<form id="search" class="right" action="/search">
+		<form id="search" class="right" action="<?php echo $base; ?>search">
 			<input id="q" name="q" placeholder="Type and hit enter&hellip;">
-			<label for="q"><img src="/assets/img/search-active.png" alt="Search"></label>
+			<label for="q"><img src="<?php echo $theme_base; ?>assets/img/search-active.png" alt="Search"></label>
 			
-			<img src="/assets/img/search-arrow.png">
+			<img src="<?php echo $theme_base; ?>assets/img/search-arrow.png">
 		</form>		
 	</div>
 </header>

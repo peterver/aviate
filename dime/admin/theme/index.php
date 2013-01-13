@@ -3,7 +3,7 @@
 <ul class="theme items">
 	<?php foreach($themes as $theme): ?>
 		<li class="<?php echo ($theme->active ? 'active' : '') . ' ' . ($theme->page ? 'page' : 'nopage'); ?>">
-			<?php if($theme->page): ?><a href="/admin/themes/<?php echo $theme->slug; ?>"><?php endif; ?>
+			<?php if($theme->page): ?><a href="<?php echo $base; ?>admin/themes/<?php echo $theme->slug; ?>"><?php endif; ?>
 				<span class="title"><?php echo $theme->name; ?> <small>by <?php echo $theme->author; ?></small></span>
 				
 				<?php if($theme->active): ?>

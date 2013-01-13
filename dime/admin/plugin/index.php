@@ -3,7 +3,7 @@
 <ul class="items">
 	<?php foreach($plugins as $plugin): ?>
 		<li class="<?php echo ($plugin->active ? 'active' : '') . ' ' . ($plugin->page ? 'page' : 'nopage'); ?>">
-			<?php if($plugin->page): ?><a href="/admin/plugins/<?php echo $plugin->slug; ?>"><?php endif; ?>
+			<?php if($plugin->page): ?><a href="<?php echo $base; ?>admin/plugins/<?php echo $plugin->slug; ?>"><?php endif; ?>
 				<span class="title"><?php echo $plugin->name; ?> <small>by <?php echo $plugin->author; ?></small></span>
 				
 				<?php if($plugin->active): ?>
