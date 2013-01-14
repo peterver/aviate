@@ -38,6 +38,8 @@ $config['routes'] = array(
 	//  Checkout routes
 	'checkout' => 'checkout',
 	'checkout/remove/(:num)' => 'checkout.remove',
+	'checkout/pay' => 'checkout.pay',
+	'checkout/return' => 'checkout.return',
 	
 	//  Handle any static pages
 	'static' => 'page.index',

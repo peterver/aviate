@@ -5,7 +5,9 @@
  *   
  */
 class Paypal {
+	private static $email = false;
+	
 	public static function init() {
-		return 'true';
+		self::$email = true;
 	}
 }

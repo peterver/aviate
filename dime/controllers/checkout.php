@@ -5,10 +5,13 @@ class Checkout_controller extends Controller {
 		parent::__construct();
 	}
 	
-	//  Load a single product page
+	//  Load the main checkout page
 	public function index() {
 		echo $this->template->set(array(
+			//  Get a list of all the current products in the basket
 			'products' => Basket::items(),
+			
+			//  Set the title
 			'title' => Config::get('sitename') . ' &mdash; Checkout'
 		))->render('checkout');
 	}
@@ -20,5 +23,9 @@ class Checkout_controller extends Controller {
 		//  And remove it from the basket
 		//  Then redirect to checkout
 		Basket::remove($id) and Response::redirect('../');
+	}
+	
+	public function buy() {
+		Payment::init();
 	}
 }

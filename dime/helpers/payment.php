@@ -7,10 +7,20 @@
  */
 class Payment {
 	public static $method = false;
+	private static $file = false;
 	
-	public static function init() {
-		self::$method = Config::get('payment_method');
-		
-		return fetch(APP_BASE . 'helpers/integrations/' . self::$method . '.php');
+	public static function init($config = false) {
+		self::$method = ucfirst(Config::get('payment_method', 'paypal'));
+		self::$file = !fetch(APP_BASE . 'helpers/integrations/' . self::$method . '.php');
+				
+		if(self::$file !== false and class_exists(self::$method)) {
+			call_user_func(self::$method . '::init', $config);
+		}
 	}
+	
+	public static function charge($amount, $for) {}
+	
+	public static function success() {}
+	
+	public static function fail() {}
 }

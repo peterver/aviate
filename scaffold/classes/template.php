@@ -77,6 +77,8 @@ class Template {
 		
 		$this->set('_alnum', $alnum);
 		
+		Plugin::receive('title', $this->get('title'));
+		
 		//  Replace {{variables}}
 		$template = preg_replace_callback('/{{([' . $alnum . ']+)(\/[' . $alnum . ' \.,+\-\/!\?]+)?}}/', function($matches) use($vars) {
 			if(count($matches) === 3) {

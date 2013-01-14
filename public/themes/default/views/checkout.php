@@ -9,3 +9,5 @@
 	</li>
 <?php endforeach; ?>
 </ul>
+
+<a href="/checkout/pay">Let's do this shit</a>
