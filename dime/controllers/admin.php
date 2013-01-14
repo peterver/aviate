@@ -36,6 +36,8 @@ class Admin_controller extends Controller {
 		));
 	}
 	
+	//  Decide what function to call
+	//  This will be overriden by the routes
 	public function delegate() {
 		$url = str_replace('_', '', $this->url->segment(1));
 		
@@ -47,6 +49,8 @@ class Admin_controller extends Controller {
 		echo $this->template->render('404');
 	}
 	
+	//  Load the main index page
+	//  Possibly redirect to adding a new product or something
 	public function index() {
 		echo $this->template->render('index');
 	}
@@ -190,6 +194,7 @@ class Admin_controller extends Controller {
 		
 		$active = explode(',', Config::get('plugins'));
 		$plugins = array();
+		
 		foreach(glob(APP_BASE . 'plugins/*/about.json') as $plugin) {
 			$data = json_decode(file_get_contents($plugin));
 			$slug = basename(dirname($plugin));
@@ -208,24 +213,20 @@ class Admin_controller extends Controller {
 			$plugins[] = $data;
 		}
 				
-		echo $this->template->set('plugin/index', $plugins)->render('plugins');
+		echo $this->template->set('plugins', $plugins)->render('plugin/index');
 	}
 	
 	private function _modifyPlugin() {
-		$enable = $this->input->get('enable');
-		$disable = $this->input->get('disable');
-		
-		if($enable) {
-			Plugin::receive('plugin_enabled');
-			$this->model->enablePlugin($enable);
+		foreach(array('en', 'dis') as $mode) {
+			$data = $this->input->get($mode . 'able');
+			
+			if($data) {
+				Plugin::receive('plugin_' . $mode . 'abled');
+				$this->model->{$mode . 'ablePlugin'}($data);
+				
+				return Response::redirect('/admin/plugins');
+			}
 		}
-		
-		if($disable) {
-			Plugin::receive('plugin_disabled');
-			$this->model->disablePlugin($disable);
-		}
-		
-		Response::redirect('/admin/plugins');
 	}
 	
 	public function plugin() {
