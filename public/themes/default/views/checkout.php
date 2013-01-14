@@ -1,3 +1,11 @@
 <h1>Check this out</h1>
 
-<?php var_dump(Basket::items()); ?>
+<ul class="items">
+<?php foreach(Basket::items() as $item): ?>
+	<li>
+		<b><?php echo $item->name; ?></b> <?php echo price($item->price); ?>
+		
+		<a href="<?php echo $base; ?>checkout/remove/<?php echo $item->id; ?>">Nope</a>
+	</li>
+<?php endforeach; ?>
+</ul>

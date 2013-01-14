@@ -173,6 +173,13 @@ function price($str) {
 	return Config::get('currency') . $str;
 }
 
+//  Merge thingies
+function merge() {
+	foreach(func_get_args() as $arg) {
+		if($arg) return $arg;
+	}
+}
+
 //  Auto-link any URLs
 function linkify($url) {
 	$url = preg_replace('/(https?:\/\/\S+)/', '<a href="\1" title="\1">\1</a>', $url);

@@ -14,6 +14,11 @@ class Checkout_controller extends Controller {
 	}
 	
 	public function remove() {
-		//\\//\\//\\//\\
+		//  Get the ID of the product
+		$id = strval($this->url->segment(2));
+		
+		//  And remove it from the basket
+		//  Then redirect to checkout
+		Basket::remove($id) and Response::redirect('../');
 	}
 }

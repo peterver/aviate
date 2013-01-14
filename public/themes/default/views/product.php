@@ -12,4 +12,8 @@
 	<?php echo price($product->price); ?>
 </div>
 
+<?php if(Basket::contains($product->id)): ?>
+You bought this bro.
+<?php else: ?>
 <a href="./<?php echo $product->slug; ?>/add">Add to basket</a>
+<?php endif; ?>

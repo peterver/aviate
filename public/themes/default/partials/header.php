@@ -13,7 +13,10 @@
 		
 		<?php if(Basket::hasItems()): ?>
 		<p class="basket">
-			<a href="<?php echo $base; ?>checkout"><b><?php echo Basket::itemCount(); ?></b> items.</a>
+			<a href="<?php echo $base; ?>checkout">
+				<b><?php echo Basket::itemCount(); ?></b>
+				<?php echo pluralise(Basket::itemCount(), 'item'); ?>.
+			</a>
 		</p>
 		<?php else: ?>
 		<p class="basket empty">
