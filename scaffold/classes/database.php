@@ -159,7 +159,7 @@ class Database {
 		return $this->_set('limit', $limit);
 	}
 	
-	public function order($key, $what) {
+	public function order($key, $what = '') {
 		return $this->_set('order','by ' . '`' . $key . '` ' . $what);
 	}
 	

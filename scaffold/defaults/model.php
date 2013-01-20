@@ -12,6 +12,12 @@ class Model {
 		}
 		
 		$this->db = $this->database = $object;
+		
+		if($this->db !== false) {
+			foreach($this->_loadConfig() as $key => $value) {
+				Config::set($key, $value);
+			}
+		}
 	}
 	
 	public function _loadConfig() {

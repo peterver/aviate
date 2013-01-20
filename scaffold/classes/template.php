@@ -5,29 +5,25 @@ class Template {
 	public static $vars = array();
 	public static $path = '';
 	public static $base = '';
+	public static $changed = false;
 
 	public function __construct() {
-		$append = 'themes/' . Config::get('current_template', 'default') . '/';
+		$append = 'themes/?/';
 		self::$base = PUBLIC_BASE . $append;
 		self::$path = self::$base . 'skeleton.html';
 		
 		//  Set some default variables to use in the template
 		$this->set(array(
 			'load_time' => load_time(),
+
 			'base' => Url::base(),
+			'theme_base' => Url::base($append),
 			
-			'scaffold_version' => scaffold_version(),
-			
-			'partial_base' => self::$base . '/partials/',
-			'view_base' => self::$base . '/views/',
-			
-			'theme_base' => Url::base($append)
+			'scaffold_version' => scaffold_version()			
 		));
 		
 		define('TEMPLATE_BASE', self::$base);
 		define('TEMPLATE_PATH', self::$path);
-		
-		Config::save('current_template', 'default');
 	}
 	
 	public static function init($scaffold) { 
@@ -38,6 +34,18 @@ class Template {
 		//  Set the view to load
 		if(empty($what)) {
 			$what = self::$_routes->parse();
+		}
+		
+		if(self::$changed === false) {
+			self::$base = $this->_fix(self::$base);
+			self::$path = $this->_fix(self::$path);
+			
+			$this->set(array(
+				'partial_base' => self::$base . '/partials/',
+				'view_base' => self::$base . '/views/',
+				
+				'theme_base' => $this->_fix($this->get('theme_base'))
+			));
 		}
 		
 		//  Looad the view
@@ -173,5 +181,9 @@ class Template {
 		}
 		
 		return $fallback;
+	}
+	
+	private function _fix($str) {
+		return str_replace('?', Config::get('current_template', 'default'), $str);
 	}
 }

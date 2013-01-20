@@ -25,11 +25,15 @@ class Admin_controller extends Controller {
 		//  Since it's set as a static property and a constant,
 		//  we have to do a bit of hacking. Ewww.
 		$t = $this->template;
-		$t::$path = APP_BASE . '/admin/template.html';
+		$t::$path = APP_BASE . 'admin/template.html';
+		$t::$base = APP_BASE . 'admin/';
+		$t::$changed = true;
 		
 		$this->template->set(array(
 			'partial_base' => APP_BASE . '/admin/partials/',
-			'view_base' => APP_BASE . '/admin/',
+			'view_base' => APP_BASE . 'admin/',
+			
+			'theme_base' => APP_BASE . 'admin/',
 			
 			'loggedIn' => true,
 			'url' => $this->url->segment(1)
