@@ -24,9 +24,15 @@ class Product_controller extends Controller {
 	
 	//  Add to basket
 	public function add() {
-		if($this->model->buy($this->product->id) !== false) {
-			Response::redirect('../');
+		$add = $this->model->buy($this->product->id) !== false;
+		
+		if(isset($_GET['ajax'])) {
+			return Ajax::output(array(
+				'status' => $add
+			));
 		}
+		
+		Response::redirect(PUBLIC_PATH . 'checkout');
 	}
 	
 	//  Main product page

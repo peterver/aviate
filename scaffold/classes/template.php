@@ -48,6 +48,11 @@ class Template {
 			));
 		}
 		
+		//  Theme functions
+		if(file_exists(self::$base . 'functions.php')) {
+			include_once self::$base . 'functions.php';
+		}
+		
 		//  Looad the view
 		$this->loadView($what);
 		

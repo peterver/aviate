@@ -10,6 +10,12 @@ class Pages {
 		foreach($pages as $id => $page) {
 			$page->active = self::isActive($page->slug);
 			
+			$page->url = PUBLIC_PATH . 'static/' . $page->slug;
+			
+			if($page->redirect) {
+				$page->url = $page->redirect;
+			}
+			
 			$return[$id] = $page;
 		}
 		

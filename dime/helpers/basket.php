@@ -119,6 +119,16 @@ class Basket {
 		return self::current('items');
 	}
 	
+	public static function value() {
+		$value = 0;
+		
+		foreach(self::items() as $item) {
+			$value += $item->price;
+		}
+		
+		return $value;
+	}
+	
 	public static function get($me) {
 		if(self::$_basket === false) {
 			$basket = self::$_db->select('*')->from('baskets')->where(array(
