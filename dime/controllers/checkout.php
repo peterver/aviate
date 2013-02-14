@@ -12,7 +12,9 @@ class Checkout_controller extends Controller {
 			'products' => Basket::items(),
 			
 			//  Set the title
-			'title' => Config::get('sitename') . ' &mdash; Checkout'
+			'title' => Config::get('sitename') . ' &mdash; Checkout',
+			
+			'class' => 'checkout'
 		))->render('checkout');
 	}
 	
@@ -26,6 +28,8 @@ class Checkout_controller extends Controller {
 	}
 	
 	public function buy() {
-		Payment::init();
+		Payment::charge(array(
+			
+		));
 	}
 }

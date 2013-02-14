@@ -9,5 +9,7 @@ class Paypal {
 	
 	public static function init() {
 		self::$email = true;
+		
+		echo 'niit';
 	}
 }
