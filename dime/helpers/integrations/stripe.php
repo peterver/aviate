@@ -1,7 +1,7 @@
 <?php defined('IN_APP') or die('Get out of here');
 
 /**
- *   Paypal integration
+ *   Stripe integration
  *   
  */
 class Stripe extends Payment {
