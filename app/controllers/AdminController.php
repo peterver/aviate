@@ -2,9 +2,16 @@
 
 class AdminController extends BaseController {
 
+	protected $layout;
+
 	public function getIndex()
 	{
-		return View::make('admin.layout')->with('theme', 'current');
+		$this->layout = array('users' => array(), 'theme' => 'current');
+		return $this->render('users.list');
+	}
+	
+	private function render($view) {
+		return View::make('admin.' . $view)->with($this->layout);
 	}
 
 }
