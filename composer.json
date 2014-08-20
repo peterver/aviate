@@ -1,11 +1,12 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "codin/dime",
+	"description": "Simple eCommerce with Stripe/PayPal.",
+	"keywords": ["ecommerce", "laravel"],
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"laravel/cashier": "~2.0"
+		"laravel/cashier": "~2.0",
+		"teepluss/theme": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -17,6 +18,7 @@
 			"app/tests/TestCase.php"
 		]
 	},
+	
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",
@@ -33,5 +35,6 @@
 	"config": {
 		"preferred-install": "dist"
 	},
+	
 	"minimum-stability": "stable"
 }
