@@ -1,20 +1,19 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+/**
+ *   Here's where routes are normally added in Laravel, but
+ *   for Dime, we separate them out a bit more so the page
+ *   doesn't get too crowded. Check out /app/routes.
+ */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+/**
+ *   storefront.php contains all the public site routes that
+ *   get powered by the theme.
+ */
+require_once 'routes/storefront.php';
 
-
-Route::controller('admin', 'AdminController');
+/**
+ *   The admin area isn't powered by the site and is completely
+ *   separate from the shop so we'll split that up.
+ */
+require_once 'routes/admin.php';

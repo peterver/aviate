@@ -189,8 +189,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Theme'			  => 'Cartalyst\Themes\Facades\Theme',
-		'Asset'			  => 'Cartalyst\Themes\Facades\Asset',
+		//'Theme'			  => 'Helper\Theme',
 	),
 
 );

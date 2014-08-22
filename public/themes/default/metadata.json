@@ -1,0 +1,12 @@
+{
+	"name": "Default",
+	"description": "Lightweight, minimal and modern: it's the default theme for Dime.",
+
+	"author": {
+		"name": "Visual Idiot",
+		"site": "http://visualidiot.com",
+		"twitter": "@idiot"
+	},
+
+	"licence": "http://www.wtfpl.net/txt/copying/"
+}
