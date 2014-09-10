@@ -1,0 +1,231 @@
+/**
+ *   Import any styles
+ */
+@import 'reset.less';
+@import 'grid.less';
+@import url('//fonts.googleapis.com/css?family=Cousine|Montserrat:400,700&subset=latin,cyrillic,latin-ext');
+
+
+/**
+ *   Set up variables
+ */
+
+@primary: #29f;
+@secondary: #d63;
+
+@background: #fff;
+@background-light: #f8f7f5;
+@background-inverse: #171717;
+
+@foreground: #666;
+@foreground-light: #aaa;
+
+@column-width: 65;
+@gutter-width: 20;
+@columns: 12;
+
+@serif: "Adobe Caslon Pro", Baskerville, "Goudy Old Style", Palatino, "Book Antiqua", serif;
+@sans: Montserrat, sans-serif;
+@monospace: Cousine, monospace;
+
+
+/**
+ *   Typography
+ */
+
+body, input, textarea, button {
+	font: 16px/25px @serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	text-decoration: none;
+}
+
+.site-logo, .product-list .title, .basket span {
+	font: bold 13px @sans;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+
+/**
+ *   Layout
+ */
+
+.wrap {
+	.wrap();
+
+	@media (max-width: 1080px) {
+		width: 100%;
+		padding-left: 30px !important;
+		padding-right: 30px !important;
+
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+#top {
+	overflow: hidden;
+	padding: 35px 0 20px;
+
+	.site-logo, nav {
+		float: left;
+		margin-right: 60px;
+	}
+
+	.site-logo {
+		color: darken(@foreground, 13.3%);
+		line-height: 18px;
+	}
+
+	nav {
+		position: relative;
+
+		> a {
+			float: left;
+			margin-right: 60px;
+
+			line-height: 20px;
+
+			color: lighten(@foreground, 20%);
+
+			&.dropdown {
+				position: relative;
+
+				&:after {
+					content: '';
+					display: inline-block;
+					width: 7px;
+					height: 4px;
+					margin-left: 6px;
+
+					position: relative;
+					top: -2px;
+
+					background: lighten(@foreground, 20%) url('../img/arrow.png');
+					background-size: 7px 4px;
+				}
+			}
+
+			&:hover {
+				color: @primary;
+
+				&:after {
+					background-color: @primary;
+				}
+			}
+		}
+
+		ul {
+			display: none;
+		}
+	}
+
+	.basket {
+		float: right;
+		padding-right: 40px;
+		margin-top: -5px;
+
+		text-align: right;
+		color: darken(@foreground, 15%);
+
+		background: url('../img/bag.png') no-repeat 100% 50%;
+		background-size: 26px 28px;
+
+		span {
+			display: block;
+			position: relative;
+			top: -4px;
+
+			font-size: 10px;
+			font-weight: normal;
+
+			color: @primary;
+
+			b {
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+.banner {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+
+	.carousel {
+		width: 100%;
+		overflow-x: scroll;
+		overflow-y: hidden;
+
+		ul {
+			width: 400%;
+
+			li {
+				width: 25%;
+				float: left;
+
+				position: relative;
+			}
+
+			h1 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+
+				font-size: 60px;
+				line-height: 600px;
+				font-style: italic;
+				font-weight: normal;
+				text-align: center;
+
+				color: @background;
+				text-shadow: 0 4px 10px fade(@background-inverse, 20%);
+			}
+
+			img {
+				width: 1200px;
+				height: 600px;
+
+				background: @background-light;
+			}
+		}
+
+		.has-js & {
+			height: 600px;
+			overflow: hidden;
+
+			ul, li {
+				width: 100%;
+			}
+
+			li {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		}
+	}
+
+	form {
+		position: absolute;
+		left: 50%;
+		bottom: 50px;
+
+		width: 250px;
+		margin-left: -125px;
+
+		input {
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		width: 100%;
+	}
+}
