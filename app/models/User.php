@@ -23,4 +23,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	public static $levels = array(
+		0 => 'inactive',
+		1 => 'default',
+		2 => 'admin'
+	);
+
+
+	public static function parse() {
+		$users = self::all();
+
+		foreach($users as $id => $user) {
+			$users[$id]->status = self::$levels[$users[$id]->level];
+		}
+
+		return $users;
+	}
 }

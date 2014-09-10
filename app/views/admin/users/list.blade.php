@@ -15,6 +15,7 @@
 </section>
 
 <section class="panel wrap narrow drilldown">
+	@if(count($users) > 0)
 	<ol>
 		@foreach ($users as $user)
 		<li>
@@ -34,5 +35,10 @@
 		</li>
 		@endforeach
 	</ol>
+	@else
+	<p class="empty-state">
+		There’s no users, the sky is falling.
+	</p>
+	@endif
 </section>
 @stop

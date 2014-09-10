@@ -19,40 +19,26 @@
     <body>
     	<nav class="main-nav">
 			<ul class="actions">
-				<li>
-					<a class="flaticon feather-1" href="http://localhost:1005/admin/posts">Posts</a>
-				</li>
-				
-				<li>
-					<a class="flaticon writing-comment-2" href="http://localhost:1005/admin/comments">Comments</a>
-				</li>
-				
-				<li>
-					<a class="flaticon multiple-documents-1" href="http://localhost:1005/admin/pages">Pages</a>
-				</li>
-				
-				<li>
-					<a class="flaticon menu-list-4" href="http://localhost:1005/admin/menu">Menu</a>
-				</li>
-				
-				<li>
-					<a class="flaticon tag-1" href="http://localhost:1005/admin/categories">Categories</a>
-				</li>
+                @foreach($pages as $page)
+                <li class="{{ Request::is('admin/' . $page) ? 'active' : '' }}">
+                    <a href="{{ URL::to('admin/' . $page) }}">{{ ucwords($page) }}</a>
+                </li>
+                @endforeach
 			</ul>
     		
     		<a class="dime-logo">Dime CMS</a>
     		
     		<ul class="results">
     			<li>
-    				<a href="/">Visit site</a>
+    				<a href="{{ URL::to('/') }}">Visit site</a>
     			</li>
     			
     			<li class="active">
-    				<a class="flaticon user-1" href="http://localhost:1005/admin/users">Users</a>
+    				<a class="flaticon user-1" href="{{ URL::to('admin/users') }}">Users</a>
     			</li>
     			
     			<li>
-    				<a class="flaticon cube-1" href="http://localhost:1005/admin/extend">Extensions</a>
+    				<a class="flaticon cube-1" href="{{ URL::to('admin/settings') }}">Settings</a>
     			</li>
     			
     			<li>

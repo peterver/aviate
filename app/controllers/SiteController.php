@@ -6,13 +6,11 @@ class SiteController extends BaseController {
 
 	public function getIndex()
 	{
-		$this->layout = array('users' => array(), 'theme' => 'current');
-		return $this->render('users.list');
+		return View::make('theme::layouts.main')->with(array('site' => Metadata::format()));
 	}
 
 	public function homepage() {
-
-		return View::make('theme::layouts.main')->with('site', Metadata::format());
+		return View::make('theme::layouts.main')->with(array('site' => Metadata::format()));
 	}
 	
 	private function render($view) {
