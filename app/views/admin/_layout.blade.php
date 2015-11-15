@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         
-        <title>Dime CMS</title>
+        <title>{{ $title }}</title>
         
         <meta name="description" content="">
         <meta name="viewport" content="width=1400, initial-scale=1">
@@ -14,7 +14,7 @@
         {{ HTML::style('dime/js/pen/pen.css'); }}
         
         <!-- Compiles from current theme, if it exists -->
-        {{ HTML::style('themes/' . $theme . '/admin-custom.css'); }}
+        {{ HTML::style('themes/' . Metadata::item('theme') . '/admin-custom.css'); }}
     </head>
     <body>
     	<nav class="main-nav">

@@ -29,7 +29,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		2 => 'admin'
 	);
 
-
 	public static function parse() {
 		$users = self::all();
 

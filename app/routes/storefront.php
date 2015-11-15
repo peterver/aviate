@@ -10,4 +10,7 @@
  *   argument will probably break things.
  */
 
-Route::get('/', 'SiteController@homepage');
+Route::get('/', array(
+	'before' => 'installed',
+	'uses' => 'SiteController@homepage'
+));

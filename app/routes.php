@@ -17,3 +17,8 @@ require_once 'routes/storefront.php';
  *   separate from the shop so we'll split that up.
  */
 require_once 'routes/admin.php';
+
+/**
+ *   The installer needs some routes, let's get them set up.
+ */
+require_once 'routes/install.php';

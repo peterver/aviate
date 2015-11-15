@@ -1,3 +1,5 @@
 <?php
 
-Route::controller('admin', 'AdminController');
+Route::group(array('before' => 'installed|auth'), function() {
+	Route::controller('admin', 'AdminController');
+});

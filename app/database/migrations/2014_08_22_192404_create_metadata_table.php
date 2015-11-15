@@ -16,7 +16,7 @@ class CreateMetadataTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('key');
-			$table->text('value');
+			$table->text('value')->nullable();
 		});
 	}
 
