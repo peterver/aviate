@@ -44,12 +44,12 @@ class Metadata extends Eloquent {
 		return $item->save();
 	}
 
-	public static function item($what, $value = false) {
-		if($value) {
-			return self::set($what, $value);
+	public static function item($what, $fallback = 'false') {
+		if($item = self::where('key', '=', $what)->pluck('value')) {
+			return $item;
 		}
 
-		return self::where('key', '=', $what)->pluck('value');
+		return $fallback;
 	}
 
 	public static function installed() {

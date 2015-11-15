@@ -6,21 +6,21 @@
 		<meta http-equiv="Content-Language" content="en">
 
 		<title>
-			{{ $site->name }} &mdash; {{ $title or $site->tagline }}
+			{{ get_site_name() }} &mdash; {{ $title or get_site_description() }}
 		</title>
 
 		<meta property="og:url" content="{{ URL::to('/') }}">
-		<meta property="og:site_name" content="{{ $site->name }}">
-		<meta property="og:title" content="{{ $title or $site->tagline }}">
-		<meta property="og:description" content="{{ $site->tagline }}">
+		<meta property="og:site_name" content="{{ get_site_name() }}">
+		<meta property="og:title" content="{{ $title or get_site_description() }}">
+		<meta property="og:description" content="{{ get_site_description() }}">
 		
 		@if(isset($site->google_analytics))
 			<meta name="google-analytics" content="$site->google_analytics">
 		@endif
 
-		<link rel="icon" type="image/x-icon" href="{{ Theme::asset('img/favicon.png') }}">
+		<link rel="icon" type="image/x-icon" href="{{ get_asset_url('favicon.png') }}">
 
-		{{ Theme::asset('style', 'css') }}
+		{{ get_stylesheet() }}
 
 		<!--[if lt IE 9]>
 			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,7 +31,7 @@
 	<body class="{{ $class or '' }}">
 
 		<header id="top" class="wrap">
-			<a class="site-logo" href="{{ URL::to('/') }}" title="Click to go back to the homepage">{{ $site->name }}</a>
+			<a class="site-logo" href="{{ URL::to('/') }}" title="Click to go back to the homepage">{{ get_site_name() }}</a>
 
 			<nav class="site-nav">
 				<a class="categories dropdown" href="{{ URL::to('categories') }}">
@@ -91,7 +91,7 @@
 			</div>
 
 			{{ Form::open(array('url' => 'search')) }}
-				<input type="search" placeholder="Search {{ $site->name }}&hellip;" name="query">
+				<input type="search" placeholder="Search {{ get_site_name() }}&hellip;" name="query">
 				<button type="submit" class="hidden">Submit query</button>
 			{{ Form::close() }}
 		</div>
@@ -113,11 +113,11 @@
 
 				<div class="row quicklinks">
 					{{ Form::open(array('url' => 'search')) }}
-						<input type="search" placeholder="Search {{ $site->name }}&hellip;" name="query">
+						<input type="search" placeholder="Search {{ get_site_name() }}&hellip;" name="query">
 						<button type="submit" class="hidden">Submit query</button>
 					{{ Form::close() }}
 
-					<a id="site-name" href="{{ URL::to('/') }}" title="Click to go back to the homepage">{{ $site->name }}</a>
+					<a id="site-name" href="{{ URL::to('/') }}" title="Click to go back to the homepage">{{ get_site_name() }}</a>
 
 					<div class="right">
 						<a class="-urlbasket" href="{{ Url::to('basket') }}">Basket <span>{{ Basket::itemCount() }}</span></a>
@@ -158,8 +158,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
-        {{ Theme::asset('app', 'js') }}
-        {{ Theme::asset('interactions', 'js') }}
+        {{ get_assets(['app.js', 'interactions.js']) }}
 
         @if(isset($site->google_analytics))
 	        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

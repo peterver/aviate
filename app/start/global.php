@@ -12,13 +12,26 @@
 */
 
 ClassLoader::addDirectories(array(
-
 	app_path().'/commands',
 	app_path().'/controllers',
 	app_path().'/models',
-	app_path().'/database/seeds',
-	app_path().'/helpers'
+	app_path().'/database/seeds'
 ));
+
+/*
+|--------------------------------------------------------------------------
+| Theme functions
+|--------------------------------------------------------------------------
+|
+| Built on top of Laravel is our custom theme functions, we need to make
+| sure they're all loaded so there's no errors
+|
+*/
+$functions = array('metadata', 'theme');
+
+foreach($functions as $function) {
+	require app_path() . '/functions/' . $function . '.php';
+}
 
 /*
 |--------------------------------------------------------------------------
