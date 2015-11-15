@@ -74,7 +74,7 @@ Route::filter('guest', function() {
 */
 
 Route::filter('installed', function() {
-	if(Metadata::installed() !== true) {
+	if(!Metadata::installed()) {
 		return Redirect::to('install');
 	}
 });

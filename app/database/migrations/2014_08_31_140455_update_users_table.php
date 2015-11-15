@@ -13,8 +13,8 @@ class UpdateUsersTable extends Migration {
 	public function up()
 	{
 		Schema::table('users', function($table) {
-    		$table->string('username');
-    		$table->string('name');
+    		$table->string('username')->nullable();
+    		$table->string('name')->nullable();
 		});
 	}
 

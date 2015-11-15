@@ -23,6 +23,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	/**
+	 * We want to make sure the user can fill certain items in.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array('email', 'level', 'password', 'username', 'name');
+
 	public static $levels = array(
 		0 => 'inactive',
 		1 => 'default',
@@ -37,5 +44,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 		return $users;
+	}
+
+	public function setPasswordAttribute($password) {
+		$this->attributes['password'] = Hash::make($password);
+	}
+
+	public static function level($slug = false) {
+		if($slug === false) {
+			return self::$levels[Auth::user()->level];
+		}
+
+		return array_search($slug, self::$levels);
 	}
 }

@@ -14,7 +14,6 @@
         {{ HTML::style('aviate/css/install.css'); }}
     </head>
     <body>
-    	
     	<section class="frame">
             <aside>
                 {{ HTML::image('aviate/aviate-logo.png', 'Aviate CMS', ['class' => 'logo', 'width' => 23, 'height' => 19]) }}
@@ -26,12 +25,9 @@
                 <div class="error">{{ $error }}</div>
             @endif
 
-            <main>
-                @yield('content')
-            </main>
+            <main>@yield('content')</main>
         </section>
         
-
 		<!-- JS wankery -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>

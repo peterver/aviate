@@ -1,7 +1,7 @@
 {
-	"name": "codin/dime",
-	"description": "Simple eCommerce with Stripe/PayPal.",
-	"keywords": ["ecommerce", "laravel"],
+	"name": "codin/aviate",
+	"description": "Simple eCommerce CMS with Stripe.",
+	"keywords": ["ecommerce", "cms", "laravel"],
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",

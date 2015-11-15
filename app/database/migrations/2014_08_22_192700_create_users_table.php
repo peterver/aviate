@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('email');
 			$table->string('password', 64);
-			$table->integer('level');
+			$table->integer('level')->default(0);
 			$table->timestamps();
 		});
 	}

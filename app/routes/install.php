@@ -7,3 +7,5 @@ Route::post('install', ['before' => 'hasDB', 'uses' => 'InstallController@doWelc
 
 Route::get('install/meta', ['before' => 'installing', 'uses' => 'InstallController@showMeta']);
 Route::post('install/meta', ['before' => 'installing', 'uses' => 'InstallController@doMeta']);
+
+Route::get('install/done', ['before' => 'installing', 'uses' => 'InstallController@showDone']);

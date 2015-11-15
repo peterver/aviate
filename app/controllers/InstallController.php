@@ -42,12 +42,35 @@ class InstallController extends Controller {
 	}
 
 	public function doMeta() {
+		$error = false;
+
 		//  Set our metadata
 		Metadata::set(Input::except(['user', 'pass', '_token']));
 
-		if(Metadata::item('stripe_key')) {
-			
+		//  Check the Stripe API key is valid
+		try {
+			Stripe::setApiKey(Metadata::item('stripe_key'));
+			Stripe\Balance::retrieve();
+		} catch(Exception $e) {
+			$error = 'That Stripe key doesn’t look valid!';
 		}
+
+		//  Create the user
+		if(User::whereEmail(Input::get('user'))->exists()) {
+			$error = 'Somebody’s already signed up with that email address!';
+		} else {
+			User::create([
+				'email' => Input::get('user'),
+				'password' => Input::get('pass'),
+				'level' => User::level('admin')
+			]);
+		}
+
+		if($error === false) {
+			return Redirect::to('install/done');
+		}
+		
+		View::share('error', $error);
 
 		return self::showMeta();
 	}
@@ -56,6 +79,12 @@ class InstallController extends Controller {
 		self::migrate();
 
 		return View::make('install/meta');
+	}
+
+	public function showDone() {
+		Metadata::set('installed', true);
+
+		return View::make('install/done');
 	}
 
 	protected static function migrate() {

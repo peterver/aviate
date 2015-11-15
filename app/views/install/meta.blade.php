@@ -10,21 +10,21 @@
 	{{ Form::open(array('autocomplete' => 'off')) }}
 		<p>
 			<label for="site_name">Your shop’s name</label>
-			<input required maxlength="100" name="site_name" value="{{ Input::get('sitename') }}" id="sitename" placeholder="ACME Corp">
+			<input required maxlength="100" name="site_name" value="{{ Input::get('site_name') }}" id="sitename" placeholder="ACME Corp">
 
 			<em class="help">You can call this whatever you’d like — of course. It’ll be used in a lot of places, so don’t be too descriptive, just the barebones shop name.</em>
 		</p>
 
 		<p>
 			<label for="site_desc">Your shop’s description</label>
-			<textarea required id="site_desc" name="site_desc" maxlength="160"></textarea>
+			<textarea required id="site_desc" name="site_desc" maxlength="160">{{ Input::get('site_desc') }}</textarea>
 
 			<em class="help">Now’s your chance to get descriptive. This is what will get displayed under your site in Google search results.</em>
 		</p>
 
 		<p class="multi">
-			<label for="user">Shop admin username and password</label>
-			<input required name="user" id="user" placeholder="Username">
+			<label for="user">Shop admin email address and password</label>
+			<input required name="user" id="user" placeholder="Email address" value="{{ Input::get('user') }}">
 			<input required name="pass" id="pass" type="password" placeholder="Password">
 
 			<em class="help">Make sure you pick something memorable! You’ll need this to make <b>any</b> changes within Aviate. You can always create more users later on if you need to.</em>
