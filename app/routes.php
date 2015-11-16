@@ -2,7 +2,7 @@
 
 /**
  *   Here's where routes are normally added in Laravel, but
- *   for Dime, we separate them out a bit more so the page
+ *   for Aviate, we separate them out a bit more so the page
  *   doesn't get too crowded. Check out /app/routes.
  */
 

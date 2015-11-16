@@ -1,0 +1,107 @@
+@import 'reset.css';
+
+html, body {
+	height: 100%;
+}
+
+.auth, .frame {
+	position: relative;
+
+	background: #fff;
+	border-radius: 3px;
+	box-shadow: 0 12px 20px rgba(0,0,0,.03);
+}
+
+.auth {
+	width: 400px;
+	margin: 40px auto;
+	padding: 30px;
+}
+	.auth-logo {
+		display: block;
+		margin: 80px auto 40px;
+		opacity: .3;
+	}
+
+.frame {
+	position: absolute;
+	left: 16px;
+	top: 16px;
+	right: 16px;
+	bottom: 16px;
+
+	overflow: hidden;
+}
+
+.main-nav, .content {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+.main-nav {
+	left: 0;
+	width: 180px;
+
+	background: #13c1bf;
+}
+	.main-nav .logo {
+		display: block;
+		margin: 25px 25px 20px;
+
+		opacity: .3;
+	}
+	.main-nav li {
+		list-style: none;
+	}
+		.main-nav a {
+			display: block;
+
+			color: #fff;
+			border: none;
+		}
+			.main-nav .active a {
+				background: #fff;
+				color: #0da0a5;
+			}
+	.main-nav .actions {
+		margin: 0 0 25px;
+	}
+		.main-nav .actions a {
+			padding: 8px 25px;
+			font-weight: 500;
+		}
+	.main-nav .results {
+		opacity: .75;
+		margin-bottom: 25px;
+	}
+		.main-nav .results a {
+			padding: 5px 25px;
+		}
+
+.content {
+	left: 180px;
+	right: 0;
+
+	padding: 40px;
+	height: 100%;
+	overflow: auto;
+}
+	.content .empty-state {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+
+		display: block;
+		transform: translateX(-50%) translateY(-50%);
+
+		color: #a3a9b8;
+		font-size: 24px;
+		line-height: 28px;
+		font-weight: lighter;
+		text-align: center;
+	}
+		.content .empty-state span {
+			display: block;
+			padding-bottom: 1em;
+		}

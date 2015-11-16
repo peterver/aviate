@@ -30,129 +30,49 @@
 	
 	<body class="{{ $class or '' }}">
 
-		<header id="top" class="wrap">
-			<a class="site-logo" href="{{ URL::to('/') }}" title="Click to go back to the homepage">{{ get_site_name() }}</a>
-
+		<section id="site-top">
 			<nav class="site-nav">
-				<a class="categories dropdown" href="{{ URL::to('categories') }}">
-					Categories
-
-					<ul>
-						@foreach(Category::all() as $category)
-						<li>
-							<a href="{{ URL::to('categories/' . $category->slug) }}">{{ $category->name }}</a>
-						</li>
-						@endforeach
-					</ul>
-				</a>
-
 				@foreach(Page::visible() as $page)
 				<a {{ $page->className or '' }} href="{{ URL::to('pages/' . $page->slug) }}">{{ $page->title }}</a>
 				@endforeach
 			</nav>
 
-			<a class="basket" href="{{ Url::to('basket') }}">
-				Your Basket
-				<span>{{ Basket::itemCount() }} items, <b>£99.05</b></span>
-			</a>
-		</header>
-
-		<div class="banner">
-			<div class="carousel">
-				<ul>
-					<li>
-						<a href="#">
-							<h1>Be awesome for summer</h1>
-							<img src="http://cdn.shopify.com/s/files/1/0261/0005/t/14/assets/slide-image-2.jpg">
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<h1>Here's another slide</h1>
-							<img src="http://lorempixel.com/1200/600/">
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<h1>Fashionistas</h1>
-							<img src="http://lorempixel.com/1200/601/">
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<h1>Autumn sale now on!</h1>
-							<img src="http://lorempixel.com/1200/599/">
-						</a>
-					</li>
-				</ul>
-			</div>
-
 			{{ Form::open(array('url' => 'search')) }}
 				<input type="search" placeholder="Search {{ get_site_name() }}&hellip;" name="query">
 				<button type="submit" class="hidden">Submit query</button>
 			{{ Form::close() }}
-		</div>
+		</section>
 
-		<main id="content">
-			<header class="listing-header">
-				<h1>Latest products</h1>
-
-				<a class="rss-link" href="{{ URL::to('rss/products') }}">RSS Feed</a>
-			</header>
-
-			<ul class="">
-
-			</ul>
-		</main>
-	
-		@section('header')
-			<header id="page-top" class="wrap">
-
-				<div class="row quicklinks">
-					{{ Form::open(array('url' => 'search')) }}
-						<input type="search" placeholder="Search {{ get_site_name() }}&hellip;" name="query">
-						<button type="submit" class="hidden">Submit query</button>
-					{{ Form::close() }}
-
-					<a id="site-name" href="{{ URL::to('/') }}" title="Click to go back to the homepage">{{ get_site_name() }}</a>
-
-					<div class="right">
-						<a class="-urlbasket" href="{{ Url::to('basket') }}">Basket <span>{{ Basket::itemCount() }}</span></a>
-
-						<div class="pages">
-							<a class="pages-link" href="#pages" title="Show the pages">&#x2261;</a>
-						
-							<ul id="pages">
-								@foreach(Page::visible() as $page)
-									<li {{ $page->className or '' }}>
-										<a href="{{ URL::to($page->slug) }}">{{ $page->title }}</a>
-									</li>
-								@endforeach
-							</ul>
-					</div>
-				</div>
-
-				<nav class="categories">
-					<ul>
-						@foreach(Category::all() as $category)
-						<li>
-							<a href="{{ URL::to('categories/' . $category->slug) }}">{{ $category->name }}</a>
-						</li>
-						@endforeach
-					</ul>
+		<header id="site-header">
+			<div class="wrap">
+				<a class="site-logo" href="{{ URL::to('/') }}" title="Click to go back to the homepage">
+					{{ get_site_name() }}
+					<!-- {{ get_asset('aviate-logo.png', 'Aviate CMS logo', array('width' => 93, 'height' => 19)) }} -->
+				</a>
+				
+				<nav class="site-categories">
+					@foreach(Category::all() as $category)
+						<a href="{{ URL::to('categories/' . $category->slug) }}">{{ $category->name }}</a>
+					@endforeach
 				</nav>
 
-			</header>
-		@show
+				<a class="basket {{ Basket::itemCount() > 0 ? 'has-items' : 'empty' }}" href="{{ Url::to('basket') }}">
+					<span>{{ Basket::itemCount() }}</span> <b>£99.05</b>
+				</a>
+			</div>
+		</header>
+
+		<main id="site-content">
+			@yield('content')
+		</main>
 		
-		@yield('content')
-		
-		@section('footer')
-		<footer id="page-bottom">
-			<small>dime it up yo!</small>
+		<footer id="site-footer">
+			<small>&copy; {{ date('Y') }} {{ get_site_name() }}. All rights reserved.</small>
+
+			<!-- You can remove this if you really want to :( -->
+			<a target="_blank" class="attribution" href="//aviatecms.com">
+				Powered by {{ get_asset('aviate-logo.png', 'Aviate CMS logo') }}
+			</a>
 		</footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

@@ -8,6 +8,10 @@ function get_theme_url($suffix = '') {
 	return Config::get('theme.path') . '/themes/' . get_current_theme() . '/' . $suffix;
 }
 
+function get_theme_path($what) {
+	return public_path() . get_theme_url($what);
+}
+
 function get_asset_url($file, $returnType = false) {
 	$type = pathinfo($file, PATHINFO_EXTENSION);
 

@@ -27,11 +27,15 @@ ClassLoader::addDirectories(array(
 | sure they're all loaded so there's no errors
 |
 */
-$functions = array('metadata', 'theme');
+$functions = array('metadata', 'theme', 'page');
 
 foreach($functions as $function) {
 	require app_path() . '/functions/' . $function . '.php';
 }
+
+View::addNamespace('theme', 'public/themes/' . Metadata::item('theme', 'default'));
+View::addLocation(get_theme_path('layouts'));
+
 
 /*
 |--------------------------------------------------------------------------
