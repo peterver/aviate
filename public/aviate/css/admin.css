@@ -22,6 +22,218 @@ html, body {
 		margin: 80px auto 40px;
 		opacity: .3;
 	}
+	.auth p, .extra-form p {
+		padding: 0;
+		border: none;
+	}
+	.auth label, .extra-form label {
+		position: static;
+	}
+	.auth button, .extra-form button {
+		margin: 0;
+	}
+
+.hint-wrapper {
+	display: block;
+	position: relative;
+}
+	.hint {
+		position: absolute;
+		left: 16px;
+		bottom: 24px;
+
+		opacity: .4;
+		pointer-events: none;
+	}
+
+.image-uploader {
+	position: relative;
+	float: left;
+	width: 360px;
+	height: 320px;
+	margin-bottom: 40px;
+
+	background: rgba(173,85,189,.1);
+	color: #ad55bd;
+	/*overflow: hidden;*/
+
+	border: 2px dashed #ad55bd;
+}
+	.image-uploader, .image-uploader .dz-remove,
+	.image-uploader [data-dz-thumbnail] {
+		border-radius: 4px;
+	}
+	.image-uploader .dz-remove {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+
+		text-indent: -999em;
+		border: none;
+
+		transition: background .2s;
+	}
+		.image-uploader .dz-remove:hover {
+			background: rgba(0,0,0,.4);
+		}
+			.image-uploader .dz-remove:hover:after {
+				opacity: 1;
+			}
+		.image-uploader .dz-remove:after {
+			content: 'Click to remove image';
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			z-index: 10;
+
+			color: #fff;
+			font-weight: bold;
+			text-shadow: 0 3px 6px rgba(0,0,0,.2);
+			text-indent: 0;
+
+			opacity: 0;
+			transform: translateX(-50%) translateY(-50%);
+			transition: opacity .2s;
+		}
+		.image-uploader .dz-remove:before {
+			content: '';
+			position: absolute;
+			right: 12px;
+			top: 12px;
+
+			width: 24px;
+			height: 24px;
+			border-radius: 24px;
+
+			background: rgba(0,0,0,.25) url('../img/delete-icon.png') no-repeat 50% 50%;
+			background-size: 20px 20px;
+		}
+	.image-uploader.dz-started {
+		border: none;
+	}
+		.image-uploader.dz-started span {
+			display: none;
+		}
+	.image-uploader input {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: -1;
+
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+	}
+	.image-uploader .dz-details,
+	.image-uploader .dz-progress,
+	.image-uploader .dz-success-mark, .image-uploader .dz-error-mark {
+		display: none;
+	}
+	.image-uploader.dz-clickable {
+		cursor: pointer;
+	}
+	.image-uploader [data-dz-thumbnail] {
+		width: 100%;
+		height: 100%;
+	}
+	.image-uploader span {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+
+		width: 100%;
+		transform: translateX(-50%) translateY(-50%);
+
+		font-size: 14px;
+		font-weight: 600;
+		text-align: center;
+		pointer-events: none;
+	}
+		.image-uploader span:before {
+			content: '';
+			display: block;
+			width: 20px;
+			height: 18px;
+			margin: 0 auto 10px;
+
+			background: url('../img/image-icon.png');
+			background-size: cover;
+		}
+
+.main-form {
+	float: right;
+	width: 560px;
+}
+	.main-form > div {
+		padding-bottom: 1.6em;
+	}
+	.main-form textarea {
+		min-height: 200px;
+		max-height: 350px;
+	}
+	.main-form select, .main-form label {
+		width: 100%;
+		vertical-align: middle;
+	}
+	.main-form label .btn {
+		float: right;
+	}
+	.main-form .multi {
+		overflow: hidden;
+	}
+		.main-form .multi > div {
+			position: relative;
+			float: left;
+			width: 48%;
+			margin-right: 4%;
+		}
+			.main-form .multi > div + div,
+			.main-form .multi div input {
+				margin-right: 0;
+			}
+		.main-form .multi div input {
+			width: 100%;
+		}
+
+.toggle-infinite {
+	position: absolute;
+	right: 6px;
+	bottom: 21px;
+}
+
+.has-conditional {
+	overflow: hidden;
+}
+	.has-conditional > span, .has-conditional label {
+		width: 190px;
+		overflow: hidden;
+	}
+	.has-conditional > span {
+		float: left;
+		height: 85px;
+		margin-right: 28px;
+
+		transition: opacity .2s, width .2s, margin .2s;
+	}
+		.has-conditional.hidden > span:first-child {
+			width: 412px;
+		}
+		.has-conditional.hidden > span:last-child {
+			opacity: 0;
+			width: 0;
+		}
+		.has-conditional > span:last-child,
+		.has-conditional.hidden .on-sale {
+			margin-right: 0;
+		}
+	.has-conditional .faux-select,
+	.has-conditional .on-sale {
+		width: 120px;
+	}
 
 .frame {
 	position: absolute;
@@ -105,3 +317,90 @@ html, body {
 			display: block;
 			padding-bottom: 1em;
 		}
+
+.wrap {
+	overflow: hidden;
+	width: 980px;
+	margin: 30px auto;
+}
+
+.product-form {
+
+}
+	.product-form label {
+		position: static;
+	}
+
+.has-sub-field {}
+	.has-sub-field label {
+		display: none;
+	}
+	.has-sub-field input {
+		margin-bottom: 0;
+	}
+		/*.has-sub-field :empty + .sub-field, */.has-sub-field .empty + .sub-field {
+			height: 0;
+		}
+	.has-sub-field .sub-field {
+		height: 40px;
+		margin-bottom: 1em;
+		padding: 0 18px;
+		overflow: hidden;
+
+		font-size: 13px;
+		line-height: 40px;
+
+		background: #fdfcfc;
+		color: #7c7771;
+		box-shadow: inset 0 2px 1px rgba(0,0,0,.05), inset 0 0 0 1px rgba(0,0,0,.05);
+
+		transition: height .2s;
+	}
+		.has-sub-field .sub-field code {
+			display: inline-block;
+			width: 66%;
+			width: calc(100% - 150px);
+			vertical-align: middle;
+
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+			.has-sub-field .sub-field .product-slug[contenteditable] {
+				outline: none;
+				padding: 2px 4px;
+				margin: -2px 0 0 0; /*-4px;*/
+				border-radius: 2px;
+
+				background: #fff;
+				box-shadow: inset 0 0 0 1px #f5f2ef, inset 0 2px 2px rgba(0,0,0,.05);
+			}
+		.has-sub-field .sub-field label {
+			position: static;
+			display: inline-block;
+			width: auto;
+			padding: 0;
+
+			font-weight: normal;
+			color: #7c7771;
+		}
+		.has-sub-field .sub-field .btn {
+			float: right;
+			margin: 9px -9px 0 0;
+		}
+		.has-sub-field .sub-field input {
+			display: none;
+			background: transparent;
+			box-shadow: none;
+		}
+
+.footer {
+	clear: both;
+	padding: .5em 40px 1.5em;
+
+	background: #fff;
+	border-top: 1px solid #f6f5f3;
+}
+	.footer button {
+		float: right;
+	}

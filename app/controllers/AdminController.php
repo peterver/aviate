@@ -30,6 +30,11 @@ class AdminController extends BaseController {
 		return View::make('admin/products/create');
 	}
 
+	public function postProductsCreate() {
+		View::share('error', 'Something went wrong.');
+		return self::getProductsCreate();
+	}
+
 	public function getUsers() {
 		return View::make('admin/users');
 	}

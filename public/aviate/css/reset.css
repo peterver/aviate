@@ -14,6 +14,10 @@ body, input, textarea, button {
 		background: #f3eee8;
 	}
 
+code, .code, pre {
+	font: 12px/18px Cousine, monospace;
+}
+
 input, textarea, button {
 	transition: background .15s;
 }
@@ -72,6 +76,26 @@ button, .btn {
 	outline: none;
 	cursor: pointer;
 }
+	button.ghost, .btn.ghost {
+		background: #bdbbb6;
+	}
+		button.ghost:hover, .btn.ghost:hover {
+			background: #b0aca5;
+		}
+	button.small, .btn.small {
+		padding: 5px 14px;
+
+		font-size: 13px;
+		line-height: 18px;
+	}
+	button.tiny, .btn.tiny {
+		padding: 6px 8px 5px;
+
+		font-size: 11px;
+		line-height: 1;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
 	button:hover, .btn:hover {
 		background: #0db4b2;
 		color: #fff;
@@ -96,6 +120,10 @@ button, .btn {
 	position: absolute;
 	left: -999em;
 }
+	.js select.no-faux {
+		position: static;
+		left: 0;
+	}
 
 .faux-select {
 	display: table;
@@ -135,12 +163,23 @@ input, textarea {
 		background: #fff;
 		box-shadow: inset 0 0 0 1px rgba(19,193,191,.4), inset 0 4px 6px rgba(0,0,0,.05), 0 0 8px rgba(19,193,191,.3);
 	}
-	.multi input {
+	input.code {
+		padding: 11px 18px;
+	}
+	.multi {
+		overflow: hidden;
+	}
+	.multi input, .multi .hint-wrapper {
 		float: left;
 		width: 48%;
 		margin-right: 4%;
 	}
-		.multi input + input {
+		.multi .hint-wrapper input {
+			float: none;
+			width: 100%;
+			margin-right: 0;
+		}
+		.multi input + input, .multi .hint-wrapper + .hint-wrapper {
 			margin-right: 0;
 		}
 
@@ -165,3 +204,45 @@ a {
 		color: #c9509c;
 		border-bottom-color: rgba(201,80,156,.25);
 	}
+
+form {
+
+}
+	form p {
+		position: relative;
+		padding: .3em 30px 1em 200px;
+		margin-bottom: 1em;
+
+		border-bottom: 1px solid #f6f5f3;
+	}
+	form .help {
+		display: block;
+		cursor: help;
+
+		font-style: normal;
+		color: #859292;
+	}
+	form label {
+		position: absolute;
+		left: 30px;
+		top: .8em;
+
+		width: 140px;
+	}
+	form button {
+		margin: 1em 0 0 200px;
+	}
+	form .counter {
+		position: absolute;
+		left: 30px;
+		bottom: 1.5em;
+
+		color: #c9509c;
+		font-size: 13px;
+
+		opacity: 0;
+		transition: opacity .2s;
+	}
+		form :focus + .counter {
+			opacity: 1;
+		}
