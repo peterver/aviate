@@ -3,3 +3,14 @@
 tmp/log/debug.log
 public/themes/codin
 public/assets/products
+
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+vendor/*
+app/storage

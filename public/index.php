@@ -1,39 +1,49 @@
 <?php
-
 /**
- *	Scaffold v0.1
- *	by the Codin' Co.
+ * Laravel - A PHP Framework For Web Artisans
  *
- *	If you're looking for database/application configuration, check out the "config" folder.
- *	If you want application code, check out the "app" folder.
- *	Otherwise, see http://scaffold.im for more details.
+ * @package  Laravel
+ * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
- 
-if(version_compare(phpversion(), '5.3.2') < 0) {
-	die("You're running an old version of PHP, which means you can't run Scaffold. Sorry about that!\n");
-}
 
-//  Set the base URL
-//  You shouldn't need to change this, unless you change your file paths
-//  If you need to change directory names, see config/paths.php
-define('BASE', dirname(dirname($_SERVER['SCRIPT_FILENAME'])) . '/');
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader
+| for our application. We just need to utilize it! We'll require it
+| into the script here so that we do not have to worry about the
+| loading of any our classes "manually". Feels great to relax.
+|
+*/
 
-//  Set a constant to stop direct access
-//  To check: defined('IN_APP') or die('Get out of here');
-define('IN_APP', true);
+require __DIR__.'/../bootstrap/autoload.php';
 
-//  Set the version of Scaffold and Dime
-define('SCAFFOLD_VERSION', 0.1);
-define('DIME_VERSION', 0.1);
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let's turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight these users.
+|
+*/
 
-//  Start your clocks, mister!
-define('TIMER_START', microtime(true));
+$app = require_once __DIR__.'/../bootstrap/start.php';
 
-//  Load our paths, since that's required for the bootstrapper
-require BASE . 'config/paths.php';
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can simply call the run method,
+| which will execute the request and send the response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have whipped up for them.
+|
+*/
 
-//  Load the boostrapper
-require CORE_BASE . 'bootstrapper.php';
-
-//  Buh-bye!
-exit;
+$app->run();
