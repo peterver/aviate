@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'sqlite',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -47,9 +47,9 @@ return array(
 	'connections' => array(
 
 		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => 'aviate_'
+		    'driver' => 'sqlite',
+		    'database' => ':memory:',
+		    'prefix' => '',
 		),
 
 		'mysql' => array(
