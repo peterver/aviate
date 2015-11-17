@@ -70,4 +70,11 @@ require $framework.'/Illuminate/Foundation/start.php';
 |
 */
 
+//  We need to make sure the admin path is consistent
+$app->booted(function() use($app) {
+	define('ADMIN_LOCATION', Metadata::item('admin_location', 'admin'));
+
+	require $app['path'] . '/routes.php';
+});
+
 return $app;
