@@ -1,1 +1,0 @@
-<?php /* sorry. */ header('location: ../'); exit;

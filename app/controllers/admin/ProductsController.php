@@ -6,7 +6,9 @@ class ProductsController extends AdminController {
 		return View::make('admin/products/index')->with('products', Products::all());
 	}
 
-	//
+	/**
+	 *   Listen to 
+	 */
 	public function getCreate() {
 		return View::make('admin/products/create');
 	}

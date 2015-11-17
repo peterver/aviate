@@ -27,3 +27,17 @@ Route::get('pages/{page}', array(
 	'before' => 'installed',
 	'uses' => 'SiteController@singlePage'
 ));
+
+//  Listen to any 404 errors and throw them in our controller
+//  We'll handle the headers and call a not_found template.
+App::missing(function($exception) {
+	$controller = 'SiteController';
+
+	//  We want to show admin errors if we're still inside
+	//  the admin area, don't leave to show the site yet.
+	if(Request::is(ADMIN_LOCATION . '/*')) {
+        $controller = 'AdminController';
+    }
+
+    return App::make($controller)->notFound();
+});
