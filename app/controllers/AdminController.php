@@ -26,12 +26,29 @@ class AdminController extends BaseController {
 		return View::make('admin/products/index');
 	}
 
+	public function getProductsEdit() {
+		$product = Products::whereId(Request::segment(4))->first();
+		
+		if(!$product) {
+			return Redirect::to('admin/products');
+		}
+
+		return View::make('admin/products/edit')->with('product', $product);		
+	}
+
 	public function getProductsCreate() {
 		return View::make('admin/products/create');
 	}
 
 	public function postProductsCreate() {
-		View::share('error', 'Something went wrong.');
+		$fields = Input::except('_token');
+
+		$fields['gallery_id'] = 0;
+		
+		if($product = Products::create($fields)) {
+			return Redirect::to('admin/products/edit/' . $product->id);
+		}
+
 		return self::getProductsCreate();
 	}
 
@@ -54,6 +71,8 @@ class AdminController extends BaseController {
 		if(Auth::attempt($fields)) {
 			return Redirect::intended('admin');
 		}
+
+		View::share('error', 'Your username or password ain’t right.');
 
 		return self::getLogin();
 	}

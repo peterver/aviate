@@ -57,7 +57,8 @@ class InstallController extends Controller {
 
 		//  Create the user
 		if(User::whereEmail(Input::get('user'))->exists()) {
-			$error = 'Somebody’s already signed up with that email address!';
+			//  We're installing, can't have users already (I think)
+			// $error = 'Somebody’s already signed up with that email address!';
 		} else {
 			User::create([
 				'email' => Input::get('user'),

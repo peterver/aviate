@@ -22,9 +22,9 @@ class CreateProductsTable extends Migration {
 
 			//  Should never need to cost more than $999,999,999.99
 			$table->decimal('price', 9, 2);
-			$table->integer('stock');
+			$table->integer('stock')->default(-1);
 
-			$table->integer('gallery_id');
+			$table->integer('gallery_id')->default(0);
 			$table->timestamps();
 		});
 	}

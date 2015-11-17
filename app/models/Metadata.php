@@ -61,6 +61,6 @@ class Metadata extends Eloquent {
 			return false;
 		}
 
-		return self::item('installed');
+		return self::item('installed', false);
 	}
 }

@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration {
 		});
 
 		Schema::table('products', function($table) {
-		    $table->integer('category_id');
+		    $table->integer('category_id')->nullable();
 		});
 	}
 

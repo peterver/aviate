@@ -48,13 +48,13 @@
 
 				<div class="multi">
 					<div>
-						<label for="category">
+						<label for="category_id">
 							Product category
 							<a class="btn tiny" href="{{ URL::to('admin/categories/create') }}">Create new</a>
 						</label>
 
-						<select class="no-faux" id="category" name="category">
-							<option disabled selected>Pick a category</option>
+						<select class="no-faux" id="category_id" name="category_id">
+							<option value="1" disabled selected>Pick a category</option>
 							@foreach(Category::all() as $category)
 								<option value="{{ $category->id }}">{{ $category->name }}</option>
 							@endforeach
@@ -65,7 +65,7 @@
 						<label for="stock">Stock amount</label>
 						
 						<input type="number" name="stock" id="stock" value="{{ Input::get('stock') }}">
-						<a data-infinite="#stock" class="btn small toggle-infinite">&infin;</a>
+						<a data-infinite="#stock" class="btn small secondary toggle-infinite">&infin;</a>
 					</div>
 				</div>
 
@@ -77,7 +77,9 @@
 		</div>
 
 		<div class="footer">
-			<button type="submit">Create product</button>
+			<div class="wrap">
+				<button type="submit">Create product</button>
+			</div>
 		</div>
 	{{ Form::close() }}
 @stop

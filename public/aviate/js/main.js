@@ -58,20 +58,13 @@ $(function() {
 	});
 
 	$.dataHook('infinite', function($me, $target) {
-		$me.on('click', function() {
-			console.log($target);
+		$me.addClass('ghost').on('click', function() {
+			$me.toggleClass('ghost');
+			
 			if($target.prop('disabled')) {
-				$me.addClass('ghost');
-				$target.prop({
-					disabled: false,
-					placeholder: ''
-				});
+				$target.val(1).prop({ disabled: false, placeholder: '' });
 			} else {
-				$me.removeClass('ghost');
-				$target.prop({
-					disabled: true,
-					placeholder: 'Unlimited'
-				});
+				$target.val('').prop({ disabled: true, placeholder: 'Unlimited' });
 			}
 		}).trigger('click');
 	});
