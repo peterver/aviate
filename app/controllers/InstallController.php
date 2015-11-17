@@ -46,6 +46,7 @@ class InstallController extends Controller {
 
 		//  Set our metadata
 		Metadata::set(Input::except(['user', 'pass', '_token']));
+		Metadata::set('theme', 'default');
 
 		//  Check the Stripe API key is valid
 		try {

@@ -1,7 +1,7 @@
 <?php
 
 function get_current_theme() {
-	return Metadata::item('theme');
+	return Metadata::item('theme', 'default');
 }
 
 function get_theme_url($suffix = '') {

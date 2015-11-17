@@ -108,7 +108,9 @@ h1, h2, h3 {
 			}
 
 #site-header {
+	min-height: 24px;
 	padding: 28px 0 25px;
+	
 	border-bottom: 1px solid #eee;
 }
 	#site-header .wrap {
