@@ -45,6 +45,12 @@ class Metadata extends Eloquent {
 	}
 
 	public static function item($what, $fallback = 'false') {
+		$table = with(new static)->getTable();
+
+		if(!Schema::hasTable($table)) {
+			return false;
+		}
+
 		if($item = self::where('key', '=', $what)->pluck('value')) {
 			return $item;
 		}
@@ -53,14 +59,6 @@ class Metadata extends Eloquent {
 	}
 
 	public static function installed() {
-		//  There's got to be a better way of doing this,
-		//  all we want to do is get the $this->table variable.
-		$table = with(new static)->getTable();
-
-		if(!Schema::hasTable($table)) {
-			return false;
-		}
-
 		return self::item('installed', false);
 	}
 }
