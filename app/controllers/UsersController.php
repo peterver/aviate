@@ -10,14 +10,14 @@ class UsersController extends BaseController {
 
 	public function getLogout() {
 		Auth::logout();
-		return Redirect::to(ADMIN_LOCATION . '/login');
+		return Redirect::to(Config::get('admin_location') . '/login');
 	}
 
 	public function postLogin() {
 		$fields = Input::only('email', 'password');
 
 		if(Auth::attempt($fields)) {
-			return Redirect::intended(ADMIN_LOCATION);
+			return Redirect::intended(Config::get('admin_location'));
 		}
 
 		View::share('error', 'Your username or password ain’t right.');

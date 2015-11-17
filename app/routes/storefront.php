@@ -35,7 +35,7 @@ App::missing(function($exception) {
 
 	//  We want to show admin errors if we're still inside
 	//  the admin area, don't leave to show the site yet.
-	if(Request::is(ADMIN_LOCATION . '/*')) {
+	if(Request::is(Config::get('admin_location') . '/*')) {
         $controller = 'AdminController';
     }
 
