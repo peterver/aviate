@@ -72,6 +72,18 @@ require $framework.'/Illuminate/Foundation/start.php';
 
 Config::set('admin_location', 'admin');
 
+App::error(function(\PDOException $e, $code) {
+	$message = explode(' ', $e->getMessage());
+    $dbCode = rtrim($message[1], ']');
+    $dbCode = trim($dbCode, '[');
+
+	//  1049: database name
+	//  2002: database server
+	if($dbCode == 1049 or $dbCode == 2002) {
+		 return Redirect::to('install');
+	}
+});
+
 //  We need to make sure the admin path is consistent
 $app->booted(function() use($app) {
 	Config::set('admin_location', Metadata::item('admin_location', Config::get('admin_location')));

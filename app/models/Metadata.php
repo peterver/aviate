@@ -46,7 +46,7 @@ class Metadata extends Eloquent {
 
 	public static function item($what, $fallback = 'false') {
 		//  If we don't have a database connection
-		if(!Schema::hasTable(with(new static)->getTable())) {
+		if(!DB::connection()->getDatabaseName() or !Schema::hasTable(with(new static)->getTable())) {
 			return false;
 		}
 

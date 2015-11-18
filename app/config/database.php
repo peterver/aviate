@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sqlite',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,13 +54,13 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '127.0.0.1',
-			'database'  => 'aviate',
-			'username'  => 'root',
+			'host'      => '',
+			'database'  => '',
+			'username'  => '',
 			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => 'aviate_'
+			'prefix'    => ''
 		),
 
 		'pgsql' => array(
