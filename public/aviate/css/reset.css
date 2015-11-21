@@ -82,6 +82,16 @@ button, .btn {
 	outline: none;
 	cursor: pointer;
 }
+	.btn + .btn, .btn + button,
+	button + button, button + .btn {
+		margin-left: 20px;
+	}
+	button.negative, .btn.negative {
+		background: #f16536;
+	}
+		button.negative:hover, .btn.negative:hover {
+			background: #e45829;
+		}
 	button.secondary, .btn.secondary {
 		background: #ad55bd;
 	}
@@ -216,6 +226,9 @@ label {
 		padding-bottom: .5em;
 
 		cursor: pointer;
+	}
+	label sup {
+		color: #f16536;
 	}
 
 a {

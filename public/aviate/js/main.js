@@ -15,11 +15,16 @@ $(function() {
 		}
 	});
 
+	//  If we've got a secondary column the layout adjusts slightly
+	if($('.secondary').length) {
+		document.body.className += ' has-secondary';
+	}
+
 	//  Auto-slug any element by adding a data-slugify
 	//  attribute to an element
 	$.dataHook('slugify', function($me, $target) {
 		$target.on('keyup', function() {
-			$me.text(slugify($target.val()));
+			$me[$me.is('input') ? 'val' : 'text'](slugify($target.val()));
 		});
 	});
 
@@ -148,8 +153,12 @@ $(function() {
 });
 
 $.dataHook = function(hook, callback) {
-	var $hook = $('[data-' + hook + ']'), $target = $($hook.attr('data-' + hook));
-	return $.isFunction(callback) && callback($hook, $target);
+	$('[data-' + hook + ']').each(function() {
+		var $hook = $(this),
+			$target = $($hook.attr('data-' + hook));
+
+		return $.isFunction(callback) && callback($hook, $target)
+	});
 }
 
 function slugify(e) {

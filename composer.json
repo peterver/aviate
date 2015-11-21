@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"stripe/stripe-php": "^3.4",
-		"codesleeve/laravel-stapler": "1.0.*"
+		"codesleeve/laravel-stapler": "1.0.*",
+		"anahkiasen/former": "~3.4"
 	},
 	"autoload": {
 		"classmap": [

@@ -4,12 +4,16 @@ html, body {
 	height: 100%;
 }
 
-.auth, .frame {
+.auth/*, .frame*/ {
 	position: relative;
 
 	background: #fff;
 	border-radius: 3px;
 	box-shadow: 0 12px 20px rgba(0,0,0,.03);
+}
+
+.frame {
+	background: #fff;
 }
 
 .auth {
@@ -52,6 +56,70 @@ html, body {
 
 		opacity: .4;
 		pointer-events: none;
+	}
+
+.secondary {
+	float: left;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+
+	width: 240px;
+	height: 100%;
+	overflow: auto;
+
+	background: #fcfbfa;
+	box-shadow: inset -3px 0 5px rgba(0,0,0,.02);
+}
+	.content .secondary .empty-state {
+		width: 80%;
+
+		font-size: 17px;
+		font-weight: normal;
+		color: #b9b1aa;
+	}
+	.secondary a {
+		border: none;
+	}
+	.secondary h1 {
+		padding: 2px 0 0;
+		margin-bottom: -2px;
+
+		font-size: 21px;
+		line-height: 19px;
+	}
+		body .secondary h1 a {
+			opacity: 1;
+		}
+	.secondary li a {
+		display: block;
+		width: 100%;
+		padding: 8px 25px;
+
+		color: #766e65;
+		transition: none;
+	}
+		.secondary li a:hover, .secondary li.active a {
+			color: #13c1bf;
+		}
+			.secondary li a:hover {
+				background: linear-gradient(90deg, transparent, rgba(0,0,0,.03) 20%);
+			}
+			.secondary li.active a {
+				background: #fff;
+			}
+
+.tertiary {
+	padding: 40px;
+	margin-left: 240px;
+}
+	.tertiary h2 {
+		padding-bottom: 1em;
+
+		font-size: 32px;
+		line-height: 44px;
+		font-weight: lighter;
 	}
 
 .image-uploader {
@@ -248,10 +316,11 @@ html, body {
 
 .frame {
 	position: absolute;
-	left: 16px;
+	/*left: 16px;
 	top: 16px;
 	right: 16px;
-	bottom: 16px;
+	bottom: 16px;*/
+	left: 0; right: 0; top: 0; bottom: 0;
 
 	overflow: hidden;
 }
@@ -268,12 +337,15 @@ html, body {
 
 	background: #13c1bf;
 }
-	.main-nav .logo {
+	.main-nav .logo, .secondary h1 a {
 		display: block;
-		margin: 25px 25px 20px;
+		padding: 25px;
 
 		opacity: .3;
 	}
+		.main-nav .logo img {
+			display: block;
+		}
 		.main-nav .logo:hover {
 			background: none;
 		}
@@ -293,6 +365,9 @@ html, body {
 				background: #fff;
 				color: #0da0a5;
 			}
+				.has-secondary .main-nav .active a {
+					background: #fcfbfa;
+				}
 	.main-nav .actions {
 		margin: 0 0 25px;
 	}
@@ -316,6 +391,9 @@ html, body {
 	height: 100%;
 	overflow: auto;
 }
+	.has-secondary .content {
+		padding: 0;
+	}
 	.content .empty-state {
 		position: absolute;
 		left: 50%;

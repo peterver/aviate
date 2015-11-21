@@ -121,7 +121,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-	    'Codesleeve\LaravelStapler\Providers\L4ServiceProvider'
+
+		//  Custom service providers
+	    'Codesleeve\LaravelStapler\Providers\L4ServiceProvider',
+	    'Former\FormerServiceProvider',
 	),
 
 	/*
@@ -188,7 +191,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Stripe'		  => '\Stripe\Stripe'
+		'Stripe'          => '\Stripe\Stripe',
+		'Former'          => 'Former\Facades\Former',
 	),
 
 );

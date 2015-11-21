@@ -28,9 +28,7 @@ class Theme {
 		return self::render($view, $view);
 	}
 
-	public static function prefer($files, $prefix = '/') {
-		$file = $files;
-
+	public static function prefer($files, $prefix = '') {
 		//  Looping backwards through an array
 		if(is_array($files)) {
 			//  array_reverse is a lot slower, we'll just break
@@ -47,6 +45,8 @@ class Theme {
 			if(!$file) {
 				$file = $prefix . end($files);
 			}
+		} else {
+			$file = $prefix . $files;
 		}
 
 		return self::$prefix . $file;
