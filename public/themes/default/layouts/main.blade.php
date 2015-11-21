@@ -63,7 +63,7 @@
 		</header>
 
 		<main id="site-content">
-			@yield('content')
+			{{ $content }}
 		</main>
 		
 		<footer id="site-footer">

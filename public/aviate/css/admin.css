@@ -71,6 +71,9 @@ html, body {
 	.image-uploader [data-dz-thumbnail] {
 		border-radius: 4px;
 	}
+	.image-uploader .dz-error {
+		display: none;
+	}
 	.image-uploader .dz-remove {
 		position: absolute;
 		left: 0;

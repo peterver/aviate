@@ -48,7 +48,13 @@
         			</li>
         		</ul>
         	</nav>
-        	
+
+            @if(isset($error))
+        	<div class="error">
+                {{ var_dump($error) }}
+            </div>
+            @endif
+
         	<section class="content">
                 @yield('content')
             </section>

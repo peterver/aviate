@@ -5,7 +5,7 @@ class SiteController extends BaseController {
 	protected $layout;
 	
 	public function homepage() {
-		return View::make('theme::index');
+		return Theme::render('index');
 	}
 
 	public function singlePage() {
@@ -14,10 +14,10 @@ class SiteController extends BaseController {
 			return App::abort(404);
 		}
 
-		return View::make('theme::page');
+		return Theme::render('page');
 	}
 
 	public function notFound() {
-		return Response::view('theme::not_found', array(), 404);
+		return Theme::not_found();
 	}
 }

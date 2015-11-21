@@ -3,7 +3,7 @@
 @section('content')
 	<h1>Create a new product</h1>
 
-	{{ Form::open(['class' => 'product-form', 'enctype' => 'multipart/form-data']) }}
+	{{ Form::open(['class' => 'product-form', 'files' => true]) }}
 		<div class="wrap">
 			<div class="image-uploader">
 				<span>Drag an image here to upload</span>

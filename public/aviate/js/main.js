@@ -76,6 +76,8 @@ $(function() {
 			url: $me.parents('form').attr('action'),
 			addRemoveLinks: true,
 			clickable: true,
+			autoProcessQueue: false,
+			paramName: $me.attr('name'),
 			maxFiles: 1,
 			acceptedFiles: 'image/*',
 			thumbnailWidth: $me.width(),

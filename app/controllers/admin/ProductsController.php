@@ -17,6 +17,12 @@ class ProductsController extends AdminController {
 	 *   Handle post data and show our create form
 	 */
 	public function postCreate() {
+		View::share('error', Input::file('images'));
+
+		Gallery::create([
+			'image' => Input::file('images')
+		]);
+		
 		return self::getCreate();
 	}
 }

@@ -1,14 +1,14 @@
 <?php
 
 function get_current_theme() {
-	return Metadata::item('theme', 'default');
+	return Theme::current();
 }
 
 function get_theme_url($suffix = '') {
-	return Config::get('theme.path') . '/themes/' . get_current_theme() . '/' . $suffix;
+	return Theme::url() . ltrim($suffix, '/');
 }
 
-function get_theme_path($what) {
+function get_theme_path($what = '') {
 	return public_path() . get_theme_url($what);
 }
 
