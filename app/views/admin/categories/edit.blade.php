@@ -10,6 +10,10 @@
 			<li @if(Request::is('admin/categories/edit/' . $nav->id)) class="active" @endif>
 				<a href="{{ URL::to('admin/categories/edit/' . $nav->id) }}">
 					{{ $nav->name }}
+
+					@if($nav->id == 1)
+					<span>Default</span>
+					@endif
 				</a>
 			</li>
 			@endforeach
@@ -20,26 +24,43 @@
 	</div>
 
 	{{ Form::open(['class' => 'tertiary']) }}
-		<h2>Editing category “{{ $category->name }}”</h2>
+		@if(isset($msg))
+		<div class="msg">
+			<div class="wrap">{{ $msg }}</div>
+		</div>
+		@endif
 
-		<p>
-			{{ Former::text('name')->label('Category name')->required() }}
-			<em class="help">What should your category be called?</em>
-		</p>
+		@if(isset($error))
+		<div class="error">
+			<div class="wrap">{{ $error }}</div>
+		</div>
+		@endif
 
-		<p>
-			{{ Former::code_text('slug')->label('Category slug')->data_slugify('#name')->required() }}
-			<em class="help">
-				This will be displayed as <code>/categories/<span data-slugify="#name">{{ Input::get('slug') }}</span></code>.
-			</em>
-		</p>
+		<div class="wrap">
+			<h2>Editing category “{{ $category->name }}”</h2>
 
-		<p>
-			{{ Former::textarea('description')->label('Category description') }}
-			<em class="help">May be used in a theme, does get used in search results.</em>
-		</p>
+			<p>
+				{{ Former::text('name')->label('Category name')->required() }}
+				<em class="help">What should your category be called?</em>
+			</p>
 
-		{{ Former::button('Update category')->type('submit') }}
-		<a href="{{ URL::to('admin/categories/delete/' . $category->id) }}" class="btn negative">Delete category</a>
+			<p>
+				{{ Former::code_text('slug')->label('Category slug')->data_slugify('#name')->required() }}
+				<em class="help">
+					This will be displayed as <code>/categories/<span data-slugify="#name">{{ Input::get('slug') }}</span></code>.
+				</em>
+			</p>
+
+			<p>
+				{{ Former::textarea('description')->label('Category description') }}
+				<em class="help">May be used in a theme, does get used in search results.</em>
+			</p>
+
+			{{ Former::button('Update category')->type('submit') }}
+
+			@if($category->id > 1)
+			<a href="{{ URL::to('admin/categories/delete/' . $category->id) }}" class="btn negative">Delete category</a>
+			@endif
+		</div>
 	{{ Form::close() }}
 @stop

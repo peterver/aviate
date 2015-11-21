@@ -34,8 +34,10 @@ class CategoriesController extends AdminController {
 	public function postEdit() {
 		$category = Category::current();
 
+		//  Update our category
 		$category->fill(Input::except('_token'));
 
+		//  And save to the database, returning a message either way
 		if(!$category->save()) {
 			View::share('error', 'Something went wrong.');
 		} else {

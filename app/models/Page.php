@@ -3,6 +3,7 @@
 class Page extends Eloquent {
 
 	protected $table = 'pages';
+	protected $fillable = array('title', 'slug', 'content');
 
 	public static function visible() {
 		return self::format(self::whereVisible(true)->get());
@@ -36,5 +37,9 @@ class Page extends Eloquent {
 		}
 
 		return $pages;
+	}
+
+	public static function editing() {
+		return self::whereId(Request::segment(4))->first();
 	}
 }

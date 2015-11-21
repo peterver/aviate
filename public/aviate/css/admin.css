@@ -100,6 +100,12 @@ html, body {
 		color: #766e65;
 		transition: none;
 	}
+		.secondary li a span {
+			float: right;
+			opacity: .5;
+
+			font-size: 13px;
+		}
 		.secondary li a:hover, .secondary li.active a {
 			color: #13c1bf;
 		}
@@ -121,6 +127,19 @@ html, body {
 		line-height: 44px;
 		font-weight: lighter;
 	}
+	.tertiary .wrap {
+		margin: 0 auto;
+	}
+	.tertiary .msg, .tertiary .error {
+		position: static;
+		margin: -40px -40px 40px;
+		padding: 14px 0;
+
+		color: #fff;
+	}
+		.tertiary .msg {
+			background: #13c1bf;
+		}
 
 .image-uploader {
 	position: relative;

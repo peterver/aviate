@@ -18,7 +18,7 @@ class CreatePagesTable extends Migration {
 			$table->string('title');
 			$table->string('slug');
 			$table->text('content');
-			$table->boolean('visible', true);
+			$table->boolean('visible', true)->default(true);
 
 			$table->timestamps();
 		});

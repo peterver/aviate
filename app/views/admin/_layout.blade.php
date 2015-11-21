@@ -18,7 +18,7 @@
     <body>
     	<div class="frame">
             <nav class="main-nav">
-                <a class="logo">
+                <a class="logo" href="{{ URL::to('admin') }}">
                     {{ HTML::image('aviate/aviate-logo.png', 'Aviate CMS logo', ['width' => 23, 'height' => 19]) }}      
                 </a>
 
