@@ -271,6 +271,9 @@ html, body {
 
 		opacity: .3;
 	}
+		.main-nav .logo:hover {
+			background: none;
+		}
 	.main-nav li {
 		list-style: none;
 	}

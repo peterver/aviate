@@ -34,7 +34,7 @@
 			<label for="stripe_key">Stripe API key</label>
 			<input required name="stripe_key" value="{{ Input::get('stripe_key') }}" id="stripe_key">
 
-			<em class="help">This is required to take any payments. You can sign up for a free <a href="//stripe.com">Stripe account here</a>; if you’ve already got a Stripe account, you can get your API key <a href="//dashboard.stripe.com/account/apikeys">here</a>.</em>
+			<em class="help">It’s the <b>secret</b> one. This is required to take any payments. You can sign up for a free <a href="//stripe.com">Stripe account here</a>; if you’ve already got a Stripe account, you can get your API key <a href="//dashboard.stripe.com/account/apikeys">here</a>.</em>
 		</p>
 
 		<button type="submit">Next step</button>
