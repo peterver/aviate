@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration {
 			$table->integer('stock')->default(-1);
 
 			$table->integer('gallery_id')->default(0);
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email');
 			$table->string('password', 64);
 			$table->integer('level')->default(0);
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

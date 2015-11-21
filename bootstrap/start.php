@@ -70,6 +70,11 @@ require $framework.'/Illuminate/Foundation/start.php';
 |
 */
 
+// if(!defined('STDIN')) {
+// 	define('STDIN', fopen('php://stdin', 'r'));
+// 	stream_set_blocking(STDIN, false);
+// }
+
 Config::set('admin_location', 'admin');
 
 App::error(function(\PDOException $e, $code) {

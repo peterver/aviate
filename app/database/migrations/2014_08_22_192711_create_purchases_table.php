@@ -24,7 +24,7 @@ class CreatePurchasesTable extends Migration {
 			$table->string('email');
 			$table->string('txn_id');
 
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

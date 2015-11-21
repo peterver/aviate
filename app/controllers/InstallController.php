@@ -90,7 +90,7 @@ class InstallController extends Controller {
 	}
 
 	protected static function migrate() {
-		Artisan::call('migrate');
+		Artisan::call('migrate', array('--force' => true));
 	}
 
 }

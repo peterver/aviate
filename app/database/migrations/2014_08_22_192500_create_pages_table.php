@@ -20,7 +20,7 @@ class CreatePagesTable extends Migration {
 			$table->text('content');
 			$table->boolean('visible', true)->default(true);
 
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

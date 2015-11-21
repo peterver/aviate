@@ -17,7 +17,7 @@ class CreateBasketsTable extends Migration {
 			$table->increments('id');
 			$table->string('session');
 			$table->text('data');
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

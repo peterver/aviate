@@ -17,7 +17,7 @@ class CreateGalleryTable extends Migration {
 			$table->increments('id');
 			$table->string('image')->nullable();
 
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 
