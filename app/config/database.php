@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'sqlite',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -47,55 +47,11 @@ return array(
 	'connections' => array(
 
 		'sqlite' => array(
-		    'driver' => 'sqlite',
-		    'database' => ':memory:',
-		    'prefix' => '',
-		),
-
-		'mysql' => array(
-			'driver'    => 'mysql',
-			'host'      => '',
-			'database'  => '',
-			'username'  => '',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => ''
-		),
-
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'      => '127.0.0.1',
-			'database'  => 'aviate',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'prefix'    => 'aviate_',
-			'schema'   => 'public'
-		),
-
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'      => '127.0.0.1',
-			'database'  => 'aviate',
-			'username'  => 'root',
-			'password'  => '',
-			'prefix'    => 'aviate_'
+			'driver'   => 'sqlite',
+			'database' => ':memory:',
+			'prefix'   => '',
 		)
 
-	),
-
-	/*
-	|--------------------------------------------------------------------------
-	| Migration Repository Table
-	|--------------------------------------------------------------------------
-	|
-	| This table keeps track of all the migrations that have already run for
-	| your application. Using this information, we can determine which of
-	| the migrations on disk haven't actually been run in the database.
-	|
-	*/
-
-	'migrations' => 'migrations'
+	)
 
 );

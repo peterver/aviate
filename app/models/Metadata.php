@@ -60,4 +60,12 @@ class Metadata extends Eloquent {
 	public static function installed() {
 		return self::item('installed', false);
 	}
+
+	public static function hasDB() {
+		if(Config::get('database.default') === 'sqlite' and Config::get('database.connections.sqlite.database') === ':memory:') {
+			return false;
+		}
+
+		return !!DB::connection()->getDatabaseName();
+	}
 }

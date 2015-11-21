@@ -1,9 +1,3 @@
-*.esproj
-.DS_Store
-tmp/log/debug.log
-public/themes/codin
-public/assets/products
-
 /bootstrap/compiled.php
 /vendor
 composer.phar
@@ -14,3 +8,4 @@ composer.lock
 Thumbs.db
 vendor/*
 app/storage
+.phpintel

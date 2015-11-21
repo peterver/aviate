@@ -76,7 +76,7 @@ App::error(function(\PDOException $e, $code) {
 	$message = explode(' ', $e->getMessage());
     $dbCode = rtrim($message[1], ']');
     $dbCode = trim($dbCode, '[');
-
+    
 	//  1049: database name
 	//  2002: database server
 	if($dbCode == 1049 or $dbCode == 2002) {

@@ -86,7 +86,7 @@ Route::filter('installing', function() {
 });
 
 Route::filter('hasDB', function() {
-	if(DB::connection()->getDatabaseName()) {
+	if(Metadata::hasDB()) {
 		return Redirect::to('install/meta');
 	}
 });

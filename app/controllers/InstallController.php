@@ -9,7 +9,7 @@ class InstallController extends Controller {
 		$fields = Input::except('_token');
 
 		//  Get our config file
-		$file = File::get('app/storage/meta/database.php');
+		$file = File::get('app/database/config.template.php');
 		
 		//  Replace all the variables with our user input
 		foreach($fields as $key => $field) {
