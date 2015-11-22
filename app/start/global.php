@@ -15,8 +15,24 @@ ClassLoader::addDirectories(array(
 	app_path().'/commands',
 	app_path().'/controllers',
 	app_path().'/models',
-	app_path().'/database/seeds'
+	app_path().'/database/seeds',
+	app_path().'/plugins',
 ));
+
+/*
+|--------------------------------------------------------------------------
+| Plugin registering
+|--------------------------------------------------------------------------
+|
+| We want to add class support to any more complex classes with a subfolder
+| structure, so we'll load in the directory /plugins as well as scanning
+| the direct folder.
+|
+*/
+
+ClassLoader::addDirectories(
+	File::directories(app_path() . '/plugins')
+);
 
 /*
 |--------------------------------------------------------------------------

@@ -168,6 +168,14 @@ button, .btn {
 
 	table-layout: fixed;
 }
+	.faux-select.faux-small {
+		font-size: 12px;
+		height: 32px;
+		font-weight: 500;
+	}
+		.faux-select.faux-small span {
+			line-height: 32px;
+		}
 	.faux-select span {
 		display: table-cell;
 

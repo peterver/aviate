@@ -16,7 +16,7 @@ $(function() {
 	});
 
 	//  If we've got a secondary column the layout adjusts slightly
-	if($('.secondary').length) {
+	if($('section.secondary').length) {
 		document.body.className += ' has-secondary';
 	}
 
@@ -31,6 +31,47 @@ $(function() {
 	$.dataHook('editable', function($me, $target) {
 		$me.on('keyup blur', function() {
 			$target.val($me.text());
+		});
+	});
+
+	$.dataHook('search', function($me, $target) {
+		$me.on('keyup', function() {
+			var val = $me.val();
+
+			$target.each(function() {
+				var $item = $(this);
+				$item[$item.text().indexOf(val) >= 0 ? 'show' : 'hide']();
+			})
+		});
+	});
+
+	$.dataHook('filter', function($me, $target) {
+		var filter = $me.attr('data-attr');
+
+		$me.on('change', function() {
+			var val = $me.val();
+
+			//  If the value is the same as the text,
+			//  we'll assume it means we should use it
+			//  as a wildcard.
+			if(val === $me.children('option:selected').text()) {
+				return $target.show();
+			}
+
+			$target.each(function() {
+				var $item = $(this);
+				var attrs = $item.data('attrs');
+
+				if(!isNaN(val)) {
+					val = parseInt(val);
+				}
+
+				if(!attrs[filter] || (attrs[filter] && attrs[filter] !== val)) {
+					$item.hide();
+				} else {
+					$item.show();
+				}
+			});
 		});
 	});
 
@@ -95,7 +136,7 @@ $(function() {
 	//  options available.
 	$('select:not(.no-faux)').each(function() {
 		var $me = $(this),
-			$faux = $('<span class="faux-select" />');
+			$faux = $('<span class="faux-select" />').addClass($me.attr('class'));
 
 		$me.children('option').each(function() {
 			var $option = $(this),

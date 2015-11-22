@@ -10,6 +10,10 @@
 			<li @if(Request::is('admin/pages/edit/' . $page->id)) class="active" @endif>
 				<a href="{{ URL::to('admin/pages/edit/' . $page->id) }}">
 					{{ $page->title }}
+
+					@if($page->id == 1)
+					<span>Default</span>
+					@endif
 				</a>
 			</li>
 			@endforeach

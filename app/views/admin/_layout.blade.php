@@ -31,22 +31,14 @@
     			</ul>
         		
         		<ul class="results">
-        			<li>
-        				<a href="{{ URL::to('/') }}">Visit site</a>
-        			</li>
-        			
-        			<li>
-        				<a class="flaticon user-1" href="{{ URL::to('admin/users') }}">Users</a>
-        			</li>
-        			
-        			<li>
-        				<a class="flaticon cube-1" href="{{ URL::to('admin/settings') }}">Settings</a>
-        			</li>
-        			
-        			<li>
-        				<a href="/admin/logout">Logout</a>
-        			</li>
+        			@foreach($results as $url => $result)
+                    <li class="{{ Request::is($url) ? 'active' : '' }}">
+                        <a href="{{ URL::to($url) }}">{{ $result }}</a>
+                    </li>
+                    @endforeach
         		</ul>
+
+                <small>{{ $welcome_message }}</small>
         	</nav>
 
             @if(isset($error))

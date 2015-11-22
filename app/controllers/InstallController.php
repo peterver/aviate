@@ -62,9 +62,15 @@ class InstallController extends Controller {
 			// $error = 'Somebody’s already signed up with that email address!';
 		} else {
 			User::create([
+				//  We'll let the user change these later
+				'username' => 'admin',
+				'name' => 'Administrator',
+				'level' => User::level('admin'),
+
+				//  But this we already have so we can
+				//  create a user at least
 				'email' => Input::get('user'),
-				'password' => Input::get('pass'),
-				'level' => User::level('admin')
+				'password' => Input::get('pass')
 			]);
 		}
 

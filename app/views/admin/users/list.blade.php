@@ -1,44 +1,39 @@
-@extends('admin.layout')
+@extends('admin/_layout')
 
 @section('content')
-<section class="filter wrap narrow">
-	<input type="search" placeholder="Search users…">
-	
-	<select>
-		<option>All users</option>
-		<option>Administrators</option>
-		<option>Editors</option>
-		<option>Users</option>
-	</select>
-	
-	<a class="btn primary" href="{{ URL::to('admin/users/new') }}" class="primary">Create a new user</a>
-</section>
+<section class="secondary">
+	<div class="filter">
+		<input type="search" data-search=".list li" placeholder="Search users…">
+		
+		<select class="faux-small" data-attr="level" data-filter=".list li">
+			<option>All</option>
+			<option value="2">Admin</option>
+			<option value="1">Users</option>
+		</select>
+	</div>
 
-<section class="panel wrap narrow drilldown">
-	@if(count($users) > 0)
-	<ol>
-		@foreach ($users as $user)
-		<li>
-			<a href="user.html">
-				<img class="avatar" src="//s3.amazonaws.com/uifaces/faces/twitter/idiot/73.jpg">
-				
-				<span class="user-name">
-					<b class="realname">{{ $user->name }} <span class="badge admin">Admin</span></b>
-					<span class="username">{{ $user->username }}</span>
-				</span>
-				
-				<ul>
-					<li>{{ $user->email }}</li>
-					<li>{{ $user->status }}</li>
-				</ul>
+	<ul class="list">
+		@foreach($users as $user)
+		<li data-attrs='{{ json_encode($user) }}'>
+			<a href="{{ URL::to('admin/users/edit/' . $user->id) }}">
+				{{ $user->name or $user->username }}
+
+				<small>{{ $user->email }}</small>
 			</a>
 		</li>
 		@endforeach
-	</ol>
-	@else
+	</ul>
+</section>
+
+<section class="tertiary">
+	<a class="btn primary top-right" href="{{ URL::to('admin/users/new') }}" class="primary">Create a new user</a>
+
 	<p class="empty-state">
+		@if(count($users) > 0)
+		Please pick a user from the left to edit
+		@else
 		There’s no users, the sky is falling.
+		@endif
 	</p>
-	@endif
 </section>
 @stop

@@ -7,7 +7,17 @@ class AdminController extends BaseController {
 			'theme' => get_current_theme(),
 			'pages' => array(
 				'products', 'categories', 'pages', 'purchases'
-			)
+			),
+
+			'results' => array(
+				'/' => 'Visit site',
+				'admin/users' => 'Users',
+				'admin/settings' => 'Settings',
+				'admin/logout' => 'Log out'
+			),
+
+			//  Basic plugin test
+			'welcome_message' => Plugin::fire('admin.welcome_message', 'Welcome to Aviate!')->last()
 		));
 
 		//  Don't use Bootstrap-style inputs

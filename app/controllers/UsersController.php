@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends BaseController {
+class UsersController extends AdminController {
 
 	protected $layout;
 
@@ -23,5 +23,9 @@ class UsersController extends BaseController {
 		View::share('error', 'Your username or password ain’t right.');
 
 		return self::getLogin();
+	}
+
+	public function getIndex() {
+		return View::make('admin/users/list')->with('users', User::all());
 	}
 }

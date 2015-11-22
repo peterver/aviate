@@ -10,6 +10,10 @@
 			<li @if(Request::is('admin/categories/edit/' . $category->id)) class="active" @endif>
 				<a href="{{ URL::to('admin/categories/edit/' . $category->id) }}">
 					{{ $category->name }}
+
+					@if($category->id == 1)
+					<span>Default</span>
+					@endif
 				</a>
 			</li>
 			@endforeach
