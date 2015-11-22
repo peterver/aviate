@@ -3,12 +3,12 @@
 @section('content')
 	<div class="list secondary">
 		@if(Category::all()->count())
-		<h1><a href="{{ URL::to('admin/categories') }}">All Categories</a></h1>
+		<h1><a href="{{ admin_url('categories') }}">All Categories</a></h1>
 
 		<ul>
 			@foreach(Category::all() as $nav)
-			<li @if(Request::is('admin/categories/edit/' . $nav->id)) class="active" @endif>
-				<a href="{{ URL::to('admin/categories/edit/' . $nav->id) }}">
+			<li @if(Request::is(admin_path('categories/edit/' . $nav->id))) class="active" @endif>
+				<a href="{{ admin_url('/categories/edit/' . $nav->id) }}">
 					{{ $nav->name }}
 
 					@if($nav->id == 1)
@@ -59,7 +59,7 @@
 			{{ Former::button('Update category')->type('submit') }}
 
 			@if($category->id > 1)
-			<a href="{{ URL::to('admin/categories/delete/' . $category->id) }}" class="btn negative">Delete category</a>
+			<a href="{{ admin_url('categories/delete/' . $category->id) }}" class="btn negative">Delete category</a>
 			@endif
 		</div>
 	{{ Form::close() }}

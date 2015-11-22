@@ -18,20 +18,20 @@
     <body>
     	<div class="frame">
             <nav class="main-nav">
-                <a class="logo" href="{{ URL::to('admin') }}">
+                <a class="logo" href="{{ admin_url() }}">
                     {{ HTML::image('aviate/aviate-logo.png', 'Aviate CMS logo', ['width' => 23, 'height' => 19]) }}      
                 </a>
 
     			<ul class="actions">
                     @foreach($pages as $page)
                     <li class="{{ Request::segment(2) === $page ? 'active' : '' }}">
-                        <a href="{{ URL::to('admin/' . $page) }}">{{ ucwords($page) }}</a>
+                        <a href="{{ admin_url($page) }}">{{ ucwords($page) }}</a>
                     </li>
                     @endforeach
     			</ul>
         		
         		<ul class="results">
-        			@foreach($results as $url => $result)
+        			@foreach($results as $result => $url)
                     <li class="{{ Request::is($url) ? 'active' : '' }}">
                         <a href="{{ URL::to($url) }}">{{ $result }}</a>
                     </li>
@@ -41,9 +41,9 @@
                 <small>{{ $welcome_message }}</small>
         	</nav>
 
-            @if(isset($error))
+            @if(isset($error) and $error)
         	<div class="error">
-                {{ var_dump($error) }}
+                {{ $error }}
             </div>
             @endif
 

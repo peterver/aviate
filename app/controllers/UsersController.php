@@ -9,7 +9,9 @@ class UsersController extends AdminController {
 	}
 
 	public function getLogout() {
+		Plugin::fire('admin.logout', Auth::user());
 		Auth::logout();
+
 		return Redirect::to(Config::get('admin_location') . '/login');
 	}
 
@@ -17,6 +19,8 @@ class UsersController extends AdminController {
 		$fields = Input::only('email', 'password');
 
 		if(Auth::attempt($fields)) {
+			Plugin::fire('admin.login', Auth::user());
+
 			return Redirect::intended(Config::get('admin_location'));
 		}
 

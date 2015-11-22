@@ -3,12 +3,12 @@
 @section('content')
 	<div class="list secondary">
 		@if(Page::all()->count())
-		<h1><a href="{{ URL::to('admin/pages') }}">All pages</a></h1>
+		<h1><a href="{{ admin_url('pages') }}">All pages</a></h1>
 
 		<ul>
 			@foreach(Page::all() as $nav)
 			<li @if(Request::is('admin/pages/edit/' . $nav->id)) class="active" @endif>
-				<a href="{{ URL::to('admin/pages/edit/' . $nav->id) }}">
+				<a href="{{ admin_url('pages/edit/' . $nav->id) }}">
 					{{ $nav->title }}
 
 					@if($nav->id == 1)
@@ -59,7 +59,7 @@
 			{{ Former::button('Update Page')->type('submit') }}
 
 			@if($page->id > 1)
-			<a href="{{ URL::to('admin/pages/delete/' . $page->id) }}" class="btn negative">Delete Page</a>
+			<a href="{{ admin_url('pages/delete/' . $page->id) }}" class="btn negative">Delete Page</a>
 			@endif
 		</div>
 	{{ Form::close() }}

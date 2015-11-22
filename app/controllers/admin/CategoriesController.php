@@ -9,7 +9,7 @@ class CategoriesController extends AdminController {
 		Former::populate(Input::all());
 
 		if($category = Category::create(Input::except('_token'))) {
-			return Redirect::to('admin/categories/edit/' . $category->id);
+			return Redirect::to(admin_path('categories/edit/' . $category->id));
 		}
 
 		return self::getIndex();
@@ -21,7 +21,7 @@ class CategoriesController extends AdminController {
 		//  If the category doesn't exist, don't throw a 404
 		//  just go back to the main page, likely a URL mistype
 		if(!$category) {
-			return Redirect::to('admin/categories');
+			return Redirect::to(admin_path('categories'));
 		}
 
 		//  Update our form data
@@ -54,6 +54,6 @@ class CategoriesController extends AdminController {
 			$category->delete();
 		}
 
-		return Redirect::to('admin/categories');
+		return Redirect::to(admin_path('categories'));
 	}
 }

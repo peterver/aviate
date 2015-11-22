@@ -3,14 +3,20 @@
 @section('content')
 	<h1>Products</h1>
 
-	@forelse($products as $product)
-		<div class="grid-tile product">
-			<b>{{ $product->name }}</b>
-		</div>
-	@empty
-		<span class="empty-state">
-			<span>No products! Would you like to add one now?</span>
-			<a class="btn" href="{{ URL::to('admin/products/create') }}">Sure, let’s sell some product</a>
-		</span>
-	@endforelse
+	<div class="grid">
+		@forelse($products as $product)
+			<div class="grid-tile product">
+				<a href="{{ admin_url('products/edit/' . $product->id) }}">
+					<b>{{ $product->name }}</b>
+
+					{{ var_dump($product->gallery) }}
+				</a>
+			</div>
+		@empty
+			<span class="empty-state">
+				<span>No products! Would you like to add one now?</span>
+				<a class="btn" href="{{ admin_url('products/create') }}">Sure, let’s sell some product</a>
+			</span>
+		@endforelse
+	</div>
 @stop

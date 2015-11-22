@@ -15,7 +15,7 @@
 	<ul class="list">
 		@foreach($users as $user)
 		<li data-attrs='{{ json_encode($user) }}'>
-			<a href="{{ URL::to('admin/users/edit/' . $user->id) }}">
+			<a href="{{ admin_url('users/edit/' . $user->id) }}">
 				{{ $user->name or $user->username }}
 
 				<small>{{ $user->email }}</small>
@@ -26,7 +26,7 @@
 </section>
 
 <section class="tertiary">
-	<a class="btn primary top-right" href="{{ URL::to('admin/users/new') }}" class="primary">Create a new user</a>
+	<a class="btn primary top-right" href="{{ admin_url('users/new') }}" class="primary">Create a new user</a>
 
 	<p class="empty-state">
 		@if(count($users) > 0)

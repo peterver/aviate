@@ -3,12 +3,12 @@
 @section('content')
 	<div class="list secondary">
 		@if(Page::all()->count())
-		<h1><a href="{{ URL::to('admin/pages') }}">All pages</a></h1>
+		<h1><a href="{{ admin_url('pages') }}">All pages</a></h1>
 
 		<ul>
 			@foreach(Page::all() as $page)
 			<li @if(Request::is('admin/pages/edit/' . $page->id)) class="active" @endif>
-				<a href="{{ URL::to('admin/pages/edit/' . $page->id) }}">
+				<a href="{{ admin_url('pages/edit/' . $page->id) }}">
 					{{ $page->title }}
 
 					@if($page->id == 1)

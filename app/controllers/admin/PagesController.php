@@ -9,7 +9,7 @@ class PagesController extends AdminController {
 		Former::populate(Input::all());
 
 		if($page = Page::create(Input::except('_token'))) {
-			return Redirect::to('admin/pages/edit/' . $page->id);
+			return Redirect::to(admin_path('pages/edit/' . $page->id));
 		}
 
 		return self::getIndex();
@@ -21,7 +21,7 @@ class PagesController extends AdminController {
 		//  If the Page doesn't exist, don't throw a 404
 		//  just go back to the main page, likely a URL mistype
 		if(!$page) {
-			return Redirect::to('admin/pages');
+			return Redirect::to(admin_path('pages'));
 		}
 
 		//  Update our form data
@@ -54,6 +54,6 @@ class PagesController extends AdminController {
 			$page->delete();
 		}
 
-		return Redirect::to('admin/pages');
+		return Redirect::to(admin_path('pages'));
 	}
 }

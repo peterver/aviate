@@ -50,7 +50,7 @@
 					<div>
 						<label for="category_id">
 							Product category
-							<a class="btn tiny" href="{{ URL::to('admin/categories/create') }}">Create new</a>
+							<a class="btn tiny" href="{{ admin_url('categories/create') }}">Create new</a>
 						</label>
 
 						<select class="no-faux" id="category_id" name="category_id">
@@ -71,7 +71,7 @@
 
 				<div>
 					<label for="description">Product description</label>
-					<textarea name="description" id="description">{{ Input::get('descrition') }}</textarea>
+					<textarea name="description" id="description">{{ Input::get('description') }}</textarea>
 				</div>
 			</div>
 		</div>

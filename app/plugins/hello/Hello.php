@@ -10,8 +10,18 @@ class Hello {
 	);
 
 	public function __construct() {
-		Event::listen('admin.welcome_message', function($msg) {
-		    return $this->lines[array_rand($this->lines)];
-		});
+		Plugin::listen($this);
+	}
+
+	public function admin_welcomeMessage($msg) {
+		return $this->lines[array_rand($this->lines)];
+	}
+
+	public function admin_login($user) {
+		dd($user);
+		exit;
+
+		$user->username = $this->admin_welcomeMessage();
+		return $user->save();
 	}
 }
