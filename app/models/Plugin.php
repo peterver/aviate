@@ -90,6 +90,12 @@ class Plugin {
 		return $this->data;
 	}
 
+	public function filter($callback) {
+		$this->data = array_filter($this->data, $callback);
+
+		return $this;
+	}
+
 	public function first() {
 		return reset($this->data);
 	}

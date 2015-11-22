@@ -1,6 +1,14 @@
 <?php
 
 /**
+ *   Before setting our routes up, we need to make sure
+ *   the right admin location is set.
+ */
+
+Config::set('admin_location', Metadata::item('admin_location', Config::get('admin_location')));
+
+
+/**
  *   Here's where routes are normally added in Laravel, but
  *   for Aviate, we separate them out a bit more so the page
  *   doesn't get too crowded. Check out /app/routes.

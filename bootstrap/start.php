@@ -91,8 +91,6 @@ App::error(function(\PDOException $e, $code) {
 
 //  We need to make sure the admin path is consistent
 $app->booted(function() use($app) {
-	Config::set('admin_location', Metadata::item('admin_location', Config::get('admin_location')));
-
 	require $app['path'] . '/routes.php';
 });
 

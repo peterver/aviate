@@ -8,8 +8,6 @@
 			<div class="grid-tile product">
 				<a href="{{ admin_url('products/edit/' . $product->id) }}">
 					<b>{{ $product->name }}</b>
-
-					{{ var_dump($product->gallery) }}
 				</a>
 			</div>
 		@empty
