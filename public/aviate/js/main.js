@@ -16,7 +16,7 @@ $(function() {
 	});
 
 	//  If we've got a secondary column the layout adjusts slightly
-	if($('section.secondary').length) {
+	if($('section.secondary, div.secondary').length) {
 		document.body.className += ' has-secondary';
 	}
 

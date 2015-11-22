@@ -58,7 +58,7 @@ html, body {
 		pointer-events: none;
 	}
 
-section.secondary {
+section.secondary, div.secondary {
 	float: left;
 	position: absolute;
 	left: 0;
