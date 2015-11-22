@@ -62,12 +62,12 @@ class Plugin {
 		return Event::listen($event, $callback);
 	}
 
-	public static function fire($event, $data) {
+	public static function fire($event, $data = array()) {
 		//  Load all of our plugins
 		self::init();
 
 		$self = new self;
-		$self->data = Event::fire('admin.welcome_message', 'Welcome to Aviate!');
+		$self->data = Event::fire($event, $data);
 
 		return $self;
 	}

@@ -7,7 +7,7 @@
 
 		<ul>
 			@foreach(Page::all() as $page)
-			<li @if(Request::is('admin/pages/edit/' . $page->id)) class="active" @endif>
+			<li @if(Request::is(admin_url('pages/edit/' . $page->id))) class="active" @endif>
 				<a href="{{ admin_url('pages/edit/' . $page->id) }}">
 					{{ $page->title }}
 

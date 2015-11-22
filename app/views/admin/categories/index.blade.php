@@ -7,7 +7,7 @@
 
 		<ul>
 			@foreach(Category::all() as $category)
-			<li @if(Request::is('admin/categories/edit/' . $category->id)) class="active" @endif>
+			<li @if(Request::is(admin_url('categories/edit/' . $category->id))) class="active" @endif>
 				<a href="{{ admin_url('categories/edit/' . $category->id) }}">
 					{{ $category->name }}
 
