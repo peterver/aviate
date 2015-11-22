@@ -16,12 +16,4 @@ class Hello {
 	public function admin_welcomeMessage($msg) {
 		return $this->lines[array_rand($this->lines)];
 	}
-
-	public function admin_login($user) {
-		dd($user);
-		exit;
-
-		$user->username = $this->admin_welcomeMessage();
-		return $user->save();
-	}
 }
