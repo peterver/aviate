@@ -58,11 +58,23 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return array_search($slug, self::$levels);
 	}
 
+	public static function is($level) {
+		if(!is_numeric($level)) {
+			$level = self::level($level);
+		}
+
+		return Auth::user()->level == $level;
+	}
+
 	public function setRememberToken($value) {
 	    $this->remember_token = $value;
 	}
 
 	public function getRememberTokenName() {
 	    return 'remember_token';
+	}
+
+	public static function editing() {
+		return self::whereId(Request::segment(4))->first();
 	}
 }

@@ -10,7 +10,6 @@ class AdminController extends BaseController {
 			),
 
 			'results' => array(
-				'Visit site' => '/',
 				'Users' => admin_path('users'),
 				'Settings' => admin_path('settings'),
 				'Log out' => admin_path('logout')

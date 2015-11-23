@@ -31,8 +31,9 @@
     			</ul>
         		
         		<ul class="results">
-        			@foreach($results as $result => $url)
-                    <li class="{{ Request::is($url) ? 'active' : '' }}">
+        			<li><a href="{{ URL::to('/') }}">Visit site</a></li>
+                    @foreach($results as $result => $url)
+                    <li class="{{ strpos(Request::url(), $url) !== false ? 'active' : '' }}">
                         <a href="{{ URL::to($url) }}">{{ $result }}</a>
                     </li>
                     @endforeach
