@@ -28,6 +28,23 @@ Route::get('pages/{page}', array(
 	'uses' => 'SiteController@singlePage'
 ));
 
+
+//  Listen to our category routes
+//  We need to make sure the category exists and has products
+//  before we display a list.
+Route::get('{category}', array(
+	'before' => 'installed',
+	'uses' => 'SiteController@categoryPage'
+));
+
+//  Single product view
+//  @TODO: make this more configurable
+Route::get('{category}/{product}', array(
+	'before' => 'installed',
+	'uses' => 'SiteController@productPage'
+));
+
+
 //  Listen to any 404 errors and throw them in our controller
 //  We'll handle the headers and call a not_found template.
 App::missing(function($exception) {

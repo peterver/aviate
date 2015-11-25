@@ -52,7 +52,9 @@
 				
 				<nav class="site-categories">
 					@foreach(Category::all() as $category)
-						<a href="{{ URL::to('categories/' . $category->slug) }}">{{ $category->name }}</a>
+						<a @if(Request::segment(1) == $category->slug) class="active" @endif href="{{ URL::to($category->slug) }}">
+							{{ $category->name }}
+						</a>
 					@endforeach
 				</nav>
 

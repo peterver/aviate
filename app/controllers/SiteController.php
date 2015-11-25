@@ -20,4 +20,31 @@ class SiteController extends BaseController {
 	public function notFound() {
 		return Theme::not_found();
 	}
+
+	public function categoryPage($category) {
+		$category = Category::whereSlug($category)->first();
+
+		if(!$category) {
+			return $this->notFound();
+		}
+
+		View::share('category', $category);
+
+		return Theme::render('category');
+	}
+
+	public function productPage($category, $slug) {
+		$product = Products::whereSlug($slug)->first();
+
+		if(!$product) {
+			return $this->notFound();
+		}
+
+		View::share(array(
+			'product' => $product,
+			'category' => Category::whereSlug($category)->first()
+		));
+
+		return Theme::render('product');
+	}
 }

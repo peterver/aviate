@@ -9,4 +9,14 @@ class Category extends Eloquent {
 	public static function current() {
 		return self::whereId(Request::segment(4))->first();
 	}
+
+	public static function slug($id = false) {
+		$result = self::whereId($id)->first();
+
+		if(!$result) {
+			return self::slug(1);
+		}
+
+		return $result->slug;
+	}
 }

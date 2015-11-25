@@ -167,4 +167,8 @@ class Currency {
 	public static function symbol($code = 'GBP') {
 		return self::$symbols[$code];
 	}
+
+	public static function price($price) {
+		return self::symbol() . number_format($price);
+	}
 }

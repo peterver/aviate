@@ -5,7 +5,8 @@
 	background: #13c1bf;
 }
 
-a, .basket span, .site-categories a:hover,
+a, .basket span,
+.site-categories a:hover, .site-categories a.active,
 #site-top nav a.active, #site-top nav a.active:hover,
 #site-header .basket.has-items b {
 	color: #13c1bf;
@@ -140,6 +141,9 @@ h1, h2, h3 {
 
 			color: #727274;
 		}
+			.site-categories a.active {
+
+			}
 	#site-header .site-logo, #site-header .basket {
 		position: absolute;
 		top: 0;
@@ -238,6 +242,28 @@ h1, h2, h3 {
 			color: #fff;
 			background: rgba(0,0,0,.05);
 		}
+
+.breadcrumbs {
+	padding: 14px 0;
+
+	background: #fcfcfc;
+	color: #a5a5a9;
+
+	border-bottom: 1px solid #edf0f0;
+
+	font-size: 13px;
+	line-height: 18px;
+}
+	.breadcrumbs + .wrap {
+		margin-top: 40px;
+	}
+	.breadcrumbs a {
+		color: #606066;
+	}
+	.breadcrumbs span {
+		margin: 0 6px;
+		color: #bebec1;
+	}
 
 #site-footer {
 	padding: 15px 40px;

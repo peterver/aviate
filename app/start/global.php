@@ -43,7 +43,7 @@ ClassLoader::addDirectories(
 | sure they're all loaded so there's no errors
 |
 */
-$functions = array('metadata', 'theme', 'page');
+$functions = array('metadata', 'theme', 'page', 'product');
 
 foreach($functions as $function) {
 	require app_path() . '/functions/' . $function . '.php';
