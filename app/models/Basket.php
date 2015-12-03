@@ -8,6 +8,10 @@ class Basket extends Eloquent {
 	public static $hash;
 	public static $basket;
 
+	public function getDataAttribute($value) {
+		return json_decode($value);
+	}
+
 	public static function generate() {
 		self::$hash = Hash::make(time());
 		
@@ -24,9 +28,16 @@ class Basket extends Eloquent {
 		Session::forget('aviate_basket');
 	}
 
-	public static function add() {
-		$items = self::items();
-		$data = json_decode();
+	public static function getBasket() {
+		return self::whereSession(Session::get('aviate_basket'))->first();
+	}
+
+	public static function add($data) {
+		$item = self::getBasket();
+
+		$item->data = json_encode($data);
+
+		return $item->save();
 	}
 
 	public static function items() {
@@ -34,7 +45,7 @@ class Basket extends Eloquent {
 			self::generate();
 		}
 
-		return Basket::whereSession(Session::get('aviate_basket'))->first();
+		return self::getBasket()->data;
 	}
 
 	public static function itemCount() {
