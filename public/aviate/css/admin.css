@@ -4,7 +4,7 @@ html, body {
 	height: 100%;
 }
 
-.auth/*, .frame*/ {
+.auth, .frame {
 	position: relative;
 
 	background: #fff;
@@ -350,11 +350,11 @@ section.secondary, div.secondary {
 
 .frame {
 	position: absolute;
-	/*left: 16px;
+	left: 16px;
 	top: 16px;
 	right: 16px;
-	bottom: 16px;*/
-	left: 0; right: 0; top: 0; bottom: 0;
+	bottom: 16px;
+/*	left: 0; right: 0; top: 0; bottom: 0; */
 
 	overflow: hidden;
 }

@@ -13,4 +13,6 @@ Route::group(array('before' => 'installed|auth'), function() {
 
 	Route::get(Config::get('admin_location'), 'AdminController@getIndex');
 	Route::get(Config::get('admin_location') . '/logout', 'UsersController@getLogout');
+
+	Route::get(Config::get('admin_location') . '/*', 'AdminController@notFound');
 });
