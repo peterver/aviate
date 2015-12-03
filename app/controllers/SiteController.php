@@ -59,10 +59,8 @@ class SiteController extends BaseController {
 	}
 
 	public function buyProduct($category, $slug) {
-		Basket::add([
-			'quantity' => 1,
-			'product_id' => Products::whereSlug($slug)->first()->id
-		]);
+		//  Product ID, quantity
+		Basket::add(Products::whereSlug($slug)->first()->id, 1);
 
 		return $this->productPage($category, $slug);
 	}

@@ -11,17 +11,12 @@ class Basket extends Eloquent {
 	public function getDataAttribute($value) {
 		//  If it's 2 characters or less, it's
 		//  not a valid JSON string.
-		if(strlen($value) < 3) return;
+		if(empty($value)) return;
 
-		$data = (array) json_decode($value);
+		$data = array();
 
-		foreach($data as $key => $item) {
-			//  Set price data and product data
-			$data[$key]->product = Products::whereId($item->product_id)->first();
-			$data[$key]->price = $data[$key]->product->price * $item->quantity;
-
-			//  Remove the product ID as we don't need it any more.
-			unset($data[$key]->product_id);
+		foreach(json_decode($value) as $key => $row) {
+			$data[(int) $key] = $row;
 		}
 
 		return $data;
@@ -47,16 +42,35 @@ class Basket extends Eloquent {
 		return self::whereSession(Session::get('aviate_basket'))->first();
 	}
 
-	public static function add($data) {
-		$item = self::getBasket();
+	public static function getContents() {
+		$products = array();
 
-		foreach($item->data as $compare) {
-			if($compare->product->id === $data['product_id']) {
-				$data['quantity'] += $compare->quantity;
-			}
+		if(!self::items()) {
+			return $products();
 		}
 
-		$item->data = json_encode(array($data));
+		foreach(self::items() as $product => $quantity) {
+			$product = Products::whereId($product)->first();
+			$product->total_price = $product->price * $quantity;
+
+			$products[] = $product;
+		}
+
+		return $products;
+	}
+
+	public static function add($product, $quantity = 1) {
+		$item = self::getBasket();
+		$data = $item->data;
+
+		if(isset($data[$product])) {
+			//  Add our quantity
+			$quantity += $data[$product];
+		}
+
+		$data[$product] = $quantity;
+
+		$item->data = json_encode($data);
 
 		return $item->save();
 	}
@@ -71,8 +85,8 @@ class Basket extends Eloquent {
 
 	public static function itemCount($quantity = 0) {
 		if(self::items()) {
-			foreach(self::items() as $item) {
-				$quantity += $item->quantity;
+			foreach(self::items() as $product => $amount) {
+				$quantity += $amount;
 			}
 		}
 
@@ -80,10 +94,8 @@ class Basket extends Eloquent {
 	}
 
 	public static function priceCount($price = 0) {
-		if(self::items()) {
-			foreach(self::items() as $item) {
-				$price += $item->price;
-			}
+		foreach(self::getContents() as $product) {
+			$price += $product->total_price;
 		}
 
 		return Currency::price($price);
