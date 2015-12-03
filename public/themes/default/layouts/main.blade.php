@@ -59,7 +59,7 @@
 				</nav>
 
 				<a class="basket {{ Basket::itemCount() > 0 ? 'has-items' : 'empty' }}" href="{{ Url::to('basket') }}">
-					<span>{{ Basket::itemCount() }}</span> <b>£99.05</b>
+					<span>{{ Basket::itemCount() }}</span> <b>{{ Basket::priceCount() }}</b>
 				</a>
 			</div>
 		</header>

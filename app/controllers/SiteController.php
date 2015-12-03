@@ -52,6 +52,12 @@ class SiteController extends BaseController {
 		return Theme::render('basket');
 	}
 
+	public function basketEmpty() {
+		Basket::flush();
+
+		return Redirect::action('SiteController@basketPage');
+	}
+
 	public function buyProduct($category, $slug) {
 		Basket::add([
 			'quantity' => 1,

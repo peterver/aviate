@@ -9,7 +9,22 @@ class Basket extends Eloquent {
 	public static $basket;
 
 	public function getDataAttribute($value) {
-		return json_decode($value);
+		//  If it's 2 characters or less, it's
+		//  not a valid JSON string.
+		if(strlen($value) < 3) return;
+
+		$data = (array) json_decode($value);
+
+		foreach($data as $key => $item) {
+			//  Set price data and product data
+			$data[$key]->product = Products::whereId($item->product_id)->first();
+			$data[$key]->price = $data[$key]->product->price * $item->quantity;
+
+			//  Remove the product ID as we don't need it any more.
+			unset($data[$key]->product_id);
+		}
+
+		return $data;
 	}
 
 	public static function generate() {
@@ -35,7 +50,7 @@ class Basket extends Eloquent {
 	public static function add($data) {
 		$item = self::getBasket();
 
-		$item->data = json_encode($data);
+		$item->data = json_encode(array($data));
 
 		return $item->save();
 	}
@@ -50,5 +65,17 @@ class Basket extends Eloquent {
 
 	public static function itemCount() {
 		return count(self::items());
+	}
+
+	public static function priceCount() {
+		$price = 0;
+
+		if(self::items()) {
+			foreach(self::items() as $item) {
+				$price += $item->price;
+			}
+		}
+
+		return Currency::price($price);
 	}
 }
