@@ -57,6 +57,14 @@ class Metadata extends Eloquent {
 		return $fallback;
 	}
 
+	public static function getAll($return = array()) {
+		foreach(self::all() as $metadata) {
+			$return[$metadata->key] = $metadata->value;
+		}
+
+		return $return;
+	}
+
 	public static function installed() {
 		return self::item('installed', false);
 	}

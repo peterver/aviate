@@ -19,6 +19,7 @@ Route::group(array('before' => 'installed'), function() {
 	Route::get('pages', function() {
 		return Redirect::to('/');
 	});
+	
 	Route::get('pages/{page}', 'SiteController@singlePage');
 
 	//  Basket and checkout views

@@ -51,4 +51,24 @@ class Theme {
 
 		return self::$prefix . $file;
 	}
+
+	public static function available($onlyNames = false) {
+		$themes = array();
+		$prefix = public_path() . '/themes/';
+
+		foreach(File::directories($prefix) as $theme) {
+			$json = $theme . '/metadata.json';
+
+			if(File::exists($json) and $json = json_decode(File::get($json))) {
+				//  Stupid but it's the only way to get it to work with 
+				if($onlyNames === true) {
+					$json = $json->name;
+				}
+
+				$themes[str_replace($prefix, '', $theme)] = $json;
+			}
+		}
+
+		return $themes;
+	}
 }

@@ -42,13 +42,19 @@
                 <small>{{ $welcome_message }}</small>
         	</nav>
 
-            @if(isset($error) and $error)
-        	<div class="error">
-                {{ $error }}
-            </div>
-            @endif
-
         	<section class="content">
+                @if(isset($msg))
+                <div class="msg">
+                    <div class="wrap">{{ $msg }}</div>
+                </div>
+                @endif
+
+                @if(isset($error))
+                <div class="error">
+                    <div class="wrap">{{ $error }}</div>
+                </div>
+                @endif
+
                 @yield('content')
             </section>
         </div>

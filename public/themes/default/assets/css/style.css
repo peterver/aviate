@@ -1,14 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic|Playfair+Display:900italic);
 @import 'reset.css';
 
-.btn, #site-header .basket.has-items span {
+.btn, #site-header .basket.has-items span, .products .product .category {
 	background: #13c1bf;
 }
 
 a, .basket span,
 .site-categories a:hover, .site-categories a.active,
 #site-top nav a.active, #site-top nav a.active:hover,
-#site-header .basket.has-items b {
+#site-header .basket.has-items b, .products .product .price {
 	color: #13c1bf;
 }
 
@@ -67,7 +67,7 @@ h1, h2, h3 {
 
 #site-top {
 	position: relative;
-	height: 40px;
+	height: 58px;
 	padding: 12px 40px 6px;
 	margin-top: 4px;
 
@@ -264,6 +264,65 @@ h1, h2, h3 {
 		margin: 0 6px;
 		color: #bebec1;
 	}
+
+.products {
+	padding: 40px 0;
+}
+	.products .product {
+		float: left;
+		width: 32%;
+		margin: 0 2% 20px 0;
+	}
+		.products .product a {
+			display: block;
+			padding: 70px 25px 25px;
+
+			position: relative;
+	
+			background: #fafbfb;
+			color: #606066;
+
+			transition: background .2s, box-shadow .2s;
+		}
+			.products .product a:hover {
+				background: #fff;
+				box-shadow: 0 6px 12px rgba(10,10,14,.15);
+			}
+		.products .product .category {
+			position: absolute;
+			left: 0;
+			top: 20px;
+
+			padding: 4px 12px 4px 25px;
+
+			color: #fff;
+			font-size: 13px;
+		}
+		.products .product b {
+			display: block;
+			padding-bottom: 6px;
+
+			font-size: 17px;
+			line-height: 27px;
+
+			color: #19181e;
+		}
+		.products .product p {
+			font-size: 14px;
+			line-height: 20px;
+		}
+		.products .product .price {
+			float: right;
+		}
+		.products .product img {
+			width: 100%;
+			width: calc(100% + 50px);
+			height: auto;
+			margin: -70px -25px 15px;
+		}
+		.products .product:nth-child(3n) {
+			margin-right: 0;
+		}
 
 #site-footer {
 	padding: 15px 40px;

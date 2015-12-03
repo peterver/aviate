@@ -10,9 +10,11 @@
 
 <div class="wrap">
 	@if(has_products_by_category($category->id))
+	<div class="products">
 		@foreach(get_products_by_category($category->id) as $product)
-			{{ $product->name }}
+			@include('theme::partials/product')
 		@endforeach
+	</div>
 	@else
 		No products found! :(
 	@endif

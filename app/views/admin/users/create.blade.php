@@ -29,18 +29,6 @@
 	{{ Form::open() }}
 		<h1>Creating a new user</h1>
 		
-		@if(isset($msg))
-		<div class="msg">
-			<div class="wrap">{{ $msg }}</div>
-		</div>
-		@endif
-
-		@if(isset($error))
-		<div class="error">
-			<div class="wrap">{{ $error }}</div>
-		</div>
-		@endif
-		
 		<p>
 			{{ Former::text('name') }}
 			<em class="help">The user’s real name.</em>

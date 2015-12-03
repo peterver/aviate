@@ -15,3 +15,16 @@ function admin_path($to = '') {
 function admin_url($to = '') {
 	return URL::to(admin_path($to));
 }
+
+function excerpt($string, $limit = 20, $suffix = '&hellip;', $delimiter = ' ') {
+	$excerpt = explode($delimiter, trim($string), $limit);
+
+	if(count($excerpt) >= $limit) {
+		array_pop($excerpt);
+		$excerpt = implode($delimiter, $excerpt) . $suffix;
+	} else {
+		$excerpt = implode($delimiter, $excerpt);
+	}	
+	
+	return preg_replace('`\[[^\]]*\]`','', $excerpt);
+}

@@ -12,6 +12,13 @@ html, body {
 	box-shadow: 0 12px 20px rgba(0,0,0,.03);
 }
 
+.msg {
+	background: #0cacaa;
+	color: #fff;
+
+	line-height: 50px;
+}
+
 .frame {
 	background: #fff;
 }
@@ -152,9 +159,6 @@ section.secondary, div.secondary {
 
 		color: #fff;
 	}
-		.tertiary .msg {
-			background: #13c1bf;
-		}
 
 .image-uploader {
 	position: relative;
@@ -369,7 +373,7 @@ section.secondary, div.secondary {
 	left: 0;
 	width: 180px;
 
-	background: #13c1bf;
+	background: linear-gradient(160deg, #13c1bf 50%, #57c7ed);
 }
 	.main-nav .logo, .secondary h1 a {
 		display: block;
@@ -469,6 +473,13 @@ section.secondary, div.secondary {
 		.content .empty-state span {
 			display: block;
 			padding-bottom: 1em;
+		}
+	.content > .msg {
+		margin: -40px -40px 40px;
+	}
+		.content > .msg .wrap {
+			width: 100%;
+			margin: 0 40px;
 		}
 
 .wrap {
