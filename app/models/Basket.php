@@ -50,6 +50,12 @@ class Basket extends Eloquent {
 	public static function add($data) {
 		$item = self::getBasket();
 
+		foreach($item->data as $compare) {
+			if($compare->product->id === $data['product_id']) {
+				$data['quantity'] += $compare->quantity;
+			}
+		}
+
 		$item->data = json_encode(array($data));
 
 		return $item->save();
@@ -63,13 +69,17 @@ class Basket extends Eloquent {
 		return self::getBasket()->data;
 	}
 
-	public static function itemCount() {
-		return count(self::items());
+	public static function itemCount($quantity = 0) {
+		if(self::items()) {
+			foreach(self::items() as $item) {
+				$quantity += $item->quantity;
+			}
+		}
+
+		return $quantity;
 	}
 
-	public static function priceCount() {
-		$price = 0;
-
+	public static function priceCount($price = 0) {
 		if(self::items()) {
 			foreach(self::items() as $item) {
 				$price += $item->price;
