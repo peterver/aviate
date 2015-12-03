@@ -10,39 +10,30 @@
  *   argument will probably break things.
  */
 
-Route::get('/', array(
-	'before' => 'installed',
-	'uses' => 'SiteController@homepage'
-));
+Route::group(array('before' => 'installed'), function() {
+	Route::get('/', 'SiteController@homepage');
 
+	//  Don't show anything for /pages, there shouldn't be anything.
+	//  We'll let the user go back to the homepage and have a long
+	//  hard think about what they're doing.
+	Route::get('pages', function() {
+		return Redirect::to('/');
+	});
+	Route::get('pages/{page}', 'SiteController@singlePage');
 
-//  Don't show anything for /pages, there shouldn't be anything.
-//  We'll let the user go back to the homepage and have a long
-//  hard think about what they're doing.
-Route::get('pages', function() {
-	return Redirect::to('/');
+	//  Basket and checkout views
+	Route::get('basket', 'SiteController@basketPage');
+
+	//  Listen to our category routes
+	//  We need to make sure the category exists and has products
+	//  before we display a list.
+	Route::get('{category}', 'SiteController@categoryPage');
+
+	//  Single product view
+	//  @TODO: make this more configurable
+	Route::get('{category}/{product}', 'SiteController@productPage');
+	Route::post('{category}/{product}', 'SiteController@buyProduct');
 });
-
-Route::get('pages/{page}', array(
-	'before' => 'installed',
-	'uses' => 'SiteController@singlePage'
-));
-
-
-//  Listen to our category routes
-//  We need to make sure the category exists and has products
-//  before we display a list.
-Route::get('{category}', array(
-	'before' => 'installed',
-	'uses' => 'SiteController@categoryPage'
-));
-
-//  Single product view
-//  @TODO: make this more configurable
-Route::get('{category}/{product}', array(
-	'before' => 'installed',
-	'uses' => 'SiteController@productPage'
-));
 
 
 //  Listen to any 404 errors and throw them in our controller

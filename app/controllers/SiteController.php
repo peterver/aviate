@@ -47,4 +47,12 @@ class SiteController extends BaseController {
 
 		return Theme::render('product');
 	}
+
+	public function basketPage() {
+		return Theme::render('basket');
+	}
+
+	public function buyProduct($category, $slug) {
+		return $this->productPage($category, $slug);
+	}
 }

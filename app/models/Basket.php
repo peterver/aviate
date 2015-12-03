@@ -24,6 +24,11 @@ class Basket extends Eloquent {
 		Session::forget('aviate_basket');
 	}
 
+	public static function add() {
+		$items = self::items();
+		$data = json_decode();
+	}
+
 	public static function items() {
 		if(!Session::get('aviate_basket')) {
 			self::generate();
