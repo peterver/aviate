@@ -9,11 +9,11 @@ class Basket extends Eloquent {
 	public static $basket;
 
 	public function getDataAttribute($value) {
+		$data = array();
+
 		//  If it's 2 characters or less, it's
 		//  not a valid JSON string.
-		if(empty($value)) return;
-
-		$data = array();
+		if(empty($value) or strlen($value) < 3) return $data;
 
 		foreach(json_decode($value) as $key => $row) {
 			$data[(int) $key] = $row;
@@ -46,12 +46,13 @@ class Basket extends Eloquent {
 		$products = array();
 
 		if(!self::items()) {
-			return $products();
+			return $products;
 		}
 
 		foreach(self::items() as $product => $quantity) {
 			$product = Products::whereId($product)->first();
 			$product->total_price = $product->price * $quantity;
+			$product->quantity = $quantity;
 
 			$products[] = $product;
 		}

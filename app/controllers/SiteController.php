@@ -49,6 +49,8 @@ class SiteController extends BaseController {
 	}
 
 	public function basketPage() {
+		View::share('basket', Basket::getContents());
+
 		return Theme::render('basket');
 	}
 
