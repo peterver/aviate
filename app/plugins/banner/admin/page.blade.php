@@ -1,7 +1,7 @@
 <h1>Manage banners</h1>
 
 {{ Form::open() }}
-	@foreach(get_banners() as $id => $banner)
+	@foreach(list_banners() as $id => $banner)
 		<p>
 			<label for="banner-{{ $id }}">Banner content</label>
 			<input name="banner-{{ $id }}" id="banner-{{ $id }}" value="{{ $banner }}">

@@ -17,7 +17,7 @@ $(function() {
 
 	//  If we've got a secondary column the layout adjusts slightly
 	if($('section.secondary, div.secondary').length) {
-		document.body.className += ' has-secondary';
+		$('body').addClass('has-secondary');
 	}
 
 	//  Auto-slug any element by adding a data-slugify
@@ -113,22 +113,6 @@ $(function() {
 				$target.val('').prop({ disabled: true, placeholder: 'Unlimited' });
 			}
 		}).trigger('click');
-	});
-
-	$('.image-uploader').each(function() {
-		var $me = $(this);
-
-		$me.dropzone({
-			url: $me.parents('form').attr('action'),
-			addRemoveLinks: true,
-			clickable: true,
-			autoProcessQueue: false,
-			paramName: $me.attr('name'),
-			maxFiles: 1,
-			acceptedFiles: 'image/*',
-			thumbnailWidth: $me.width(),
-			thumbnailHeight: $me.height()
-		});
 	});
 
 	//  Replace all selects with a more friendly

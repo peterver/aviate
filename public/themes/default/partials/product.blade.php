@@ -2,7 +2,7 @@
 	<a href="{{ get_product_slug($product) }}">
 		@if($product->gallery)
 		<span class="img-wrap">
-			<img src="{{ $product->gallery()->medium }}" alt="Image for {{ $product->name }}">
+			<img src="{{ dd($product->gallery) }}" alt="Image for {{ $product->name }}">
 		</span>
 		@endif
 

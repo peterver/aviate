@@ -19,11 +19,15 @@ class ProductsController extends AdminController {
 	public function postCreate() {
 		$error = false;
 
-		Gallery::create([
+		$gallery = Gallery::create([
 			'image' => Input::file('images')
 		]);
 
-		if($product = Products::create(Input::except('images', '_token'))) {
+		$fields = Input::except('images', '_token');
+
+		$fields['gallery_id'] = $gallery->id;
+
+		if($product = Products::create($fields)) {
 			return Redirect::to(admin_path('products/edit/' . $product->id));
 		}
 

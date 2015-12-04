@@ -9,16 +9,22 @@ class Gallery extends Eloquent implements StaplerableInterface {
 
 	protected $table = 'gallery';
 
-	protected $fillable = ['id', 'image'];
+	protected $fillable = ['image'];
 
 	public function __construct(array $attributes = array()) {
         $this->hasAttachedFile('image', [
             'styles' => [
                 'medium' => '600x480',
                 'thumb' => '256x256'
-            ]
+            ],
+            'default_url' => '/assets/img/default-avatar.png'
         ]);
 
         parent::__construct($attributes);
+    }
+
+    public static function boot() {
+        parent::boot();
+        static::bootStapler();
     }
 }

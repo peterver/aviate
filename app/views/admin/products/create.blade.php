@@ -3,7 +3,7 @@
 @section('content')
 	<h1>Create a new product</h1>
 
-	{{ Form::open(['class' => 'product-form', 'files' => true]) }}
+	{{ Form::open(['action' => 'ProductsController@postCreate', 'method' => 'POST', 'class' => 'product-form', 'files' => true]) }}
 		<div class="wrap">
 			<div class="image-uploader">
 				<span>Drag an image here to upload</span>
@@ -19,7 +19,7 @@
 						<label for="slug">Product slug:</label>
 						<code>/products/<span class="product-slug" data-editable="#slug" data-slugify="#name">{{ Input::get('slug') }}</span></code>
 						
-						<input hidden {{ Input::get('slug') ? 'data-modified="true"' : '' }} name="slug" id="slug" value="{{ Input::get('slug') }}">
+						<input hidden {{ Input::get('slug') ? 'data-modified="true"' : '' }} data-slugify="#name" name="slug" id="slug" value="{{ Input::get('slug') }}">
 						<a class="btn tiny" data-edit=".product-slug" data-onedit="Save slug">Edit slug</a>
 					</div>
 				</div>
