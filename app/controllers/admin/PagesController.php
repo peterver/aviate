@@ -15,8 +15,8 @@ class PagesController extends AdminController {
 		return self::getIndex();
 	}
 
-	public function getEdit() {
-		$page = Page::editing();
+	public function getEdit($id = false) {
+		$page = Page::find($id);
 
 		//  If the Page doesn't exist, don't throw a 404
 		//  just go back to the main page, likely a URL mistype
@@ -31,8 +31,8 @@ class PagesController extends AdminController {
 		return View::make('admin/pages/edit')->with('page', $page);
 	}
 
-	public function postEdit() {
-		$page = Page::editing();
+	public function postEdit($id = false) {
+		$page = Page::find($id);
 
 		//  Update our Page
 		$page->fill(Input::except('_token'));
@@ -47,8 +47,8 @@ class PagesController extends AdminController {
 		return self::getEdit();
 	}
 
-	public function getDelete() {
-		$page = Page::editing();
+	public function getDelete($id = false) {
+		$page = Page::find($id);
 
 		if($page) {
 			$page->delete();

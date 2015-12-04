@@ -38,8 +38,4 @@ class Page extends Eloquent {
 
 		return $pages;
 	}
-
-	public static function editing() {
-		return self::whereId(Request::segment(4))->first();
-	}
 }

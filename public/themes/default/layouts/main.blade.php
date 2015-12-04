@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,8 +24,9 @@
 
 		<!--[if lt IE 9]>
 			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
 		<![endif]-->
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
 	</head>
 	
 	<body class="{{ $class or '' }}">
@@ -77,10 +78,15 @@
 			</a>
 		</footer>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+		<script>
+			document.documentElement.className = 'js';
 
-        {{ get_assets(['app.js', 'interactions.js']) }}
+			var msnry = new Masonry('.products', {
+				itemSelector: '.product',
+				percentPosition: true,
+				gutter: '.product-gutter'
+			});
+	</script>
 
         @if(isset($site->google_analytics))
 	        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

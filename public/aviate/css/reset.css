@@ -290,9 +290,12 @@ form {
 
 		width: 140px;
 	}
-	form button {
+	form button, form .btn {
 		margin: 1em 0 0 200px;
 	}
+		form .btn {
+			margin-left: 0;
+		}
 	form .counter {
 		position: absolute;
 		left: 30px;

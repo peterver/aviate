@@ -15,8 +15,8 @@ class CategoriesController extends AdminController {
 		return self::getIndex();
 	}
 
-	public function getEdit() {
-		$category = Category::current();
+	public function getEdit($id = false) {
+		$category = Category::find($id);
 
 		//  If the category doesn't exist, don't throw a 404
 		//  just go back to the main page, likely a URL mistype
@@ -31,8 +31,8 @@ class CategoriesController extends AdminController {
 		return View::make('admin/categories/edit')->with('category', $category);
 	}
 
-	public function postEdit() {
-		$category = Category::current();
+	public function postEdit($id = false) {
+		$category = Category::find($id);
 
 		//  Update our category
 		$category->fill(Input::except('_token'));
@@ -47,8 +47,8 @@ class CategoriesController extends AdminController {
 		return self::getEdit();
 	}
 
-	public function getDelete() {
-		$category = Category::current();
+	public function getDelete($id = false) {
+		$category = Category::find($id);
 
 		if($category) {
 			$category->delete();

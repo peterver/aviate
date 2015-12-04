@@ -175,6 +175,47 @@ $(function() {
 
 		$me.next().text($me.attr('maxlength') - $me.val().length + ' characters left');
 	}).trigger('keyup');
+
+	//  Image previews for category uploads
+	var $uploader = $('.image-uploader');
+	var $uploaderField;
+	var handle = {
+		add: function() {
+			$uploaderField = $uploader.children('[type=file]');
+
+			$uploaderField.on('change', function(e) {
+				var reader = new FileReader;
+
+				reader.onload = function(evt) {
+					if(!$uploader.children('.preview').length) {
+						$uploader.append('<div class="preview"><a class="remove" /></div>');
+					}
+
+					$uploader.children('.preview').css('background-image', 'url(' + evt.target.result + ')');
+
+					handle.remove();
+				};
+
+				reader.readAsDataURL(e.target.files[0]);
+			});
+		},
+
+		remove: function() {
+			$uploader.find('.remove').on('click', function() {
+				$uploader.children('.preview').fadeOut(function() {
+					$(this).remove();
+					$uploader.find('[name=uploaded_image]').val('');
+				});
+				
+				$uploaderField.replaceWith($uploaderField.clone());
+	
+				handle.add();
+			});
+		}
+	};
+
+	handle.add();
+	handle.remove();
 });
 
 $.dataHook = function(hook, callback) {

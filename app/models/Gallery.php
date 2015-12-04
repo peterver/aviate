@@ -18,7 +18,8 @@ class Gallery extends Eloquent implements StaplerableInterface {
                 'medium' => '600x480',
                 'thumb' => '256x256'
             ],
-            'default_url' => '/assets/img/default-avatar.png'
+            
+            'default_url' => false
         ]);
 
         parent::__construct($attributes);

@@ -12,6 +12,10 @@ html, body {
 	box-shadow: 0 12px 20px rgba(0,0,0,.03);
 }
 
+h1 .btn {
+	float: right;
+}
+
 .msg {
 	background: #0cacaa;
 	color: #fff;
@@ -173,32 +177,38 @@ section.secondary, div.secondary {
 
 	border: 2px dashed #ad55bd;
 }
-	.image-uploader, .image-uploader .dz-remove,
-	.image-uploader [data-dz-thumbnail] {
+	.image-uploader, .image-uploader .remove,
+	.image-uploader .preview {
 		border-radius: 4px;
 	}
-	.image-uploader .dz-error {
-		display: none;
-	}
-	.image-uploader .dz-remove {
+	.image-uploader .preview, .image-uploader .remove {
 		position: absolute;
 		left: 0;
 		right: 0;
 		top: 0;
 		bottom: 0;
+	}
+		.image-uploader .preview {
+			margin: -2px;
+			background-position: 50% 50%;
+			background-size: cover;
+		}
+	.image-uploader .remove {
+		z-index: 11;
 
 		text-indent: -999em;
 		border: none;
+		cursor: pointer;
 
 		transition: background .2s;
 	}
-		.image-uploader .dz-remove:hover {
+		.image-uploader .remove:hover {
 			background: rgba(0,0,0,.4);
 		}
-			.image-uploader .dz-remove:hover:after {
+			.image-uploader .remove:hover:after {
 				opacity: 1;
 			}
-		.image-uploader .dz-remove:after {
+		.image-uploader .remove:after {
 			content: 'Click to remove image';
 			position: absolute;
 			left: 50%;
@@ -214,7 +224,7 @@ section.secondary, div.secondary {
 			transform: translateX(-50%) translateY(-50%);
 			transition: opacity .2s;
 		}
-		.image-uploader .dz-remove:before {
+		.image-uploader .remove:before {
 			content: '';
 			position: absolute;
 			right: 12px;
@@ -226,12 +236,6 @@ section.secondary, div.secondary {
 
 			background: rgba(0,0,0,.25) url('../img/delete-icon.png') no-repeat 50% 50%;
 			background-size: 20px 20px;
-		}
-	.image-uploader.dz-started {
-		border: none;
-	}
-		.image-uploader.dz-started span {
-			display: none;
 		}
 	.image-uploader input {
 		position: absolute;
@@ -246,18 +250,6 @@ section.secondary, div.secondary {
 		opacity: 0;
 
 		cursor: pointer;
-	}
-	.image-uploader .dz-details,
-	.image-uploader .dz-progress,
-	.image-uploader .dz-success-mark, .image-uploader .dz-error-mark {
-		display: none;
-	}
-	.image-uploader.dz-clickable {
-		cursor: pointer;
-	}
-	.image-uploader [data-dz-thumbnail] {
-		width: 100%;
-		height: 100%;
 	}
 	.image-uploader span {
 		position: absolute;
@@ -559,6 +551,88 @@ section.secondary, div.secondary {
 			background: transparent;
 			box-shadow: none;
 		}
+
+.products {
+	width: 100%;
+	overflow: hidden;
+	padding: 40px 0;
+}
+	.products .product-gutter {
+		position: absolute;
+		width: 2%;
+	}
+	.products .product {
+		float: left;
+		width: 32%;
+		margin-bottom: 20px;
+	}
+		.products .product a {
+			display: block;
+			padding: 70px 25px 25px;
+
+			position: relative;
+	
+			background: #fafbfb;
+			color: #606066;
+			border: none;
+
+			transition: background .2s, box-shadow .2s;
+		}
+			.products .product a:hover {
+				background: #fff;
+				box-shadow: 0 6px 12px rgba(10,10,14,.15);
+			}
+		.products .product .category {
+			position: absolute;
+			left: 0;
+			top: 20px;
+
+			padding: 4px 12px 4px 25px;
+
+			background: #13c1bf;
+			color: #fff;
+			font-size: 13px;
+		}
+		.products .product b {
+			display: block;
+			padding-bottom: 6px;
+
+			font-size: 17px;
+			line-height: 27px;
+
+			color: #19181e;
+		}
+		.products .product p {
+			margin-bottom: 0;
+
+			font-size: 14px;
+			line-height: 20px;
+		}
+		.products .product .price {
+			float: right;
+			color: #13c1bf;
+		}
+		.products .product img {
+			display: block;
+			width: 100%;
+			height: auto;
+
+			transition: opacity .2s;
+		}
+			.products .product .img-wrap {
+				display: block;
+				padding-bottom: 3px;
+				margin: -70px -25px 15px;
+	
+				background: #13c1bf;
+				transition: padding-bottom .2s;
+			}
+				.products .product a:hover .img-wrap {
+					padding-bottom: 0;
+				}
+			.products .product a:hover img {
+				opacity: .4;
+			}
 
 .footer {
 	clear: both;

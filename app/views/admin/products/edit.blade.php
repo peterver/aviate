@@ -8,6 +8,13 @@
 			<div class="image-uploader">
 				<span>Drag an image here to upload</span>
 				<input type="file" name="images">
+				<input type="hidden" name="uploaded_image" value="{{ $product->gallery_id }}">
+
+				@if($product->gallery and $product->gallery->image->url())
+					<div class="preview" style="background-image: url({{ $product->gallery->image->url('medium') }})">
+						<a class="remove">Remove image</a>
+					</div>
+				@endif
 			</div>
 
 			<div class="main-form">
@@ -80,12 +87,12 @@
 
 		<div class="footer">
 			<div class="wrap">
+				@if($product->id > 1)
+				<a href="{{ admin_url('products/delete/' . $product->id) }}" class="btn negative">Delete product</a>
+				@endif
+
 				<button type="submit">Create product</button>
 			</div>
 		</div>
 	{{ Form::close() }}
-@stop
-
-@section('scripts')
-	{{ HTML::script('aviate/js/dropzone.js') }}
 @stop

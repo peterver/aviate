@@ -83,7 +83,3 @@
 		</div>
 	{{ Form::close() }}
 @stop
-
-@section('scripts')
-	{{ HTML::script('aviate/js/dropzone.js') }}
-@stop
