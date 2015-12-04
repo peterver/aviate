@@ -1,10 +1,10 @@
 <div class="product">
 	<a href="{{ get_product_slug($product) }}">
 		@if($product->gallery)
+		<span class="img-wrap">
 			<img src="{{ $product->gallery()->medium }}" alt="Image for {{ $product->name }}">
+		</span>
 		@endif
-
-		<img src="{{ get_asset_url('kitten.jpg') }}" alt="Image for {{ $product->name }}">
 
 		<span class="category">{{ $product->category->name }}</span>
 

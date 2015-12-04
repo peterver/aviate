@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic|Playfair+Display:900italic);
 @import 'reset.css';
 
-.btn, #site-header .basket.has-items span, .products .product .category {
+.btn, #site-header .basket.has-items span,
+.products .product .category, .products .product .img-wrap {
 	background: #13c1bf;
 }
 
@@ -315,11 +316,25 @@ h1, h2, h3 {
 			float: right;
 		}
 		.products .product img {
+			display: block;
 			width: 100%;
-			width: calc(100% + 50px);
 			height: auto;
-			margin: -70px -25px 15px;
+
+			transition: opacity .2s;
 		}
+			.products .product .img-wrap {
+				display: block;
+				padding-bottom: 3px;
+				margin: -70px -25px 15px;
+	
+				transition: padding-bottom .2s;
+			}
+				.products .product a:hover .img-wrap {
+					padding-bottom: 0;
+				}
+			.products .product a:hover img {
+				opacity: .4;
+			}
 		.products .product:nth-child(3n) {
 			margin-right: 0;
 		}
