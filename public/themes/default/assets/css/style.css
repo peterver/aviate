@@ -266,6 +266,18 @@ h1, h2, h3 {
 		color: #bebec1;
 	}
 
+.banner {
+	margin: 40px 0 0;
+	background: #fafbfb;
+}
+	.banner .slide {
+		text-align: center;
+		line-height: 320px;
+	}
+		.banner .slide:not(:first-child) {
+			display: none;
+		}
+
 .products {
 	padding: 40px 0;
 }

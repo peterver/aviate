@@ -44,7 +44,7 @@ class Metadata extends Eloquent {
 		return $item->save();
 	}
 
-	public static function item($what, $fallback = 'false') {
+	public static function item($what, $fallback = false) {
 		//  If we don't have a database connection
 		if(!DB::connection()->getDatabaseName() or !Schema::hasTable(with(new static)->getTable())) {
 			return false;
@@ -57,6 +57,10 @@ class Metadata extends Eloquent {
 		return $fallback;
 	}
 
+	public static function json($key) {
+		return json_decode(self::item($key));
+	}
+
 	public static function getAll($return = array()) {
 		foreach(self::all() as $metadata) {
 			$return[$metadata->key] = $metadata->value;
@@ -66,7 +70,7 @@ class Metadata extends Eloquent {
 	}
 
 	public static function installed() {
-		return self::item('installed', false);
+		return self::item('installed');
 	}
 
 	public static function hasDB() {

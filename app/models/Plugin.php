@@ -62,6 +62,18 @@ class Plugin {
 		return Event::listen($event, $callback);
 	}
 
+	public static function push($event, $data) {
+		if(!is_array($data)) return;
+
+		foreach($data as $item) {
+			$status = Event::listen($event, function() use($item) {
+				return $item;
+			});
+		}
+
+		return $status;
+	}
+
 	public static function fire($event, $data = array()) {
 		//  Load all of our plugins
 		self::init();
