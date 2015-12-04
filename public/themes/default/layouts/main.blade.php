@@ -46,8 +46,8 @@
 		<header id="site-header">
 			<div class="wrap">
 				<a class="site-logo" href="{{ URL::to('/') }}" title="Click to go back to the homepage">
-					{{ get_site_name() }}
-					<!-- {{ get_asset('aviate-logo.png', 'Aviate CMS logo', array('width' => 93, 'height' => 19)) }} -->
+					<!-- {{ get_site_name() }} -->
+					{{ get_asset('aviate-logo.png', 'Aviate CMS logo', array('width' => 93, 'height' => 19)) }}
 				</a>
 				
 				<nav class="site-categories">

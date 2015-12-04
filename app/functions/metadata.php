@@ -28,7 +28,3 @@ function excerpt($string, $limit = 20, $suffix = '&hellip;', $delimiter = ' ') {
 	
 	return preg_replace('`\[[^\]]*\]`','', $excerpt);
 }
-
-function get_banners() {
-	return Plugin::fire('theme.banner')->get();
-}

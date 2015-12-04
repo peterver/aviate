@@ -50,7 +50,7 @@ class Metadata extends Eloquent {
 			return false;
 		}
 
-		if($item = self::where('key', '=', $what)->pluck('value')) {
+		if($item = self::whereKey($what)->pluck('value')) {
 			return $item;
 		}
 

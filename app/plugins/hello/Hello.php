@@ -16,12 +16,4 @@ class Hello {
 	public function admin_welcomeMessage($msg) {
 		return $this->lines[array_rand($this->lines)];
 	}
-
-	public function admin_login($user) {
-		if(!$user->name) {
-			$user->name = 'Lionel Richie';
-		}
-
-		return $user->save();
-	}
 }

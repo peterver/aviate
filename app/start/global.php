@@ -30,9 +30,21 @@ ClassLoader::addDirectories(array(
 |
 */
 
-ClassLoader::addDirectories(
-	File::directories(app_path() . '/plugins')
-);
+$dirs = File::directories(app_path() . '/plugins');
+
+ClassLoader::addDirectories($dirs);
+
+foreach($dirs as $dir) {
+	$functions = $dir . '/functions.php';
+
+	if(File::exists($functions)) {
+		include_once $functions;
+	}
+}
+
+View::addNamespace('plugin', 'app/plugins');
+View::addLocation(app_path() . '/plugins/');
+
 
 /*
 |--------------------------------------------------------------------------

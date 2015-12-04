@@ -263,6 +263,19 @@ form {
 
 		border-bottom: 1px solid #f6f5f3;
 	}
+		form p.new {
+			margin-top: -1em;
+			padding-top: 1.3em;
+
+			background: #fdfbfa;
+		}
+			form p.new label {
+				top: 1.8em;
+				opacity: .3;
+			}
+			form p.new .inline-input-link {
+				top: .9em;
+			}
 	form .help {
 		display: block;
 		cursor: help;
@@ -293,4 +306,19 @@ form {
 	}
 		form :focus + .counter {
 			opacity: 1;
+		}
+	form .inline-input-link {
+		position: absolute;
+		right: 30px;
+		top: .3em;
+
+		line-height: 40px;
+		border: none;
+		cursor: pointer;
+	}
+		form .inline-input-link.symbol {
+			display: inline-block;
+			padding: 0 14px;
+
+			font-size: 22px;
 		}

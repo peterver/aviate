@@ -5,6 +5,7 @@ class Plugin {
 
 	public static $dir = '';
 	public static $loaded = array();
+	public static $fired = array();
 
 	public static function find() {
 		self::$dir = app_path() . '/plugins/';
@@ -26,6 +27,10 @@ class Plugin {
 		foreach(self::find() as $plugin) {
 			if(class_exists($plugin)) {
 				self::$loaded[$plugin] = new $plugin;
+
+				if(!self::fired('init')) {
+					self::fire('init');
+				}
 			}
 		}
 	}
@@ -78,9 +83,14 @@ class Plugin {
 		//  Load all of our plugins
 		self::init();
 
+		//  Fire the event and store the data for future
 		$self = new self;
 		$self->data = Event::fire($event, $data);
 
+		//  Log we've fired the event
+		self::$fired[$event] = true;
+
+		//  Allow chaining
 		return $self;
 	}
 
@@ -98,7 +108,17 @@ class Plugin {
 		return join('.', $method);
 	}
 
-	public function get() {
+	public function get($filter = false) {
+		if($filter !== false) {
+			foreach($this->data as $item) {
+				if(isset($item[$filter])) {
+					return $item[$filter];
+				}
+			}
+
+			return false;
+		}
+
 		return $this->data;
 	}
 
@@ -114,5 +134,9 @@ class Plugin {
 
 	public function last() {
 		return end($this->data);
+	}
+
+	public static function fired($event) {
+		return in_array($event, self::$fired);
 	}
 }

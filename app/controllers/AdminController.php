@@ -35,6 +35,12 @@ class AdminController extends BaseController {
 	}
 
 	public function notFound() {
+		$slug = Plugin::fire('admin.pages')->get(Request::segment(2));
+
+		if($slug) {
+			return View::make('admin/base')->nest('content', 'plugin::' . $slug);
+		}
+
 		return self::getIndex();
 	}
 }
