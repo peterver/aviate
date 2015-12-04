@@ -3,6 +3,7 @@
 //  We're using Laravel-Stapler to handle uploading images
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 use Codesleeve\Stapler\ORM\EloquentTrait;
+use Codesleeve\Stapler\Stapler;
 
 class Gallery extends Eloquent implements StaplerableInterface {
 	use EloquentTrait;

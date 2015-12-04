@@ -1,7 +1,7 @@
 <?php
 
 function get_products($filter = array()) {
-	return Products::where($filter)->get();
+	return Products::where($filter)->orderBy('id', 'DESC')->get();
 }
 
 function get_products_by_category($id) {

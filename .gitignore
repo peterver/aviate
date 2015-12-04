@@ -10,3 +10,5 @@ vendor/*
 app/storage
 !app/storage/views/index.php
 .phpintel
+public/system/*
+!public/system/index.php

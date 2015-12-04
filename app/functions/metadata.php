@@ -28,3 +28,11 @@ function excerpt($string, $limit = 20, $suffix = '&hellip;', $delimiter = ' ') {
 	
 	return preg_replace('`\[[^\]]*\]`','', $excerpt);
 }
+
+function fallback() {
+	foreach(func_get_args() as $arg) {
+		if($arg) return $arg;
+	}
+
+	return false;
+}
