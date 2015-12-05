@@ -2,28 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application & Route Filters
-|--------------------------------------------------------------------------
-|
-| Below you will find the "before" and "after" events for the application
-| which may be used to do any work before or after a request into your
-| application. Here you may also register your custom route filters.
-|
-*/
-
-App::before(function($request)
-{
-	//
-});
-
-
-App::after(function($request, $response)
-{
-	//
-});
-
-/*
-|--------------------------------------------------------------------------
 | Authentication Filters
 |--------------------------------------------------------------------------
 |
@@ -34,12 +12,12 @@ App::after(function($request, $response)
 */
 
 Route::filter('auth', function() {
-	if(Auth::guest()) {
+	if(Auth::guest() and Metadata::installed()) {
 		if(Request::ajax()) {
 			return Response::make('Unauthorized', 401);
-		} else {
-			return Redirect::guest(Config::get('admin_location') . '/login');
 		}
+
+		return Redirect::guest(Config::get('admin_location') . '/login');
 	}
 });
 
@@ -74,13 +52,13 @@ Route::filter('guest', function() {
 */
 
 Route::filter('installed', function() {	
-	if(!Metadata::installed()) {
+	if(!Metadata::installed() and !Request::is('install')) {
 		return Redirect::to('install');
 	}
 });
 
 Route::filter('installing', function() {
-	if(Metadata::installed()) {
+	if(Metadata::hasDB()) {
 		return Redirect::to('/');
 	}
 });

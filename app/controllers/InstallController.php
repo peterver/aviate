@@ -18,13 +18,9 @@ class InstallController extends Controller {
 
 		//  And save it to the config file
 		$src = 'app/config/database.php';
-		
-		if(!File::put($src, $file)) {
-			$error = 'Could not save to <code>' . $src . '</code>. Please check your file permissions.';
-		}
 
-		if($error) {
-			View::share('error', $error);
+		if(!File::put($src, $file)) {
+			View::share('error', 'Could not save to <code>' . $src . '</code>. Please check your file permissions.');
 		}
 
 		return self::showWelcome();

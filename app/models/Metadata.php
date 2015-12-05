@@ -81,7 +81,7 @@ class Metadata extends Eloquent {
 		if(Config::get('database.default') === 'sqlite' and Config::get('database.connections.sqlite.database') === ':memory:') {
 			return false;
 		}
-
+		
 		return !(!DB::connection()->getDatabaseName() or !Schema::hasTable(with(new static)->getTable()));
 	}
 }
