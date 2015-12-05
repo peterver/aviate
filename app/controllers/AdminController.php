@@ -14,6 +14,7 @@ class AdminController extends BaseController {
 				array(
 					'Users' => admin_path('users'),
 					'Settings' => admin_path('settings'),
+					'Themes' => admin_path('themes'),
 					'Log out' => admin_path('logout')
 				),
 

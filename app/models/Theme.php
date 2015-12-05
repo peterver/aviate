@@ -52,6 +52,22 @@ class Theme {
 		return self::$prefix . $file;
 	}
 
+	public static function set($location) {
+		View::addNamespace('theme', 'public/themes/' . $location);
+
+		return new self;
+	}
+
+	public static function info($name) {
+		$path = public_path() . '/themes/' . $name . '/metadata.json';
+
+		if(!File::exists($path)) {
+			return false;
+		}
+
+		return json_decode(File::get($path));
+	}
+
 	public static function available($onlyNames = false) {
 		$themes = array();
 		$prefix = public_path() . '/themes/';
@@ -63,6 +79,8 @@ class Theme {
 				//  Stupid but it's the only way to get it to work with 
 				if($onlyNames === true) {
 					$json = $json->name;
+				} else {
+					$json->slug = basename($theme);
 				}
 
 				$themes[str_replace($prefix, '', $theme)] = $json;

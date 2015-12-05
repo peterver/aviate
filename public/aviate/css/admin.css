@@ -16,6 +16,14 @@ h1 .btn {
 	float: right;
 }
 
+iframe {
+	border: none;
+	width: 100%;
+	height: 100%;
+
+	min-height: 650px;
+}
+
 .msg {
 	background: #0cacaa;
 	color: #fff;
@@ -106,7 +114,7 @@ section.secondary, div.secondary {
 	.secondary li a {
 		display: block;
 		width: 100%;
-		padding: 8px 25px;
+		padding: 8px 20px;
 
 		color: #766e65;
 		transition: none;
@@ -137,6 +145,72 @@ section.secondary, div.secondary {
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+		.secondary li img {
+			width: 100%;
+			height: auto;
+		}
+	.secondary .theme-list li a {
+		margin: 0 20px 12px;
+		padding: 0;
+		width: auto;
+		height: 150px;
+
+		position: relative;
+		overflow: hidden;
+
+		border-radius: 4px;
+		box-shadow: 0 2px 4px rgba(0,0,0,.1);
+	}
+		.secondary .theme-list li a:after,
+		.secondary .theme-list li img,
+		.secondary .theme-list li b {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+			.secondary .theme-list li a:after {
+				content: '';
+				z-index: 2;
+
+				display: block;
+				height: 55px;
+
+				background: linear-gradient(rgba(8,130,148,0), rgba(8,130,148,.15));
+			}
+			.secondary .theme-list li img {
+				top: 0;
+				z-index: 1;
+				border-radius: 4px;
+				opacity: .8;
+			}
+		.secondary .theme-list li b {
+			display: block;
+			padding: 8px 14px;
+
+			bottom: -40px;
+			z-index: 3;
+
+			background: rgba(255,255,255,.95);
+			color: #404448;
+
+			font-size: 13px;
+			border-radius: 0 0 3px 3px;
+
+			opacity: 0;
+			transition: opacity .2s, bottom .2s;
+		}
+			.secondary .theme-list li a:hover b {
+				bottom: 0;
+				opacity: 1;
+			}
+			.secondary .theme-list li em {
+				float: right;
+				font-style: normal;
+				font-weight: normal;
+
+				color: #13c1bf;
+			}
 	.secondary .filter {
 		padding: 20px 20px 12px;
 		box-shadow: inset 0 -1px 0 rgba(0,0,0,.05);

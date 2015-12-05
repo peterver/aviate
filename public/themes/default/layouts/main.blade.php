@@ -81,11 +81,15 @@
 		<script>
 			document.documentElement.className = 'js';
 
-			var msnry = new Masonry('.products', {
-				itemSelector: '.product',
-				percentPosition: true,
-				gutter: '.product-gutter'
-			});
+			var products = document.querySelector('.products');
+
+			if(products) {
+				new Masonry(products, {
+					itemSelector: '.product',
+					percentPosition: true,
+					gutter: '.product-gutter'
+				});
+			}
 	</script>
 
         @if(isset($site->google_analytics))

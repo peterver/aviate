@@ -8,5 +8,8 @@
 		"twitter": "@idiot"
 	},
 
+	"screenshot": "assets/img/screenshot.png",
+	"requires": ["Banner", "Hello"],
+
 	"licence": "http://www.wtfpl.net/txt/copying/"
 }
