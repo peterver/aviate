@@ -13,7 +13,7 @@ class Products extends Eloquent implements StaplerableInterface {
 	protected $fillable = ['name', 'slug', 'description', 'price', 'stock', 'gallery_id', 'category_id'];
 
     public function getCategoryAttribute($value) {
-        return Category::whereId(fallback($this->attributes['category_id'], 1))->first();
+        return Category::find(fallback($this->attributes['category_id'], 1));
     }
 
     public function gallery() {

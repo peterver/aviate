@@ -10,6 +10,8 @@ class Metadata extends Eloquent {
 	protected $fillable = ['key', 'value'];
 	public $timestamps = false;
 
+	protected static $cache = [];
+
 	public static function format() {
 		$all = self::all();
 		$filtered = [];
@@ -46,12 +48,14 @@ class Metadata extends Eloquent {
 
 	public static function item($what, $fallback = false) {
 		//  If we don't have a database connection
-		if(!DB::connection()->getDatabaseName() or !Schema::hasTable(with(new static)->getTable())) {
-			return false;
+		if(!self::hasDB()) return false;
+
+		if(isset(self::$cache[$what])) {
+			return self::$cache[$what];
 		}
 
 		if($item = self::whereKey($what)->pluck('value')) {
-			return $item;
+			return self::$cache[$what] = $item;
 		}
 
 		return $fallback;
@@ -78,6 +82,6 @@ class Metadata extends Eloquent {
 			return false;
 		}
 
-		return !!DB::connection()->getDatabaseName();
+		return !(!DB::connection()->getDatabaseName() or !Schema::hasTable(with(new static)->getTable()));
 	}
 }

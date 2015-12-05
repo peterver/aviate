@@ -169,6 +169,6 @@ class Currency {
 	}
 
 	public static function price($price) {
-		return self::symbol() . number_format($price);
+		return self::symbol() . number_format($price, 2);
 	}
 }

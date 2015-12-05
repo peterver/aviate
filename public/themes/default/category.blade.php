@@ -11,6 +11,8 @@
 <div class="wrap">
 	@if(has_products_by_category($category->id))
 	<div class="products">
+		<div class="product-gutter"></div>
+
 		@foreach(get_products_by_category($category->id) as $product)
 			@include('theme::partials/product')
 		@endforeach

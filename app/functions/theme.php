@@ -1,5 +1,11 @@
 <?php
 
+//  Extend Blade to allow defining a PHP
+//  block (or any code).
+Blade::extend(function($value) {
+	return preg_replace('/\@define(.+)/', '<?php ${1}; ?>', $value);
+});
+
 function get_current_theme() {
 	return Theme::current();
 }

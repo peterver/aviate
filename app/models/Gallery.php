@@ -16,7 +16,8 @@ class Gallery extends Eloquent implements StaplerableInterface {
         $this->hasAttachedFile('image', [
             'styles' => [
                 'medium' => '600x480',
-                'thumb' => '256x256'
+                'thumb' => '256x256',
+                'small' => '400x300'
             ],
             
             'default_url' => false

@@ -28,7 +28,7 @@
 		<![endif]-->
 	</head>
 	
-	<body class="{{ $class or '' }}">
+	<body class="{{ $class or 'not_found' }}">
 		<main id="site-full">
 			<div class="not-found-msg">
 				{{ $content }}
