@@ -33,8 +33,8 @@ class UsersController extends AdminController {
 		return View::make('admin/users/list')->with('users', User::all());
 	}
 
-	public function getEdit() {
-		$user = User::editing();
+	public function getEdit($id = false) {
+		$user = User::find($id);
 
 		if(!$user) {
 			return Redirect::to(Config::get('admin_location') . '/users');
@@ -48,8 +48,8 @@ class UsersController extends AdminController {
 		));
 	}
 
-	public function postEdit() {
-		$user = User::editing();
+	public function postEdit($id = false) {
+		$user = User::find($id);
 
 		$input = Input::except('_token');
 
@@ -65,6 +65,24 @@ class UsersController extends AdminController {
 			View::share('msg', 'User updated!');
 		}
 
-		return self::getEdit();
+		return self::getEdit($id);
+	}
+
+	public function getCreate() {
+		return View::make('admin/users/create')->with(array(
+			'users' => User::all()
+		));
+	}
+
+	public function postCreate() {
+		$input = Input::except('_token');
+
+		if($user = User::create($input)) {
+			return Redirect::to(admin_path('users/edit/' . $user->id));
+		}
+
+		View::share('error', 'Couldn’t create that user.');
+
+		return self::getCreate();
 	}
 }

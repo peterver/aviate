@@ -26,7 +26,7 @@
 </section>
 
 <section class="tertiary">
-	<a class="btn primary top-right" href="{{ admin_url('users/new') }}" class="primary">Create a new user</a>
+	<a class="btn primary top-right" href="{{ admin_url('users/create') }}" class="primary">Create a new user</a>
 
 	<p class="empty-state">
 		@if(count($users) > 0)

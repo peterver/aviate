@@ -363,11 +363,16 @@ section.secondary, div.secondary {
 	bottom: 0;
 }
 
+.top-right {
+	float: right;
+}
+
 .main-nav {
 	left: 0;
 	width: 180px;
 
 	background: linear-gradient(160deg, #13c1bf 50%, #57c7ed);
+	box-shadow: inset -2px 0 3px rgba(0,0,0,.03);
 }
 	.main-nav .logo, .secondary h1 a {
 		display: block;
@@ -471,6 +476,9 @@ section.secondary, div.secondary {
 	.content > .msg {
 		margin: -40px -40px 40px;
 	}
+		.has-secondary .content > .msg {
+			margin: 0 0 0 240px;
+		}
 		.content > .msg .wrap {
 			width: 100%;
 			margin: 0 40px;

@@ -27,17 +27,6 @@
 
 <section class="tertiary">
 	{{ Form::open() }}
-		@if(isset($msg))
-		<div class="msg">
-			<div class="wrap">{{ $msg }}</div>
-		</div>
-		@endif
-
-		@if(isset($error))
-		<div class="error">
-			<div class="wrap">{{ $error }}</div>
-		</div>
-		@endif
 		
 		<p>
 			{{ Former::text('name') }}
