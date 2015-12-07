@@ -366,6 +366,7 @@ section.secondary, div.secondary {
 	}
 	.main-form label .btn {
 		float: right;
+		margin-top: 0;
 	}
 	.main-form .multi {
 		overflow: hidden;

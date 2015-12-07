@@ -9,7 +9,7 @@
 	<ul class="theme-list">
 		@foreach($themes as $theme)
 		<li data-attrs='{{ json_encode($theme) }}'>
-			<a href="{{ admin_url('themes/view/' . $theme->name) }}">
+			<a href="{{ admin_url('themes/view/' . $theme->slug) }}">
 				<img class="screenshot" src="{{ get_theme_url(fallback($theme->screenshot, 'screenshot.png')) }}">
 				
 				<b>{{ $theme->name }} <em>by {{ $theme->author->name }}</em></b>
