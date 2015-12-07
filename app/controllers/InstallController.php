@@ -51,7 +51,7 @@ class InstallController extends Controller {
 			Stripe::setApiKey(Metadata::item('stripe_key'));
 			Stripe\Balance::retrieve();
 		} catch(Exception $e) {
-			// $error = 'That Stripe key doesn’t look valid!';
+			$error = 'That Stripe key doesn’t look valid!';
 		}
 
 		//  Create the user
@@ -96,5 +96,4 @@ class InstallController extends Controller {
 	protected static function migrate() {
 		Artisan::call('migrate', array('--force' => true));
 	}
-
 }
