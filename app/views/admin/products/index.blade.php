@@ -31,12 +31,13 @@
 				</a>
 			</div>
 		@empty
-			<span class="empty-state">
-				<span>No products! Would you like to add one now?</span>
-				<a class="btn" href="{{ admin_url('products/create') }}">Sure, let’s sell some product</a>
-			</span>
 		@endforelse
 	</div>
+
+	<span class="empty-state">
+		<span>No products! Would you like to add one now?</span>
+		<a class="btn" href="{{ admin_url('products/create') }}">Sure, let’s sell some product</a>
+	</span>
 @stop
 
 @section('scripts')

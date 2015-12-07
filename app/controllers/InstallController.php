@@ -19,13 +19,11 @@ class InstallController extends Controller {
 		//  And save it to the config file
 		$src = 'app/config/database.php';
 		
-		if(!File::put($src, $file)) {
-			$error = 'Could not save to <code>' . $src . '</code>. Please check your file permissions.';
+		if(File::put($src, $file)) {
+			return Redirect::to('install/meta');
 		}
 
-		if($error) {
-			View::share('error', $error);
-		}
+		View::share('error', 'Could not save to <code>' . $src . '</code>. Please check your file permissions.');
 
 		return self::showWelcome();
 	}
@@ -53,7 +51,7 @@ class InstallController extends Controller {
 			Stripe::setApiKey(Metadata::item('stripe_key'));
 			Stripe\Balance::retrieve();
 		} catch(Exception $e) {
-			$error = 'That Stripe key doesn’t look valid!';
+			// $error = 'That Stripe key doesn’t look valid!';
 		}
 
 		//  Create the user

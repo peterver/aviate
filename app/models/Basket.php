@@ -39,7 +39,11 @@ class Basket extends Eloquent {
 	}
 
 	public static function getBasket() {
-		return self::whereSession(Session::get('aviate_basket'))->first();
+		if($basket = self::whereSession(Session::get('aviate_basket'))->first()) {
+			return $basket;
+		}
+
+		return (object) ['data' => []];
 	}
 
 	public static function getContents() {

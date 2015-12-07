@@ -75,6 +75,10 @@ Route::filter('guest', function() {
 
 Route::filter('installed', function() {	
 	if(!Metadata::installed()) {
+		if(Metadata::hasDB()) {
+			return Redirect::to('install/meta');
+		}
+
 		return Redirect::to('install');
 	}
 });
@@ -85,11 +89,6 @@ Route::filter('installing', function() {
 	}
 });
 
-Route::filter('hasDB', function() {
-	if(Metadata::hasDB()) {
-		return Redirect::to('install/meta');
-	}
-});
 
 /*
 |--------------------------------------------------------------------------
