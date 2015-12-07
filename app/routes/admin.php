@@ -1,7 +1,9 @@
 <?php
 
-Route::get(Config::get('admin_location') . '/login', 'UsersController@getLogin');
-Route::post(Config::get('admin_location') . '/login', 'UsersController@postLogin');
+Route::group(array('before' => 'installed'), function() {
+	Route::get(Config::get('admin_location') . '/login', 'UsersController@getLogin');
+	Route::post(Config::get('admin_location') . '/login', 'UsersController@postLogin');
+});
 
 Route::group(array('before' => 'installed|auth'), function() {
 	//  Got to be a better way of doing this.

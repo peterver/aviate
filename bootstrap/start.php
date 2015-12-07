@@ -85,7 +85,7 @@ App::error(function(\PDOException $e, $code) {
 	//  1049: database name
 	//  2002: database server
 	if($dbCode == 1049 or $dbCode == 2002) {
-		 return Redirect::to('install');
+		return Redirect::to('install');
 	}
 });
 
