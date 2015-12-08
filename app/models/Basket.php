@@ -103,7 +103,7 @@ class Basket extends Eloquent {
 			//  Use fallback() as returning an empty basket can
 			//  throw errors sometimes.
 			self::$basket = fallback(
-				self::whereSession(Session::get('aviate_basket'))->first()),
+				self::whereSession(Session::get('aviate_basket'))->first(),
 
 				//  Make sure whatever gets returned is an object.
 				(object) ['data' => []]
