@@ -1,14 +1,16 @@
 <h1>Manage banners</h1>
 
 {{ Form::open() }}
-	@foreach(list_banners() as $id => $banner)
-		<p>
-			<label for="banner-{{ $id }}">Banner content</label>
-			<input name="banner-{{ $id }}" id="banner-{{ $id }}" value="{{ $banner }}">
+	@if(!empty(list_banners()))
+		@foreach(list_banners() as $id => $banner)
+			<p>
+				<label for="banner-{{ $id }}">Banner content</label>
+				<input name="banner-{{ $id }}" id="banner-{{ $id }}" value="{{ $banner }}">
 
-			<a class="inline-input-link symbol remove" title="Remove banner">&times;</a>
-		</p>
-	@endforeach
+				<a class="inline-input-link symbol remove" title="Remove banner">&times;</a>
+			</p>
+		@endforeach
+	@endif
 
 		<p class="new">
 			<label>New banner content</label>
