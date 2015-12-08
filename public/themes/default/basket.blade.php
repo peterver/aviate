@@ -28,19 +28,21 @@
 					@if($item->gallery and $item->gallery->image->url('small'))
 					<img src="{{ $item->gallery->image->url('small') }}" alt="{{ $item->name }}" class="thumbnail">
 					@endif
-
-					<a class="btn delete-item">&times;</a>
 				</td>
 
 				<td class="price">{{ Currency::price($item->price) }}</td>
 				<td class="quantity">
 					&times; {{ $item->quantity }}
 
-					<a class="btn add-item">+</a>
-					<a class="btn remove-item">-</a>
+					<a href="{{ basket_increase_url($item) }}" class="btn add-item">+</a>
+					<a href="{{ basket_decrease_url($item) }}" class="btn remove-item">-</a>
 				</td>
 
-				<td class="total">{{ Currency::price($item->total_price) }}</td>
+				<td class="total">
+					{{ Currency::price($item->total_price) }}
+					
+					<a href="{{ basket_remove_url($item) }}" class="btn delete-item">&times;</a>
+				</td>
 			</tr>
 			@endforeach
 		</table>

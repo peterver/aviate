@@ -55,7 +55,7 @@ View::addLocation(app_path() . '/plugins/');
 | sure they're all loaded so there's no errors
 |
 */
-$functions = array('metadata', 'theme', 'page', 'product');
+$functions = array('metadata', 'theme', 'page', 'product', 'basket');
 
 foreach($functions as $function) {
 	require app_path() . '/functions/' . $function . '.php';

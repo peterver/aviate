@@ -25,6 +25,7 @@ Route::group(array('before' => 'installed'), function() {
 	//  Basket and checkout views
 	Route::get('basket', 'SiteController@basketPage');
 	Route::get('basket/empty', 'SiteController@basketEmpty');
+	Route::get('basket/update/{product_id}', 'SiteController@basketUpdate');
 
 	//  Listen to our category routes
 	//  We need to make sure the category exists and has products

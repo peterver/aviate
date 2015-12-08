@@ -4,6 +4,24 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Aviate version number
+	|--------------------------------------------------------------------------
+	|
+	| We'll use this to keep track of any updates and bugfixes that might
+	| be required for Aviate to run properly. You can turn off update-checking
+	| by setting 'check_for_updates' to be false.
+	|
+	*/
+
+	'version' => '0.0.1',
+
+	//  If you're having problems loading Aviate or getting any cURL errors -
+	//  this might be the cuplrit. It's good to have but in some cases it can
+	//  break things. Only turn it off if you have to.
+	'check_for_updates' => true,
+
+	/*
+	|--------------------------------------------------------------------------
 	| Application Debug Mode
 	|--------------------------------------------------------------------------
 	|
