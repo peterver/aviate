@@ -11,6 +11,7 @@
 
 		<!-- Compiles from LESS -->
         {{ HTML::style('aviate/css/admin.css') }}
+        {{ HTML::style('aviate/css/admin-small.css', array('media' => '(max-width: 1200px)')) }}
         
         <!-- Compiles from current theme, if it exists -->
         {{ HTML::style('themes/' . Metadata::item('theme') . '/admin-custom.css') }}

@@ -474,16 +474,13 @@ section.secondary, div.secondary {
 			border: none;
 		}
 			.main-nav a:before {
-				position: absolute;
-				right: 20px;
-				top: 0;
-
-				width: 20px;
+				display: none;
 
 				text-align: center;
+				font-size: 21px;
 				line-height: 38px;
 
-				opacity: .3;
+				opacity: .5;
 			}
 			.main-nav a:hover {
 				background: rgba(0,0,0,.05);
