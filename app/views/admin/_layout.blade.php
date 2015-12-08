@@ -25,16 +25,16 @@
     			<ul class="actions">
                     @foreach($pages as $page)
                     <li class="{{ Request::segment(2) === $page ? 'active' : '' }}">
-                        <a href="{{ admin_url($page) }}">{{ ucwords($page) }}</a>
+                        <a class="icon-generic icon-{{ $page }}" href="{{ admin_url($page) }}">{{ ucwords($page) }}</a>
                     </li>
                     @endforeach
     			</ul>
         		
         		<ul class="results">
-        			<li><a href="{{ URL::to('/') }}">Visit site</a></li>
+        			<li><a class="icon-visit-site" href="{{ URL::to('/') }}">Visit site</a></li>
                     @foreach($results as $result => $url)
                     <li class="{{ strpos(Request::url(), $url) !== false ? 'active' : '' }}">
-                        <a href="{{ URL::to($url) }}">{{ $result }}</a>
+                        <a class="icon-generic icon-{{ str_replace(admin_path(''), '', $url) }}" href="{{ URL::to($url) }}">{{ $result }}</a>
                     </li>
                     @endforeach
         		</ul>

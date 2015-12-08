@@ -1,4 +1,5 @@
 @import 'reset.css';
+@import 'type.css';
 
 html, body {
 	height: 100%;
@@ -465,11 +466,25 @@ section.secondary, div.secondary {
 		list-style: none;
 	}
 		.main-nav a {
+			position: relative;
 			display: block;
+			padding: 8px 25px;
 
 			color: #fff;
 			border: none;
 		}
+			.main-nav a:before {
+				position: absolute;
+				right: 20px;
+				top: 0;
+
+				width: 20px;
+
+				text-align: center;
+				line-height: 38px;
+
+				opacity: .3;
+			}
 			.main-nav a:hover {
 				background: rgba(0,0,0,.05);
 			}
@@ -485,16 +500,17 @@ section.secondary, div.secondary {
 		margin: 0 0 25px;
 	}
 		.main-nav .actions a {
-			padding: 8px 25px;
 			font-weight: 500;
 		}
 	.main-nav .results {
 		margin-bottom: 25px;
 	}
 		.main-nav .results a {
-			padding: 5px 25px;
 			color: rgba(255,255,255,.75);
 		}
+			.main-nav .results a:before {
+				opacity: .5;
+			}
 			.main-nav .results a:hover {
 				background: rgba(0,0,0,.03);
 			}

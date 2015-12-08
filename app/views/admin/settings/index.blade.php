@@ -10,11 +10,6 @@
 		</p>
 
 		<p>
-			{{ Former::select('theme')->options(Theme::available(true), Theme::current()) }}
-			<em class="help">What theme do you want your shop to use?</em>
-		</p>
-
-		<p>
 			{{ Former::textarea('site_desc')->label('Site description') }}
 			<em class="help">Write a little description about your shop.</em>
 		</p>
