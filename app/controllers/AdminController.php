@@ -6,17 +6,17 @@ class AdminController extends BaseController {
 		View::share(array(
 			'theme' => current_theme(),
 			'pages' => array_merge(
-				array('products', 'categories', 'pages', 'purchases'),
+				['products', 'categories', 'pages', 'purchases'],
 				Plugin::fire('admin.nav-actions')->get()
 			),
 
 			'results' => array_merge(
-				array(
+				[
 					'Users' => admin_path('users'),
 					'Settings' => admin_path('settings'),
 					'Themes' => admin_path('themes'),
 					'Log out' => admin_path('logout')
-				),
+				],
 
 				Plugin::fire('admin.nav-results')->get()
 			),

@@ -85,13 +85,12 @@ class Plugin {
 
 		//  Fire the event and store the data for future
 		$self = new self;
-		$self->data = Event::fire($event, $data);
+		$self->data = fallback(Event::fire($event, $data), $data);
 
 		//  Log we've fired the event
 		self::$fired[$event] = true;
 
-		//  Allow chaining
-		return $self;
+		return $self->data;
 	}
 
 	private static function _strip($file) {

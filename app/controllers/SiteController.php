@@ -1,7 +1,6 @@
 <?php
 
 class SiteController extends BaseController {
-
 	/*
 	 *   When SiteController gets instantiated we want
 	 *   to also include the theme's functions.php (or
@@ -26,19 +25,25 @@ class SiteController extends BaseController {
 	}
 	
 	public function homepage() {
+		Plugin::fire('site.homepage');
+
 		return Theme::render('index');
 	}
 
-	public function singlePage() {
+	public function singlePage($slug = false) {
 		//  If the page isn't found
-		if(!Page::whereSlug(Request::segment(2))->exists()) {
+		if(!Page::whereSlug($slug)->exists()) {
 			return App::abort(404);
 		}
+
+		Plugin::fire('site.page');
 
 		return Theme::render('page');
 	}
 
 	public function notFound() {
+		Plugin::fire('site.not_found');
+
 		return Theme::not_found();
 	}
 
@@ -48,6 +53,8 @@ class SiteController extends BaseController {
 		if(!$category) {
 			return $this->notFound();
 		}
+
+		$category = Plugin::fire('site.category_page', $category);
 
 		View::share('category', $category);
 
@@ -61,16 +68,20 @@ class SiteController extends BaseController {
 			return $this->notFound();
 		}
 
-		View::share(array(
+		$product = Plugin::fire('site.product_page', $product);
+
+		View::share([
 			'product' => $product,
 			'category' => Category::whereSlug($category)->first()
-		));
+		]);
 
 		return Theme::render('product');
 	}
 
 	public function basketPage() {
-		View::share('basket', Basket::getContents());
+		$basket = Plugin::fire('site.basket_page', Basket::getContents());
+
+		View::share('basket', $basket);
 
 		return Theme::render('basket');
 	}

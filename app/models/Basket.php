@@ -10,7 +10,7 @@ class Basket extends Eloquent {
 	 *   and "data", which is a json_encode'd array of
 	 *   product IDs and quantities.
 	 */
-	protected $fillable = array('session', 'data');
+	protected $fillable = ['session', 'data'];
 
 	/*
 	 *   "Cache" our basket so we're not duplicating
@@ -26,18 +26,17 @@ class Basket extends Eloquent {
 	 *   do it manually each time. Lovely!
 	 */
 	public function getDataAttribute($value) {
-		$data = array();
-
-		//  If it's 2 characters or less, it's
-		//  not a valid JSON string.
-		if(empty($value) or strlen($value) < 3) return $data;
+		$data = [];
+		$decoded = json_decode($value);
 
 		//  We need to convert the JSON into a key => value
 		//  array, but for some reason it's returning the keys
 		//  as strings which we can't look up for properly.
 		//  So we'll cast $key as an integer.
-		foreach(json_decode($value) as $key => $row) {
-			$data[(int) $key] = $row;
+		if($decoded) {
+			foreach(json_decode($value) as $key => $row) {
+				$data[(int) $key] = $row;
+			}
 		}
 
 		return $data;
@@ -67,7 +66,7 @@ class Basket extends Eloquent {
 		//  And create the basket in the database
 		return self::create(array(
 			'session' => $hash,
-			'data' => false
+			'data' => null
 		));
 	}
 
@@ -177,6 +176,9 @@ class Basket extends Eloquent {
 			//  Otherwise, we update the quantity.
 			$data[$product] = $quantity;
 		}
+
+		//  Update the plugin data
+		$data = Plugin::fire('basket.update', $data);
 
 		//  Turn the data back into JSON in order to allow us
 		//  to save it into the database.

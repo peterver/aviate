@@ -29,14 +29,14 @@ class InstallController extends Controller {
 	}
 
 	public function showWelcome() {
-		return View::make('install/welcome')->with(array(
-			'databases' => array(
+		return View::make('install/welcome')->with([
+			'databases' => [
 				'mysql' => 'MySQL',
 				'sqlite' => 'SQLite',
 				'pgsql' => 'Postgres',
 				'sqlsrv' => 'SQLSRV'
-			)
-		));
+			]
+		]);
 	}
 
 	public function doMeta() {
@@ -94,7 +94,7 @@ class InstallController extends Controller {
 	}
 
 	protected static function migrate() {
-		Artisan::call('migrate', array('--force' => true, '--seed'));
+		Artisan::call('migrate', ['--force' => true, '--seed']);
 		// Artisan::call('db:ssed');
 	}
 }

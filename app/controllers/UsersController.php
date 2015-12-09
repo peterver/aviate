@@ -2,14 +2,13 @@
 
 class UsersController extends AdminController {
 
-	protected $layout;
-
 	public function getLogin() {
 		return View::make('admin/login');
 	}
 
 	public function getLogout() {
 		Plugin::fire('admin.logout', Auth::user());
+
 		Auth::logout();
 
 		return Redirect::to(Config::get('admin_location') . '/login');
@@ -42,10 +41,10 @@ class UsersController extends AdminController {
 
 		Former::populate($user);
 
-		return View::make('admin/users/edit')->with(array(
+		return View::make('admin/users/edit')->with([
 			'user' => $user,
 			'users' => User::all()
-		));
+		]);
 	}
 
 	public function postEdit($id = false) {
@@ -65,6 +64,8 @@ class UsersController extends AdminController {
 			View::share('msg', 'User updated!');
 		}
 
+		Plugin::fire('admin.user_edited', $user);
+
 		return self::getEdit($id);
 	}
 
@@ -78,6 +79,8 @@ class UsersController extends AdminController {
 		$input = Input::except('_token');
 
 		if($user = User::create($input)) {
+			Plugin::fire('admin.user_created', $user);
+			
 			return Redirect::to(admin_path('users/edit/' . $user->id));
 		}
 

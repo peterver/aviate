@@ -1,7 +1,7 @@
 <?php
 
 function banners() {
-	return Plugin::fire('theme.banner')->get();
+	return Plugin::fire('theme.banner');
 }
 
 function list_banners() {

@@ -12,10 +12,10 @@ class ThemesController extends AdminController {
 			return Redirect::to(admin_path('themes'));
 		}
 
-		return View::make('admin/themes/preview')->with(array(
+		return View::make('admin/themes/preview')->with([
 			'theme' => $theme,
 			'themes' => Theme::available()
-		));
+		]);
 	}
 
 	public function getPreview($theme = false) {
