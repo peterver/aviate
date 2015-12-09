@@ -2,10 +2,10 @@
 
 class Category extends Eloquent {
 	protected $table = 'categories';
-	protected $fillable = array('name', 'slug', 'description');
+	protected $fillable = ['name', 'slug', 'description'];
 
 	public static function slug($id = false) {
-		$result = self::whereId($id)->first();
+		$result = self::find($id);
 
 		if(!$result) {
 			return self::slug(1);

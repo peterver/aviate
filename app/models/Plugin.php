@@ -4,8 +4,8 @@ class Plugin {
 	public $data;
 
 	public static $dir = '';
-	public static $loaded = array();
-	public static $fired = array();
+	public static $loaded = [];
+	public static $fired = [];
 
 	public static function find() {
 		self::$dir = app_path() . '/plugins/';

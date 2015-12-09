@@ -2,7 +2,7 @@
 
 class Currency {
 	//  gist.github.com/Gibbs/3920259
-	public static $symbols = array(
+	public static $symbols = [
 		'AED' => '&#1583;.&#1573;', // ?
 		'AFN' => '&#65;&#102;',
 		'ALL' => '&#76;&#101;&#107;',
@@ -162,7 +162,7 @@ class Currency {
 		'ZAR' => '&#82;',
 		'ZMK' => '&#90;&#75;', // ?
 		'ZWL' => '&#90;&#36;',
-	);
+	];
 
 	public static function symbol($code = 'GBP') {
 		return self::$symbols[$code];

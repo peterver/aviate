@@ -12,7 +12,7 @@ class Gallery extends Eloquent implements StaplerableInterface {
 
 	protected $fillable = ['image'];
 
-	public function __construct(array $attributes = array()) {
+	public function __construct(array $attributes = []) {
         $this->hasAttachedFile('image', [
             'styles' => [
                 'medium' => '600x480',
