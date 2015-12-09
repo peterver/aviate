@@ -1,5 +1,5 @@
 <div class="product">
-	<a href="{{ get_product_slug($product) }}">
+	<a href="{{ product_slug($product) }}">
 		@if($product->gallery)
 		<span class="img-wrap">
 			<img src="{{ URL::to($product->gallery->image->url('medium')) }}" alt="Image for {{ $product->name }}">

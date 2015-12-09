@@ -11,5 +11,7 @@
 	"screenshot": "assets/img/screenshot.png",
 	"requires": ["Banner", "Hello"],
 
+	"include": ["functions.php"],
+
 	"licence": "http://www.wtfpl.net/txt/copying/"
 }

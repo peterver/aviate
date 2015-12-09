@@ -9,8 +9,8 @@ html, body {
 	position: relative;
 
 	background: #fff;
-	border-radius: 3px;
-	box-shadow: 0 12px 20px rgba(0,0,0,.03);
+	border-radius: 1px;
+	box-shadow: 0 8px 12px rgba(0,0,0,.05);
 }
 
 h1 .btn {
@@ -65,6 +65,26 @@ iframe {
 		margin: 0;
 	}
 
+#top {
+	height: 60px;
+	padding: 0 20px;
+}
+	#top .logo {
+		display: block;
+		float: left;
+		padding: 20px 13px 15px;
+
+		border: none;
+		opacity: .3;
+	}
+	#top .user-info {
+		float: right;
+
+		font-size: 13px;
+		line-height: 60px;
+		color: #8b8882;
+	}
+
 .hint-wrapper {
 	display: block;
 	position: relative;
@@ -115,11 +135,14 @@ section.secondary, div.secondary {
 	.secondary li a {
 		display: block;
 		width: 100%;
-		padding: 8px 20px;
+		padding: 9px 20px;
 
 		color: #766e65;
 		transition: none;
 	}
+		.secondary li:first-child a {
+			padding-top: 12px;
+		}
 		.secondary li a span {
 			float: right;
 			opacity: .5;
@@ -218,7 +241,9 @@ section.secondary, div.secondary {
 	}
 
 .tertiary {
+	position: relative;
 	padding: 40px;
+	height: 100%;
 	margin-left: 240px;
 }
 	.tertiary h2 {
@@ -424,13 +449,13 @@ section.secondary, div.secondary {
 
 .frame {
 	position: absolute;
-	left: 16px;
-	top: 16px;
-	right: 16px;
-	bottom: 16px;
+	left: 10px;
+	top: 58px;
+	right: 10px;
+	bottom: 10px;
 /*	left: 0; right: 0; top: 0; bottom: 0; */
 
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .main-nav, .content {
@@ -446,8 +471,10 @@ section.secondary, div.secondary {
 .main-nav {
 	left: 0;
 	width: 180px;
+	padding-top: 20px;
 
-	background: linear-gradient(160deg, #13c1bf 50%, #57c7ed);
+	background: #2e2c2a;
+	/*background: linear-gradient(160deg, #13c1bf 50%, #57c7ed);*/
 	box-shadow: inset -2px 0 3px rgba(0,0,0,.03);
 }
 	.main-nav .logo, .secondary h1 a {
@@ -468,31 +495,44 @@ section.secondary, div.secondary {
 		.main-nav a {
 			position: relative;
 			display: block;
-			padding: 8px 25px;
+			padding: 9px 25px;
 
-			color: #fff;
+			color: #8f8a85;
 			border: none;
 		}
+			.main-nav a:hover {
+				color: #fff;
+			}
 			.main-nav a:before {
 				display: none;
 
 				text-align: center;
 				font-size: 21px;
 				line-height: 38px;
-
-				opacity: .5;
 			}
 			.main-nav a:hover {
 				background: rgba(0,0,0,.05);
 			}
 			.main-nav .active a {
-				background: #fff;
-				color: #0da0a5;
+				color: #25e3e1 !important;
+				border-left: 3px solid #13c1bf;
+				margin-left: -3px;
 			}
-				.has-secondary .main-nav .active a,
-				.has-secondary .main-nav .results .active a {
-					background: #fcfbfa;
+				.main-nav .active a:after {
+					content: '';
+					position: absolute;
+					right: 0;
+					top: 50%;
+
+					margin-top: -6px;
+
+					border-top: 6px solid transparent;
+					border-bottom: 6px solid transparent;
+					border-right: 6px solid #fff;
 				}
+					.has-secondary .main-nav .active a:after {
+						border-right-color: #fcfbfa;
+					}
 	.main-nav .actions {
 		margin: 0 0 25px;
 	}
@@ -503,17 +543,10 @@ section.secondary, div.secondary {
 		margin-bottom: 25px;
 	}
 		.main-nav .results a {
-			color: rgba(255,255,255,.75);
+			color: #5c5957;
 		}
-			.main-nav .results a:before {
-				opacity: .5;
-			}
 			.main-nav .results a:hover {
-				background: rgba(0,0,0,.03);
-			}
-			.main-nav .results .active a {
-				background: #fff;
-				color: #13c1bf;
+				color: #b1ada9;
 			}
 	.main-nav small {
 		position: absolute;

@@ -1,6 +1,6 @@
 <?php
 
-function get_banners() {
+function banners() {
 	return Plugin::fire('theme.banner')->get();
 }
 

@@ -3,8 +3,6 @@
 @section('content')
 	<div class="list secondary">
 		@if(Page::all()->count())
-		<h1><a href="{{ admin_url('pages') }}">All pages</a></h1>
-
 		<ul>
 			@foreach(Page::all() as $nav)
 			<li @if(Request::is(admin_path('pages/edit/' . $nav->id))) class="active" @endif>

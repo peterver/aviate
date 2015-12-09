@@ -62,8 +62,8 @@ foreach($functions as $function) {
 }
 
 View::addNamespace('theme', 'public/themes/' . Metadata::item('theme', 'default'));
-View::addLocation(get_theme_path('layouts'));
-View::addLocation(get_theme_path('partials'));
+View::addLocation(theme_path('layouts'));
+View::addLocation(theme_path('partials'));
 
 
 /*

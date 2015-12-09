@@ -54,11 +54,10 @@ class Metadata extends Eloquent {
 			return self::$cache[$what];
 		}
 
-		if($item = self::whereKey($what)->pluck('value')) {
-			return self::$cache[$what] = $item;
-		}
-
-		return $fallback;
+		return fallback(
+			self::$cache[$what] = self::whereKey($what)->pluck('value'),
+			$fallback
+		);
 	}
 
 	public static function json($key) {

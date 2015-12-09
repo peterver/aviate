@@ -4,7 +4,7 @@ class AdminController extends BaseController {
 
 	public function __construct() {
 		View::share(array(
-			'theme' => get_current_theme(),
+			'theme' => current_theme(),
 			'pages' => array_merge(
 				array('products', 'categories', 'pages', 'purchases'),
 				Plugin::fire('admin.nav-actions')->get()

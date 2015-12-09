@@ -17,25 +17,34 @@
         {{ HTML::style('themes/' . Metadata::item('theme') . '/admin-custom.css') }}
     </head>
     <body>
+        <header id="top">
+            <a class="logo" href="{{ admin_url() }}">
+                {{ HTML::image('aviate/aviate-logo.png', 'Aviate CMS logo', ['width' => 23, 'height' => 19]) }}      
+            </a>
+
+            <p class="user-info">Logged in as {{ Auth::user()->username }}. <a href="{{ admin_url('logout') }}">Log out?</a></p>
+        </header>
+
+
     	<div class="frame">
             <nav class="main-nav">
-                <a class="logo" href="{{ admin_url() }}">
-                    {{ HTML::image('aviate/aviate-logo.png', 'Aviate CMS logo', ['width' => 23, 'height' => 19]) }}      
-                </a>
-
     			<ul class="actions">
                     @foreach($pages as $page)
                     <li class="{{ Request::segment(2) === $page ? 'active' : '' }}">
-                        <a class="icon-generic icon-{{ $page }}" href="{{ admin_url($page) }}">{{ ucwords($page) }}</a>
+                        <a class="icon-generic icon-{{ $page }}" href="{{ admin_url($page) }}" title="{{ ucwords($page) }}">
+                            {{ ucwords($page) }}
+                        </a>
                     </li>
                     @endforeach
     			</ul>
         		
         		<ul class="results">
-        			<li><a class="icon-visit-site" href="{{ URL::to('/') }}">Visit site</a></li>
+        			<li><a class="icon-visit-site" title="Visit site" href="{{ URL::to('/') }}">Visit site</a></li>
                     @foreach($results as $result => $url)
                     <li class="{{ strpos(Request::url(), $url) !== false ? 'active' : '' }}">
-                        <a class="icon-generic icon-{{ str_replace(admin_path(''), '', $url) }}" href="{{ URL::to($url) }}">{{ $result }}</a>
+                        <a class="icon-generic icon-{{ str_replace(admin_path(''), '', $url) }}" title="{{ $result }}" href="{{ URL::to($url) }}">
+                            {{ $result }}
+                        </a>
                     </li>
                     @endforeach
         		</ul>

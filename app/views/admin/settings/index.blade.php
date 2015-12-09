@@ -1,7 +1,7 @@
 @extends('admin/_layout')
 
 @section('content')
-	<h1>Create new Page</h1>
+	<h1>Site settings</h1>
 
 	{{ Form::open() }}
 		<p>

@@ -6,21 +6,21 @@
 		<meta http-equiv="Content-Language" content="en">
 
 		<title>
-			{{ get_site_name() }} &mdash; {{ $title or get_site_description() }}
+			{{ site_name() }} &mdash; {{ $title or site_description() }}
 		</title>
 
 		<meta property="og:url" content="{{ URL::to('/') }}">
-		<meta property="og:site_name" content="{{ get_site_name() }}">
-		<meta property="og:title" content="{{ $title or get_site_description() }}">
-		<meta property="og:description" content="{{ get_site_description() }}">
+		<meta property="og:site_name" content="{{ site_name() }}">
+		<meta property="og:title" content="{{ $title or site_description() }}">
+		<meta property="og:description" content="{{ site_description() }}">
 		
 		@if(isset($site->google_analytics))
-			<meta name="google-analytics" content="$site->google_analytics">
+			<meta name="google-analytics" content="{{ $site->google_analytics }}">
 		@endif
 
-		<link rel="icon" type="image/x-icon" href="{{ get_asset_url('favicon.png') }}">
+		<link rel="icon" type="image/x-icon" href="{{ asset_url('favicon.png') }}">
 
-		{{ get_stylesheet() }}
+		{{ stylesheet() }}
 
 		<!--[if lt IE 9]>
 			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,7 +39,7 @@
 			</nav>
 
 			{{ Form::open(array('url' => 'search')) }}
-				<input type="search" placeholder="Search {{ get_site_name() }}&hellip;" name="query">
+				<input type="search" placeholder="Search {{ site_name() }}&hellip;" name="query">
 				<button type="submit" class="hidden">Submit query</button>
 			{{ Form::close() }}
 		</section>
@@ -47,8 +47,8 @@
 		<header id="site-header">
 			<div class="wrap">
 				<a class="site-logo" href="{{ URL::to('/') }}" title="Click to go back to the homepage">
-					<!-- {{ get_site_name() }} -->
-					{{ get_asset('aviate-logo.png', 'Aviate CMS logo', array('width' => 93, 'height' => 19)) }}
+					<!-- {{ site_name() }} -->
+					{{ theme_asset('aviate-logo.png', 'Aviate CMS logo', array('width' => 93, 'height' => 19)) }}
 				</a>
 				
 				<nav class="site-categories">
@@ -70,11 +70,11 @@
 		</main>
 		
 		<footer id="site-footer">
-			<small>&copy; {{ date('Y') }} {{ get_site_name() }}. All rights reserved.</small>
+			<small>&copy; {{ date('Y') }} {{ site_name() }}. All rights reserved.</small>
 
 			<!-- You can remove this if you really want to :( -->
 			<a target="_blank" class="attribution" href="//aviatecms.com">
-				Powered by {{ get_asset('aviate-logo.png', 'Aviate CMS logo') }}
+				Powered by {{ theme_asset('aviate-logo.png', 'Aviate CMS logo') }}
 			</a>
 		</footer>
 
