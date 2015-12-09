@@ -76,7 +76,7 @@ function product_slug($product) {
 	if(!is_object($product)) return false;
 
 	return URL::to(
-		join('/', [Category::slug($product->category_id), $product->slug)]
+		join('/', [Category::slug($product->category_id), $product->slug])
 	);
 }
 

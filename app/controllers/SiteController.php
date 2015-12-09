@@ -2,7 +2,28 @@
 
 class SiteController extends BaseController {
 
-	protected $layout;
+	/*
+	 *   When SiteController gets instantiated we want
+	 *   to also include the theme's functions.php (or
+	 *   whatever it gets assigned as in metadata.json).
+	 */
+	public function __construct() {
+		//  Get our theme's JSON includes as an array
+		//  and save it for use later on.
+		$includes = Theme::json('include');
+
+		//  Right now we only allow an array of files
+		//  (relative to theme root) to include.
+		if(is_array($includes)) {
+			foreach($includes as $include) {
+				$path = theme_path($include);
+				
+				if(File::exists($path)) {
+					include_once $path;
+				}
+			}
+		}
+	}
 	
 	public function homepage() {
 		return Theme::render('index');

@@ -68,21 +68,30 @@ class Theme {
 		return json_decode(File::get($path));
 	}
 
+	public static function json($path = '', $key = false) {
+		if(!$path) {
+			$path = self::current();
+		}
+
+		$json = public_path() . '/themes/' . $path . '/metadata.json';
+
+		if(File::exists($json) and $json = json_decode(File::get($json))) {
+			if($key) {
+				return object_get($json, $key);
+			}
+
+			return $json;
+		}
+
+		return false;
+	}
+
 	public static function available($onlyNames = false) {
 		$themes = array();
 		$prefix = public_path() . '/themes/';
 
 		foreach(File::directories($prefix) as $theme) {
-			$json = $theme . '/metadata.json';
-
-			if(File::exists($json) and $json = json_decode(File::get($json))) {
-				//  Stupid but it's the only way to get it to work with 
-				if($onlyNames === true) {
-					$json = $json->name;
-				} else {
-					$json->slug = basename($theme);
-				}
-
+			if($json = self::json($theme . '/metadata.json')) {
 				$themes[str_replace($prefix, '', $theme)] = $json;
 			}
 		}

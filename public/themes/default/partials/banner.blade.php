@@ -1,6 +1,6 @@
-@if(function_exists('get_banners'))
+@if(function_exists('banners'))
 <div class="banner">
-	@foreach(get_banners() as $slide)
+	@foreach(banners() as $slide)
 	<div class="slide">
 		{{ $slide }}
 	</div>
