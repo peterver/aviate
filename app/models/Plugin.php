@@ -6,6 +6,11 @@ class Plugin {
 	public static $dir = '';
 	public static $loaded = [];
 	public static $fired = [];
+	public static $events = [];
+
+	public function __construct() {
+		return self::init();
+	}
 
 	public static function find() {
 		self::$dir = app_path() . '/plugins/';
@@ -64,7 +69,7 @@ class Plugin {
 			return;
 		}
 
-		return Event::listen($event, $callback);
+		return self::$events[$event] = Event::listen($event, $callback);
 	}
 
 	public static function push($event, $data) {
@@ -79,10 +84,7 @@ class Plugin {
 		return $status;
 	}
 
-	public static function fire($event, $data = array()) {
-		//  Load all of our plugins
-		self::init();
-
+	public static function trigger($event, $data = array()) {
 		//  Fire the event and store the data for future
 		$self = new self;
 		$self->data = fallback(Event::fire($event, $data), $data);
@@ -90,7 +92,11 @@ class Plugin {
 		//  Log we've fired the event
 		self::$fired[$event] = true;
 
-		return $self->data;
+		return $self;
+	}
+
+	public static function fire($event, $data = array()) {
+		return self::trigger($event, $data)->get();
 	}
 
 	private static function _strip($file) {
@@ -137,5 +143,9 @@ class Plugin {
 
 	public static function fired($event) {
 		return in_array($event, self::$fired);
+	}
+
+	public static function all() {
+		return self::$events;
 	}
 }

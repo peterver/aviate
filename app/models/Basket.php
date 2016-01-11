@@ -53,7 +53,7 @@ class Basket extends Eloquent {
 		//  A bit of sanity-checking. Don't keep creating
 		//  more and more baskets.
 		if(Session::get('aviate_basket')) {
-			return;
+			return self::$basket;
 		}
 
 		//  Generate a hash for our session and database to
@@ -66,7 +66,7 @@ class Basket extends Eloquent {
 		//  And create the basket in the database
 		return self::create(array(
 			'session' => $hash,
-			'data' => null
+			'data' => '[]'
 		));
 	}
 
@@ -91,8 +91,8 @@ class Basket extends Eloquent {
 	public static function getBasket() {
 		//  Make sure we've actually got a basket to get first
 		//  if not - we need to create it.
-		if(!Session::get('aviate_basket')) {
-			self::generate();
+		if(!$session = Session::get('aviate_basket')) {
+			return self::generate();
 		}
 
 		//  Use our "cache" to see if we've already queried
@@ -101,12 +101,7 @@ class Basket extends Eloquent {
 			//  If not, we'll create it ourselves.
 			//  Use fallback() as returning an empty basket can
 			//  throw errors sometimes.
-			self::$basket = fallback(
-				self::whereSession(Session::get('aviate_basket'))->first(),
-
-				//  Make sure whatever gets returned is an object.
-				(object) ['data' => []]
-			);
+			self::$basket = self::whereSession($session)->first();
 		}
 
 		//  Give the basket back
@@ -204,13 +199,16 @@ class Basket extends Eloquent {
 
 		$data[$product] = $quantity;
 
+		//  Update the plugin data
+		$data = Plugin::fire('basket.add', $data);
+
 		$item->data = json_encode($data);
 
 		return $item->save();
 	}
 
 	public static function items() {
-		return self::getBasket()->data;
+		return array_get(self::getBasket(), 'data', array());
 	}
 
 	public static function itemCount($quantity = 0) {

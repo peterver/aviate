@@ -144,6 +144,7 @@ return array(
 	    'Codesleeve\LaravelStapler\Providers\L4ServiceProvider',
 	    'Former\FormerServiceProvider',
 	    'VTalbot\Markdown\MarkdownServiceProvider',
+	    'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*
@@ -213,6 +214,7 @@ return array(
 		'Stripe'          => '\Stripe\Stripe',
 		'Former'          => 'Former\Facades\Former',
 		'Markdown'		  => 'VTalbot\Markdown\Facades\Markdown',
+		'Debugbar'		  => 'Barryvdh\Debugbar\Facade',
 	),
 
 );
