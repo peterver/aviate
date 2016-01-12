@@ -4,7 +4,7 @@
 	</div>
 </section>
 
-	<div class="wrap">
+<div class="wrap">
 	@if($product->image)
 		<img src="{{ $product->image }}">
 	@endif

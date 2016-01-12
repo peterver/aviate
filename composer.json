@@ -4,7 +4,7 @@
 	"keywords": ["ecommerce", "cms", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*",
+        "laravel/framework": "master",
 		"stripe/stripe-php": "^3.4",
 		"codesleeve/laravel-stapler": "1.0.*",
 		"anahkiasen/former": "~3.4",
@@ -20,7 +20,6 @@
 			"app/tests/TestCase.php"
 		]
 	},
-	
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",
@@ -36,7 +35,5 @@
 	},
 	"config": {
 		"preferred-install": "dist"
-	},
-	
-	"minimum-stability": "stable"
+	}
 }

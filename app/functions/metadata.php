@@ -103,9 +103,18 @@ function excerpt($string, $limit = 20, $suffix = '&hellip;', $delimiter = ' ') {
  *   -> 'I like cats'
  */
 function fallback() {
-	foreach(func_get_args() as $arg) {
+	$args = func_get_args();
+
+	foreach($args as $arg) {
+		if(is_array($arg) and !empty($arg)) {
+			return $arg;
+		}
+
 		if($arg) return $arg;
 	}
 
-	return false;
+	//  If there's no truthy arguments, return the last argument
+	//  not sure if this is the right thing to do yet.
+	//  return false;
+	return $args[count($args) - 1];
 }

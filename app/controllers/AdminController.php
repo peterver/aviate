@@ -7,7 +7,7 @@ class AdminController extends BaseController {
 			'theme' => current_theme(),
 			'pages' => array_merge(
 				['products', 'categories', 'pages', 'purchases'],
-				Plugin::fire('admin.nav-actions')->get()
+				Plugin::fire('admin.nav-actions')
 			),
 
 			'results' => array_merge(
@@ -18,11 +18,11 @@ class AdminController extends BaseController {
 					'Log out' => admin_path('logout')
 				],
 
-				Plugin::fire('admin.nav-results')->get()
+				Plugin::fire('admin.nav-results')
 			),
 
 			//  Basic plugin test
-			'welcome_message' => Plugin::fire('admin.welcome_message', 'Welcome to Aviate!')->last()
+			'welcome_message' => Plugin::trigger('admin.welcome_message', 'Welcome to Aviate!')->last()
 		));
 
 		//  Don't use Bootstrap-style inputs
@@ -36,7 +36,7 @@ class AdminController extends BaseController {
 	}
 
 	public function notFound() {
-		$slug = Plugin::fire('admin.pages')->get(Request::segment(2));
+		$slug = Plugin::trigger('admin.pages')->get(Request::segment(2));
 
 		if($slug) {
 			return View::make('admin/base')->nest('content', 'plugin::' . $slug);

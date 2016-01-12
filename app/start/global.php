@@ -61,7 +61,7 @@ foreach($functions as $function) {
 	require app_path() . '/functions/' . $function . '.php';
 }
 
-View::addNamespace('theme', 'public/themes/' . Metadata::item('theme', 'default'));
+View::addNamespace('theme', public_path() . '/themes/' . Metadata::item('theme', 'default'));
 View::addLocation(theme_path('layouts'));
 View::addLocation(theme_path('partials'));
 
