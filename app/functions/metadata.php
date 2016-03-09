@@ -118,3 +118,20 @@ function fallback() {
 	//  return false;
 	return $args[count($args) - 1];
 }
+
+/*
+ *   array_squish($array)
+ *   
+ *   Turn an itemised hash-list of arrays into a merged single-
+ *   dimensional array. I think.
+ */
+function array_squish($array, $squished = []) {
+	foreach($array as $item) {
+		$key = array_keys($item)[0];
+		$row = $item[$key];
+
+		$squished[$key] = $row;
+	}
+
+	return $squished;
+}

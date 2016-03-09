@@ -34,6 +34,26 @@
                         </a>
                     </li>
                     @endforeach
+
+                    <li class="has-dropdown">
+                        <a href="{{ admin_url('plugins') }}">
+                            {{ HTML::image('bower_components/engine/svg/plugins.svg') }}
+
+                            Plugins
+                        </a>
+
+                        <ul class="dropdown">
+                            @foreach($plugins as $slug => $opts)
+                                <li>
+                                    <a href="{{ admin_url($slug) }}">
+                                        {{ HTML::image('bower_components/engine/svg/' . fallback(@$opts['icon'], 'generic') . '.svg') }}
+
+                                        {{ $opts['title'] }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
                 </ul>
 
                 <ul class="results">
@@ -85,8 +105,9 @@
         <script>window.jQuery || document.write('<script src="{{ URL::to('aviate/js/jquery.min.js') }}"><\/script>')</script>
 
         {{ HTML::script('bower_components/svg-injector/svg-injector.js') }}
+        {{ HTML::script('bower_components/engine/js/engine.min.js') }}
         {{ HTML::script('aviate/js/main.js') }}
-        
+
         @yield('scripts')
     </body>
 </html>

@@ -1,6 +1,15 @@
 <?php
 
 class Banner {
+	public static $metadata = [
+		'title' => 'Banner manager',
+		'icon' => 'butterfly',
+		'author' => [
+			'name' => '@idiot',
+			'email' => 'iam@visualidiot.com'
+		]
+	];
+	
 	public function __construct() {
 		//  Add our banner slides to the theme/frontend
 		if(!Plugin::fired('theme.banner')) {
@@ -13,7 +22,8 @@ class Banner {
 	}
 
 	public function adminNav() {
-		return 'banner';
+		//  URL => metadata
+		return ['banner' => self::$metadata];
 	}
 
 	public function adminPage() {
@@ -25,6 +35,7 @@ class Banner {
 			);
 		}
 
-		return array('banner' => 'banner/admin/page');
+		//  URL => file
+		return ['banner' => 'banner/admin/page'];
 	}
 }
