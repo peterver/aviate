@@ -35,7 +35,7 @@
                     </li>
                     @endforeach
 
-                    <li class="has-dropdown {{ in_array(Request::segment(2), array_values($content)) ? 'active' : '' }}">
+                    <li class="has-dropdown {{ in_array(Request::segment(2), array_values($feather)) ? 'active' : '' }}">
                         <a href="{{ admin_url('pages') }}">
                             {{ HTML::image('bower_components/engine/svg/feather.svg') }}
 
@@ -43,7 +43,7 @@
                         </a>
 
                         <ul class="dropdown">
-                            @foreach($content as $content_title => $content_url)
+                            @foreach($feather as $content_title => $content_url)
                             <li class="{{ Request::segment(2) === $content_url ? 'active' : '' }}">
                                 <a href="{{ admin_url($content_url) }}">
                                     {{ HTML::image('bower_components/engine/svg/' . $content_url . '.svg') }}
@@ -55,7 +55,7 @@
                         </ul>
                     </li>
 
-                    <li class="has-dropdown">
+                    <li class="has-dropdown {{ in_array(Request::segment(2), array_keys($plugins)) ? 'active' : '' }}">
                         <a href="{{ admin_url('plugins') }}">
                             {{ HTML::image('bower_components/engine/svg/plugins.svg') }}
 
@@ -64,7 +64,7 @@
 
                         <ul class="dropdown">
                             @foreach($plugins as $slug => $opts)
-                                <li>
+                                <li class="{{ Request::segment(2) === $slug ? 'active' : '' }}">
                                     <a href="{{ admin_url($slug) }}">
                                         {{ HTML::image('bower_components/engine/svg/' . fallback(@$opts['icon'], 'generic') . '.svg') }}
 

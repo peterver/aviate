@@ -7,7 +7,8 @@ class AdminController extends BaseController {
 			'theme' => current_theme(),
 			'pages' => ['products', 'purchases'],
 
-			'content' => [
+			//  What's going in the feather nav?
+			'feather' => [
 				'Pages' => 'pages',
 				'Themes' => 'themes',
 				'Categories' => 'categories'
