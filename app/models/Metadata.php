@@ -12,6 +12,10 @@ class Metadata extends Eloquent {
 
 	protected static $cache = [];
 
+	public static function version() {
+		return AVIATE_VERSION;
+	}
+
 	public static function format() {
 		$all = self::all();
 		$filtered = [];

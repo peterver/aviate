@@ -3,7 +3,7 @@
 class UsersController extends AdminController {
 
 	public function getLogin() {
-		return View::make('admin/login');
+		return View::make('admin/login')->with('class', 'gradient');
 	}
 
 	public function getLogout() {

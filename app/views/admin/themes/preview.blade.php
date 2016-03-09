@@ -19,7 +19,7 @@
 	</ul>
 </section>
 
-<section class="tertiary">
+<section class="primary">
 	<iframe src="{{ admin_url('themes/preview/' . $theme->slug) }}"></iframe>
 </section>
 @stop

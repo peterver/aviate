@@ -25,7 +25,7 @@
 	</ul>
 </section>
 
-<section class="tertiary">
+<section class="primary">
 	<h1>Creating a new user</h1>
 	{{ Form::open() }}
 		

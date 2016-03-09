@@ -16,7 +16,8 @@
         <!-- Compiles from current theme, if it exists -->
         {{ HTML::style('themes/' . Metadata::item('theme') . '/admin-custom.css') }}
     </head>
-    <body>
+
+    <body class="auth">
     	@yield('content')
 
 		<!-- JS wankery -->

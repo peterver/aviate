@@ -21,7 +21,7 @@
 		@endif
 	</div>
 
-	{{ Form::open(['class' => 'tertiary']) }}
+	{{ Form::open(['class' => 'primary']) }}
 		<h2>Create new category</h2>
 
 		<p>

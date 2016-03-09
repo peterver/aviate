@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sqlite',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -48,10 +48,77 @@ return array(
 
 		'sqlite' => array(
 			'driver'   => 'sqlite',
-			'database' => ':memory:',
-			'prefix'   => '',
-		)
+			'database' => __DIR__.'/../database/production.sqlite',
+			'prefix'   => 'aviate_',
+		),
 
-	)
+		'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => '127.0.0.1',
+			'database'  => 'aviate',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => 'aviate_',
+		),
+
+		'pgsql' => array(
+			'driver'   => 'pgsql',
+			'host'     => '127.0.0.1',
+			'database' => 'aviate',
+			'username' => 'root',
+			'password' => '',
+			'charset'  => 'utf8',
+			'prefix'   => 'aviate_',
+			'schema'   => 'public',
+		),
+
+		'sqlsrv' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => '127.0.0.1',
+			'database' => 'aviate',
+			'username' => 'root',
+			'password' => '',
+			'prefix'   => 'aviate_',
+		),
+
+	),
+
+	/*
+	|--------------------------------------------------------------------------
+	| Migration Repository Table
+	|--------------------------------------------------------------------------
+	|
+	| This table keeps track of all the migrations that have already run for
+	| your application. Using this information, we can determine which of
+	| the migrations on disk haven't actually been run in the database.
+	|
+	*/
+
+	'migrations' => 'migrations',
+
+	/*
+	|--------------------------------------------------------------------------
+	| Redis Databases
+	|--------------------------------------------------------------------------
+	|
+	| Redis is an open source, fast, and advanced key-value store that also
+	| provides a richer set of commands than a typical key-value systems
+	| such as APC or Memcached. Laravel makes it easy to dig right in.
+	|
+	*/
+
+	'redis' => array(
+
+		'cluster' => false,
+
+		'default' => array(
+			'host'     => '127.0.0.1',
+			'port'     => 6379,
+			'database' => 0,
+		),
+
+	),
 
 );

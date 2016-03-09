@@ -25,7 +25,7 @@
 	</ul>
 </section>
 
-<section class="tertiary">
+<section class="primary">
 	<a class="btn primary top-right" href="{{ admin_url('users/create') }}" class="primary">Create a new user</a>
 
 	<p class="empty-state">

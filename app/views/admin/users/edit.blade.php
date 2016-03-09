@@ -25,7 +25,7 @@
 	</ul>
 </section>
 
-<section class="tertiary">
+<section class="primary">
 	{{ Form::open() }}
 		
 		<p>

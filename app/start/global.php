@@ -2,6 +2,17 @@
 
 /*
 |--------------------------------------------------------------------------
+| Set Aviate's current version
+|--------------------------------------------------------------------------
+|
+| We'll use this to compare with the latest distributed version on Github.
+| This can be accessed by calling `AVIATE_VERSION` or Metadata::version().
+|
+*/
+define('AVIATE_VERSION', '0.1.0');
+
+/*
+|--------------------------------------------------------------------------
 | Register The Laravel Class Loader
 |--------------------------------------------------------------------------
 |

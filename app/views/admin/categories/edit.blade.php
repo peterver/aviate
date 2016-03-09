@@ -21,7 +21,7 @@
 		@endif
 	</div>
 
-	{{ Form::open(['class' => 'tertiary']) }}
+	{{ Form::open(['class' => 'primary']) }}
 		@if(isset($msg))
 		<div class="msg">
 			<div class="wrap">{{ $msg }}</div>
