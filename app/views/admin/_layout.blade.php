@@ -21,14 +21,14 @@
         <header id="top">
             <nav class="top-bar split">
                 <a class="logo centred" href="{{ admin_url() }}">
-                    {{ HTML::image('http://localhost:1028/svg/plane.svg', 'Aviate CMS logo', ['width' => 23, 'height' => 19]) }}      
+                    {{ HTML::image('bower_components/engine/svg/plane.svg', 'Aviate CMS logo', ['class' => 'icon', 'width' => 23, 'height' => 19]) }}      
                 </a>
 
                 <ul class="actions">
                     @foreach($pages as $page)
                     <li class="{{ Request::segment(2) === $page ? 'active' : '' }}">
-                        <a class="icon-generic icon-{{ $page }}" href="{{ admin_url($page) }}" title="{{ ucwords($page) }}">
-                            {{ @file_get_contents('http://localhost:1028/svg/' . $page . '.svg') }}
+                        <a href="{{ admin_url($page) }}" title="{{ ucwords($page) }}">
+                            {{ HTML::image('bower_components/engine/svg/' . $page . '.svg', ucwords($page), ['class' => 'icon']) }}
 
                             {{ ucwords($page) }}
                         </a>
@@ -39,7 +39,7 @@
                 <ul class="results">
                     <li>
                         <a class="icon-visit-site" title="Visit site" href="{{ URL::to('/') }}">
-                            {{ @file_get_contents('http://localhost:1028/svg/globe.svg') }}
+                            {{ HTML::image('bower_components/engine/svg/globe.svg', 'Visit site', ['class' => 'icon']) }}
 
                             Visit site
                         </a>
@@ -47,7 +47,7 @@
                     @foreach($results as $result => $url)
                     <li class="{{ strpos(Request::url(), $url) !== false ? 'active' : '' }}">
                         <a title="{{ $result }}" href="{{ URL::to($url) }}">
-                            {{ @file_get_contents('http://localhost:1028/svg/' . str_replace(admin_path(''), '', $url) . '.svg') }}
+                            {{ HTML::image('bower_components/engine/svg/' . str_replace(admin_path(''), '', $url) . '.svg', $result, ['class' => 'icon']) }}
 
                             {{ $result }}
                         </a>
@@ -84,6 +84,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ URL::to('aviate/js/jquery.min.js') }}"><\/script>')</script>
 
+        {{ HTML::script('bower_components/svg-injector/svg-injector.js') }}
         {{ HTML::script('aviate/js/main.js') }}
         
         @yield('scripts')

@@ -12,3 +12,4 @@ app/storage
 .phpintel
 public/system/*
 !public/system/index.php
+public/bower_components

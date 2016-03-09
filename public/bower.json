@@ -1,0 +1,22 @@
+{
+  "name": "aviate-public",
+  "homepage": "https://github.com/airline/aviate",
+  "authors": [
+    "@idiot <iam@visualidiot.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "svg-injector": "^1.1.3"
+  }
+}

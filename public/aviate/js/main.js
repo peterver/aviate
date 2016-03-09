@@ -1,4 +1,13 @@
 $(function() {
+	//  Polyfill our SVG icons so they're injected
+	//  into the DOM where we can do cool stuff
+	//  with them. *evil laugh*
+	SVGInjector(
+		//  Target any image that ends in .svg -
+		//  don't bother with special classes
+		$('img[src$=".svg"]')
+	);
+
 	//  Add a JS support hook in the CSS so we can
 	//  have appropriate fallbacks in place.
 	$('html').removeClass('no-js').addClass('js');

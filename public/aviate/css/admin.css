@@ -1,1 +1,6 @@
-@import 'http://localhost:1028/css/engine.css';
+/*
+ *  we're in aviate/css
+ *  need to go up 2 steps to get to main level
+ *  don't go back to root as we could be in a subdir
+ */
+@import '../../bower_components/engine/css/engine.css';
