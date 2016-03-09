@@ -35,6 +35,26 @@
                     </li>
                     @endforeach
 
+                    <li class="has-dropdown {{ in_array(Request::segment(2), array_values($content)) ? 'active' : '' }}">
+                        <a href="{{ admin_url('pages') }}">
+                            {{ HTML::image('bower_components/engine/svg/feather.svg') }}
+
+                            Content
+                        </a>
+
+                        <ul class="dropdown">
+                            @foreach($content as $content_title => $content_url)
+                            <li class="{{ Request::segment(2) === $content_url ? 'active' : '' }}">
+                                <a href="{{ admin_url($content_url) }}">
+                                    {{ HTML::image('bower_components/engine/svg/' . $content_url . '.svg') }}
+
+                                    {{ $content_title }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+
                     <li class="has-dropdown">
                         <a href="{{ admin_url('plugins') }}">
                             {{ HTML::image('bower_components/engine/svg/plugins.svg') }}

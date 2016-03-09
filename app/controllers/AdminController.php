@@ -5,7 +5,13 @@ class AdminController extends BaseController {
 	public function __construct() {
 		View::share(array(
 			'theme' => current_theme(),
-			'pages' => ['products', 'categories', 'pages', 'purchases'],
+			'pages' => ['products', 'purchases'],
+
+			'content' => [
+				'Pages' => 'pages',
+				'Themes' => 'themes',
+				'Categories' => 'categories'
+			],
 			
 			'plugins' => array_squish(Plugin::fire('admin.nav-actions')),
 
@@ -13,7 +19,6 @@ class AdminController extends BaseController {
 				[
 					'Users' => admin_path('users'),
 					'Settings' => admin_path('settings'),
-					'Themes' => admin_path('themes'),
 					'Log out' => admin_path('logout')
 				],
 
