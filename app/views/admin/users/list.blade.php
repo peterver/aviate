@@ -1,7 +1,19 @@
 @extends('admin/_layout')
 
 @section('content')
-<section class="secondary">
+<aside class="related">
+	<header>
+		<a class="filter-toggle">
+			{{ HTML::image(
+				'bower_components/engine/svg/filter.svg',
+				'Filter list',
+				['class' => 'icon']
+			) }}
+		</a>
+
+		<a class="btn subdued" href="/admin/users/create">New user</a>
+	</header>
+
 	<div class="filter">
 		<input type="search" data-search=".list li" placeholder="Search users…">
 		
@@ -12,21 +24,22 @@
 		</select>
 	</div>
 
-	<ul class="list">
+	<ul>
 		@foreach($users as $user)
 		<li data-attrs='{{ json_encode($user) }}'>
-			<a href="{{ admin_url('users/edit/' . $user->id) }}">
-				{{ $user->name or $user->username }}
-
-				<small>{{ $user->email }}</small>
+			<a {{ @($current->id === $user->id ? 'class="active"' : '') }} href="/admin/users/{{ $user->id }}/edit">
+				<img src="/assets/img/avatar.png" class="avatar default">
+				
+				<b>{{ $user->name or $user->username }}</b>
+				<span class="username">{{ $user->username }}</span>
 			</a>
 		</li>
 		@endforeach
 	</ul>
-</section>
+</aside>
 
 <section class="primary">
-	<a class="btn primary top-right" href="{{ admin_url('users/create') }}" class="primary">Create a new user</a>
+	<a class="btn top-right" href="{{ admin_url('users/create') }}" class="primary">Create a new user</a>
 
 	<p class="empty-state">
 		@if(count($users) > 0)
