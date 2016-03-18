@@ -76,6 +76,20 @@ View::addNamespace('theme', public_path() . '/themes/' . Metadata::item('theme',
 View::addLocation(theme_path('layouts'));
 View::addLocation(theme_path('partials'));
 
+/*
+ *   Using custom checkout themes
+ *   This might break the checkout experience so right now all
+ *   checkouts are manually designed and built.
+ *
+ *   You can add your own theme by changing the path in
+ *   $checkout_path or uncomment the example underneath to use
+ *   a checkout folder in your theme. There's no docs yet.
+ */
+$checkout_path = app_path() . '/views/checkout';
+//  $checkout_path = public_path() . '/themes/' . Metadata::item('theme', 'default') . '/checkout';
+
+View::addNamespace('checkout', $checkout_path);
+
 
 /*
 |--------------------------------------------------------------------------

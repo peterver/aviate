@@ -28,6 +28,9 @@ Route::group(array('before' => 'installed'), function() {
 	Route::get('basket/empty', 'SiteController@basketEmpty');
 	Route::get('basket/update/{product_id}', 'SiteController@basketUpdate');
 
+	//  Handle checkout and Stripe interactions
+	Route::controller('checkout', 'CheckoutController');
+
 	//  Listen to our category routes
 	//  We need to make sure the category exists and has products
 	//  before we display a list.
@@ -37,11 +40,7 @@ Route::group(array('before' => 'installed'), function() {
 	//  @TODO: make this more configurable
 	Route::get('{category}/{product}', 'SiteController@productPage');
 	Route::post('{category}/{product}', 'SiteController@buyProduct');
-
-	//  Handle checkout and Stripe interactions
-	Route::controller('checkout', 'CheckoutController');
 });
-
 
 //  Listen to any 404 errors and throw them in our controller
 //  We'll handle the headers and call a not_found template.
