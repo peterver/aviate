@@ -6,21 +6,21 @@
 		<meta http-equiv="Content-Language" content="en">
 
 		<title>
-			{{ get_site_name() }} &mdash; {{ $title or get_site_description() }}
+			{{ site_name() }} &mdash; {{ $title or site_description() }}
 		</title>
 
 		<meta property="og:url" content="{{ URL::to('/') }}">
-		<meta property="og:site_name" content="{{ get_site_name() }}">
-		<meta property="og:title" content="{{ $title or get_site_description() }}">
-		<meta property="og:description" content="{{ get_site_description() }}">
+		<meta property="og:site_name" content="{{ site_name() }}">
+		<meta property="og:title" content="{{ $title or site_description() }}">
+		<meta property="og:description" content="{{ site_description() }}">
 		
 		@if(isset($site->google_analytics))
 			<meta name="google-analytics" content="$site->google_analytics">
 		@endif
 
-		<link rel="icon" type="image/x-icon" href="{{ get_asset_url('favicon.png') }}">
+		<link rel="icon" type="image/x-icon" href="{{ asset_url('favicon.png') }}">
 
-		{{ get_stylesheet() }}
+		{{ stylesheet() }}
 
 		<!--[if lt IE 9]>
 			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,7 +38,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
-        {{ get_assets(['app.js', 'interactions.js']) }}
+        {{ assets(['app.js', 'interactions.js']) }}
 
         @if(isset($site->google_analytics))
 	        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

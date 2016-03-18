@@ -20,6 +20,7 @@ Route::group(array('before' => 'installed'), function() {
 		return Redirect::to('/');
 	});
 	
+	//  Single-page views
 	Route::get('pages/{page}', 'SiteController@singlePage');
 
 	//  Basket and checkout views
@@ -36,6 +37,9 @@ Route::group(array('before' => 'installed'), function() {
 	//  @TODO: make this more configurable
 	Route::get('{category}/{product}', 'SiteController@productPage');
 	Route::post('{category}/{product}', 'SiteController@buyProduct');
+
+	//  Handle checkout and Stripe interactions
+	Route::controller('checkout', 'CheckoutController');
 });
 
 
