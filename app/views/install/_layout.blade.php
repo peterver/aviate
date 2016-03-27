@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=1400, initial-scale=1">
 
 		<!-- Compiles from LESS -->
-        {{ HTML::style('aviate/css/reset.css'); }}
+        {{ HTML::style('bower_components/engine/css/engine.css'); }}
         {{ HTML::style('aviate/css/install.css'); }}
     </head>
     <body>
