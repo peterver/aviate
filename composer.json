@@ -4,7 +4,7 @@
 	"keywords": ["ecommerce", "cms", "laravel"],
 	"license": "MIT",
 	"require": {
-        "laravel/framework": "master",
+        "laravel/framework": "4.2.19",
 		"stripe/stripe-php": "^3.4",
 		"codesleeve/laravel-stapler": "1.0.*",
 		"anahkiasen/former": "~3.4",
