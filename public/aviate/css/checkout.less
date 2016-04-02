@@ -1,0 +1,102 @@
+/*
+ *  import airline/engine
+ */
+
+@import 'variables';
+@import '../../bower_components/engine/src/compile';
+
+.wrap {
+	width: 1200px;
+	padding-top: 60px;
+}
+
+label {
+	color: @label;
+}
+
+::-webkit-input-placeholder {
+	color: @placeholder;
+}
+
+.primary, .secondary {
+	padding: 10px 0 0;
+	border-radius: 5px;
+
+	> b {
+		display: block;
+		padding: 5px 20px;
+	}
+}
+
+.primary {
+	float: left;
+	width: 750px;
+}
+
+.secondary {
+	position: relative;
+	float: right;
+	width: 420px; // blazeit
+	min-height: 1px;
+
+	background: fade(@panel, 50%);
+
+	b {
+		color: @primary;
+	}
+
+	form& {
+		b {
+			padding-bottom: .9em;
+		}
+
+		p {
+			position: relative;
+			margin-bottom: 0;
+
+			&:last-of-type input {
+				border-radius: 0 0 5px 5px;
+			}
+		}
+
+		label {
+			position: absolute;
+			left: 20px;
+			top: 7.5px;
+
+			width: 130px;
+			font-size: 14px;
+
+			.ellipsis;
+		}
+
+		input {
+			padding-left: 150px;
+		}
+	}
+
+	input {
+		width: 100%;
+
+		background: transparent;
+		color: @white;
+
+		border-radius: 0;
+		border-top: 1px solid fade(@placeholder, 40%);
+
+		&:focus {
+			background: @panel;
+		}
+	}
+
+	.btn {
+		position: absolute;
+		bottom: -60px;
+		left: 0;
+
+		&.positive {
+			left: auto;
+			right: 0;
+		}
+	}
+}

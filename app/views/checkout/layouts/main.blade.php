@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Language" content="en">
 
 		<title>
-			{{ site_name() }} &mdash; {{ $title or site_description() }}
+			{{ site_name() }} &mdash; {{ $title or 'Checkout' }}
 		</title>
 
 		<meta property="og:url" content="{{ URL::to('/') }}">
@@ -24,7 +24,7 @@
 			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+		<link rel="stylesheet" href="{{ URL::to('aviate/css/checkout.css') }}">
 	</head>
 	
 	<body class="{{ $class or '' }}">
