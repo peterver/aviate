@@ -33,7 +33,7 @@ class AdminController extends BaseController {
 		//  Don't use Bootstrap-style inputs
 		Former::framework('Nude');
 
-	    return $this->beforeFilter('auth|install');
+	    return $this->beforeFilter('firstRun');
 	}
 
 	public function getIndex() {

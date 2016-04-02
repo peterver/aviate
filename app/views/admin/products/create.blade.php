@@ -1,12 +1,15 @@
 @extends('admin/_layout')
 
 @section('content')
-	<h1>Create a new product</h1>
+	{{ Form::open(['action' => 'ProductsController@postCreate', 'method' => 'POST', 'class' => 'product-form primary', 'files' => true]) }}
+		<h1>Create a new product</h1>
 
-	{{ Form::open(['action' => 'ProductsController@postCreate', 'method' => 'POST', 'class' => 'product-form', 'files' => true]) }}
 		<div class="wrap">
 			<div class="image-uploader">
-				<span>Drag an image here to upload</span>
+				<span>
+					{{ HTML::image('bower_components/engine/svg/photo.svg') }}
+					Drag an image here to upload
+				</span>
 				<input type="file" name="images">
 			</div>
 

@@ -70,21 +70,25 @@ require $framework.'/Illuminate/Foundation/start.php';
 |
 */
 
-// if(!defined('STDIN')) {
-// 	define('STDIN', fopen('php://stdin', 'r'));
-// 	stream_set_blocking(STDIN, false);
-// }
-
 Config::set('admin_location', 'admin');
 
 App::error(function(\PDOException $e, $code) {
 	$message = explode(' ', $e->getMessage());
-    $dbCode = rtrim($message[1], ']');
-    $dbCode = trim($dbCode, '[');
+    $dbCode = trim(rtrim($message[1], ']'), '[');
     
 	//  1049: database name
 	//  2002: database server
 	if(($dbCode == 1049 or $dbCode == 2002) and !Request::is('install')) {
+		if(App::runningInConsole()) {
+			return join([
+				'Your database server is down or the database you’re using for Aviate doesn’t exist.',
+				'Please check both and try again later.',
+				'',
+				'Sorry.',
+				''
+			], PHP_EOL);
+		}
+
 		return Redirect::to('install');
 	}
 });

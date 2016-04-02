@@ -95,6 +95,6 @@ class InstallController extends Controller {
 
 	protected static function migrate() {
 		Artisan::call('migrate', ['--force' => true, '--seed']);
-		// Artisan::call('db:ssed');
+		Artisan::call('db:ssed');
 	}
 }

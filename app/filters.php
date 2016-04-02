@@ -37,9 +37,9 @@ Route::filter('auth', function() {
 	if(Auth::guest()) {
 		if(Request::ajax()) {
 			return Response::make('Unauthorized', 401);
-		} else {
-			return Redirect::guest(Config::get('admin_location') . '/login');
 		}
+
+		return Redirect::guest(Config::get('admin_location') . '/login');
 	}
 });
 
@@ -83,9 +83,36 @@ Route::filter('installed', function() {
 	}
 });
 
+//  Only use while inside the installer.
 Route::filter('installing', function() {
 	if(Metadata::installed()) {
 		return Redirect::to('/');
+	}
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| First-run filter
+|--------------------------------------------------------------------------
+|
+| When initially creating the admin area, there'll be no products. We don't
+| want to add a demo product ideally - as we'd like the user to create
+| with real data. So we'll bounce to the first-run screen.
+|
+*/
+
+Route::filter('firstRun', function() {
+	//  For now, we'll manually redirect the user to the "create
+	//  new product screen". @TODO: proper first-run process.
+	$target = Config::get('admin_location') . '/products/create';
+
+	//  If we're logged in and there's no products, redirect us to fix it.
+	if(!Auth::guest() and Products::count() < 1) {
+		//  Make sure we're not redirecting to the same page over and over.
+		if(!Request::is($target)) {
+			return Redirect::to($target)->withError('You need to create a product first!');
+		}
 	}
 });
 

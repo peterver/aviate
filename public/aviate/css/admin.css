@@ -4,3 +4,18 @@
  *  don't go back to root as we could be in a subdir
  */
 @import '../../bower_components/engine/css/engine.css';
+
+.product-form {
+	position: relative;
+	overflow: hidden;
+}
+
+.image-uploader {
+	float: left;
+	width: 400px;
+}
+
+.product-form .main-form {
+	float: right;
+	width: calc(100% - 450px);
+}
