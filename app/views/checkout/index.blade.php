@@ -2,7 +2,38 @@
 	<div class="primary">
 		<b>You’re buying…</b>
 
-		{{ var_dump(Basket::getContents()) }}
+
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Total</th>
+			</tr>
+
+			@foreach(Basket::getContents() as $item)
+			<tr class="product-{{ $item->id }}">
+				<td class="name">
+					{{ $item->name }}
+
+					<span>{{ excerpt($item->description, 12) }}</span>
+
+					@if($item->gallery and $item->gallery->image->url('small'))
+					<img src="{{ $item->gallery->image->url('small') }}" alt="{{ $item->name }}" class="thumbnail">
+					@endif
+				</td>
+
+				<td class="price">{{ Currency::price($item->price) }}</td>
+				<td class="quantity">
+					&times; {{ $item->quantity }}
+				</td>
+
+				<td class="total">
+					{{ Currency::price($item->total_price) }}
+				</td>
+			</tr>
+			@endforeach
+		</table>
 	</div>
 
 	{{ Form::open(['class' => 'secondary']) }}

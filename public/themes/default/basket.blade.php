@@ -48,6 +48,8 @@
 		</table>
 
 		<a href="{{ URL::to('/basket/empty') }}">Clear yer basket</a>
+
+		<a class="btn" href="{{ URL::to('checkout') }}">Checkout</a>
 	@else
 		Nothing yet. Get buying!
 	@endif
